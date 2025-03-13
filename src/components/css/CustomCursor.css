@@ -1,6 +1,5 @@
-/* Hide the default browser cursor */
-body {
-  cursor: none;
+* {
+  cursor: none !important;
 }
 
 /* Default custom cursor (triangle) */
@@ -20,7 +19,6 @@ body {
     filter 0.7s ease;
   clip-path: polygon(60% 0%, 0% 100%, -5% 105%, 100% 100%);
   shape-rendering: crispEdges;
-  /* Glow via drop-shadow filter */
   filter: drop-shadow(0 0 20px rgba(255, 80, 109, 0.8));
 }
 
@@ -32,6 +30,31 @@ body {
   filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
 }
 
+/* New class for big circle on dsPara hover */
+.custom-cursor-bg.big-circle {
+  width: 5vw; /* Adjust size as needed */
+  height: 5vw;
+  clip-path: circle(50% at 50% 50%);
+  transform: translate(-50%, -50%); /* Center the circle */
+  transition: 
+    width 0.3s ease, 
+    height 0.3s ease, 
+    clip-path 0.3s ease, 
+    transform 0.3s ease,
+    filter 0.3s ease;
+  filter: drop-shadow(0 0 50px rgba(255, 80, 109, 1));
+}
+
+.custom-cursor-bg.elastic {
+  width: 3vw;
+  height: 3vw;
+  clip-path: circle(50% at 50% 50%);
+  transform: translate(-33%, -18%) rotate(720deg);
+  filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
+  transition: transform 0.7s ease, width 0.2s ease, height 0.2s ease;
+}
+
+/* Rest of your CSS remains unchanged */
 .custom-cursor-text {
   position: fixed;
   font-size: 0.7vw;
@@ -43,21 +66,10 @@ body {
   transition: font-size 0.2s ease;
 }
 
-/* Additional CSS for elastic cursor state in StatsSection */
-.custom-cursor-bg.elastic {
-  width: 3vw;
-  height: 3vw;
-  clip-path: circle(50% at 50% 50%);
-  transform: translate(-33%, -18%) rotate(720deg);
-  filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
-  transition: transform 0.7s ease, width 0.2s ease, height 0.2s ease;
-}
-
 .custom-cursor-emoji {
   position: fixed;
   pointer-events: none;
   z-index: 10000;
   transform: translate(-25%, -10%);
   font-size: 1.5vw;
-  
 }

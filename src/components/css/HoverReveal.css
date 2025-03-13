@@ -1,0 +1,88 @@
+/* Hover Reveal Effect Styles */
+.hover-reveal-container {
+  position: relative;
+  width: 100%;
+  cursor: none;
+  overflow: hidden;
+}
+
+.visible-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keep the original text styles as they were */
+.visible-content p {
+  margin: 0;
+  color: white; /* Preserve the white text color */
+  line-height: 1.6;
+}
+
+.hidden-content {
+  --x: 0px;
+  --y: 0px;
+  --size: 0px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  
+  /* Gradient background for the revealed text */
+  background: linear-gradient(
+    180deg,
+    rgba(251, 156, 132, 1) 0%,
+    rgba(240, 102, 128, 1) 50%,
+    rgba(129, 36, 112, 1) 100%
+  );
+  
+  /* Create the mask effect */
+  --mask: radial-gradient(
+    circle at var(--x) var(--y),
+    black var(--size),
+    transparent 0
+  );
+  -webkit-mask-image: var(--mask);
+  mask-image: var(--mask);
+  
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.hidden-content p {
+  margin: 0;
+  color: #121212;
+  font-weight: bold;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+/* Custom cursor for hover container */
+.hover-reveal-container::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 80, 109, 0.5);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hover-reveal-container:hover::after {
+  opacity: 1;
+}
+
+/* Make sure CountUp text is properly visible */
+.count-up-text {
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+  display: inline-block;
+  margin: 0 4px;
+}

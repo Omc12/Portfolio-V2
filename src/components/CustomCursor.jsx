@@ -4,21 +4,35 @@ import './css/CustomCursor.css';
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHoveringWrapper, setIsHoveringWrapper] = useState(false);
+  const [isHoveringDsPara, setIsHoveringDsPara] = useState(false);
   const [isElastic, setIsElastic] = useState(false);
   const textRef = useRef(null);
 
-  // Update cursor position
+  // Update cursor position and mask position for dsPara
   const updateCursor = (e) => {
     setPosition({ x: e.clientX, y: e.clientY });
+
+    if (isHoveringDsPara) {
+      const dsPara = document.getElementById('dsPara');
+      if (dsPara) {
+        const rect = dsPara.getBoundingClientRect();
+        const relativeX = e.clientX - rect.left;
+        const relativeY = e.clientY - rect.top;
+        dsPara.style.setProperty('--mask-x', `${relativeX}px`);
+        dsPara.style.setProperty('--mask-y', `${relativeY}px`);
+      }
+    }
   };
 
-  // Check if cursor is over a .wrapper element
+  // Check if cursor is over a .wrapper or #dsPara element
   const handleElementHover = (e) => {
     const isWrapper = e.target.closest('.wrapper') !== null;
+    const isDsPara = e.target.closest('#dsPara') !== null;
     setIsHoveringWrapper(isWrapper);
+    setIsHoveringDsPara(isDsPara);
   };
 
-  // Compute brightness using the formula: brightness = 0.299*R + 0.587*G + 0.114*B
+  // Compute brightness (unchanged)
   const getBrightness = (rgb) => {
     const result = rgb.match(/\d+/g);
     if (result && result.length >= 3) {
@@ -28,7 +42,6 @@ const CustomCursor = () => {
     return 255;
   };
 
-  // Recursively get a non-transparent background color from the element or its parent(s)
   const getEffectiveBackground = (elem) => {
     let bg = window.getComputedStyle(elem).backgroundColor;
     while ((bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') && elem.parentElement) {
@@ -38,30 +51,21 @@ const CustomCursor = () => {
     return bg;
   };
 
-  // Update the text color based on the background brightness (opposite logic)
   const updateTextColor = () => {
     if (!textRef.current) return;
-
     const originalPointerEvents = textRef.current.style.pointerEvents;
     textRef.current.style.pointerEvents = 'none';
-
     const rect = textRef.current.getBoundingClientRect();
     const sampleX = rect.left + rect.width / 2;
     const sampleY = rect.top + rect.height / 2;
     const elementBelow = document.elementFromPoint(sampleX, sampleY);
-
     textRef.current.style.pointerEvents = originalPointerEvents;
-
     if (!elementBelow) return;
-
     const bgColor = getEffectiveBackground(elementBelow);
     const brightness = getBrightness(bgColor);
-
-    // Using white text for both cases in your original code.
     textRef.current.style.color = brightness > 128 ? '#fff' : '#fff';
   };
 
-  // Observe changes to the custom cursor's class list to detect "elastic" state
   useEffect(() => {
     const cursorBg = document.querySelector('.custom-cursor-bg');
     if (!cursorBg) return;
@@ -101,7 +105,7 @@ const CustomCursor = () => {
   return (
     <>
       <div
-        className={`custom-cursor-bg ${isHoveringWrapper ? 'active' : ''}`}
+        className={`custom-cursor-bg ${isHoveringWrapper ? 'active' : ''} ${isHoveringDsPara ? 'big-circle' : ''}`}
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
       ></div>
       {isHoveringWrapper && (
