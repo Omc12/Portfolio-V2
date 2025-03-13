@@ -118,7 +118,7 @@ const CustomCursor = () => {
           className="custom-cursor-emoji"
           style={{ left: `${position.x}px`, top: `${position.y}px` }}
         >
-          🌀
+          🚀
         </div>
       )}
     </>

@@ -56,8 +56,8 @@ body {
 .custom-cursor-emoji {
   position: fixed;
   pointer-events: none;
-  z-index: 10000; /* Make sure it's above other elements */
+  z-index: 10000;
   transform: translate(-25%, -10%);
   font-size: 1.5vw;
-  /* Optional: add a drop shadow or any other styling */
+  
 }
