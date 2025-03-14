@@ -260,24 +260,34 @@ body {
   box-sizing: border-box;
 }
 
+/* Ensure the mask div aligns with dsPara */
 .DescriptiveStatsSub {
   width: 100%;
   height: 65%;
+  position: relative; /* Add this to position the mask relative to this container */
 }
 
 #dsPara {
-    line-height: 1.5;
-    font-size: 2.5vw;
-    color: #000;
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    width: 70%;
+  line-height: 1.5;
+  font-size: 2.5vw;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  width: 70%;
+  position: relative; /* Ensure it stays in the flow */
 }
+
 #dsPara span {
-    color: white;
-    font-weight: 400;
-    font-style: oblique;
+  color: white;
+  font-weight: 400;
+  font-style: oblique;
+}
+
+/* Style the mask paragraph to match dsPara */
+.mask p#dsPara {
+  margin: 2.6% 0 0 0; /* Remove default margin to align perfectly */
+  padding: 0; /* Remove padding if any */
 }
 
 /* ===================== */
