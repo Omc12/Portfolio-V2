@@ -1,20 +1,71 @@
-// CustomCursor.jsx
+// CustomCursor.js
 import React, { useState, useEffect, useRef } from 'react';
 import './css/CustomCursor.css';
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ 
+    x: window.innerWidth / 2, 
+    y: window.innerHeight / 2 
+  });
   const [isHoveringWrapper, setIsHoveringWrapper] = useState(false);
   const [isHoveringDsPara, setIsHoveringDsPara] = useState(false);
+  const [isHoveringAccolades, setIsHoveringAccolades] = useState(false);
   const [isElastic, setIsElastic] = useState(false);
+  const [hasMoved, setHasMoved] = useState(false);
+  const [isFocused, setIsFocused] = useState(document.hasFocus());
   const textRef = useRef(null);
 
-  // Update cursor position and, if needed, update dsPara’s mask CSS vars
+  useEffect(() => {
+    const handleFocus = () => setIsFocused(true);
+    const handleBlur = () => setIsFocused(false);
+
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('blur', handleBlur);
+
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('blur', handleBlur);
+    };
+  }, []);
+
+  useEffect(() => {
+    const cursorBg = document.querySelector('.custom-cursor-bg');
+    if (!cursorBg) return;
+
+    if (isFocused) {
+      cursorBg.style.display = 'block';
+      cursorBg.classList.add('entrance');
+      cursorBg.classList.remove('exit');
+    } else {
+      cursorBg.classList.add('exit');
+      cursorBg.classList.remove('entrance');
+      const handleAnimationEnd = () => {
+        if (!isFocused) {
+          cursorBg.style.display = 'none';
+        }
+        cursorBg.classList.remove('entrance', 'exit');
+      };
+      cursorBg.addEventListener('animationend', handleAnimationEnd);
+      return () => cursorBg.removeEventListener('animationend', handleAnimationEnd);
+    }
+  }, [isFocused]);
+
   const updateCursor = (e) => {
+    setHasMoved(true);
     setPosition({ x: e.clientX, y: e.clientY });
 
+    // Check accolades section
+    const accoladesSection = document.querySelector('.Section5');
+    if (accoladesSection) {
+      const rect = accoladesSection.getBoundingClientRect();
+      const isInAccolades = e.clientX >= rect.left && 
+                          e.clientX <= rect.right && 
+                          e.clientY >= rect.top && 
+                          e.clientY <= rect.bottom;
+      setIsHoveringAccolades(isInAccolades);
+    }
+
     if (isHoveringDsPara) {
-      // If you still want to update dsPara mask variables, you can do so here.
       const dsPara = document.getElementById('dsPara');
       if (dsPara) {
         const rect = dsPara.getBoundingClientRect();
@@ -26,7 +77,6 @@ const CustomCursor = () => {
     }
   };
 
-  // Determine if hovering over a wrapper or #dsPara element
   const handleElementHover = (e) => {
     const isWrapper = e.target.closest('.wrapper') !== null;
     const isDsPara = e.target.closest('#dsPara') !== null;
@@ -34,7 +84,6 @@ const CustomCursor = () => {
     setIsHoveringDsPara(isDsPara);
   };
 
-  // (Optional) Code to update text color remains unchanged…
   const getBrightness = (rgb) => {
     const result = rgb.match(/\d+/g);
     if (result && result.length >= 3) {
@@ -96,41 +145,51 @@ const CustomCursor = () => {
       window.removeEventListener('dragover', updateCursor);
       document.removeEventListener('mousemove', handleElementHover);
     };
-  }, []);
+  }, [isHoveringDsPara]);
 
   useEffect(() => {
-    if (isHoveringWrapper && textRef.current) {
+    if ((isHoveringWrapper || isHoveringAccolades) && textRef.current) {
       updateTextColor();
     }
-  }, [position, isHoveringWrapper]);
+  }, [position, isHoveringWrapper, isHoveringAccolades]);
 
   return (
     <>
       <div
-        className={`custom-cursor-bg ${isHoveringWrapper ? 'active' : ''} ${isHoveringDsPara ? 'big-circle' : ''}`}
+        className={`custom-cursor-bg 
+          ${isHoveringWrapper ? 'active' : ''} 
+          ${isHoveringDsPara ? 'big-circle' : ''} 
+          ${isHoveringAccolades ? 'accolades-hover' : ''}`}
         style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-          // Apply the mask properties when hovering over #dsPara:
+          left: hasMoved ? `${position.x}px` : '50vw',
+          top: hasMoved ? `${position.y}px` : '50vh',
           WebkitMaskImage: isHoveringDsPara ? "url('../assets/mask.svg')" : "none",
           maskImage: isHoveringDsPara ? "url('/mask.svg')" : "none",
           WebkitMaskSize: isHoveringDsPara ? "cover" : "auto",
           maskSize: isHoveringDsPara ? "cover" : "auto",
         }}
       ></div>
-      {isHoveringWrapper && (
+      {(isHoveringWrapper || isHoveringAccolades) && isFocused && (
         <div
           ref={textRef}
-          className={`custom-cursor-text ${isHoveringWrapper ? 'active' : ''}`}
-          style={{ left: `${position.x}px`, top: `${position.y}px` }}
+          className={`custom-cursor-text 
+            ${isHoveringWrapper ? 'active' : ''} 
+            ${isHoveringAccolades ? 'accolades-hover' : ''}`}
+          style={{ 
+            left: hasMoved ? `${position.x}px` : '50vw', 
+            top: hasMoved ? `${position.y}px` : '50vh' 
+          }}
         >
-          DRAG
+          {isHoveringAccolades ? 'HOVER' : 'DRAG'}
         </div>
       )}
-      {isElastic && (
+      {isElastic && isFocused && (
         <div
           className="custom-cursor-emoji"
-          style={{ left: `${position.x}px`, top: `${position.y}px` }}
+          style={{ 
+            left: hasMoved ? `${position.x}px` : '50vw', 
+            top: hasMoved ? `${position.y}px` : '50vh' 
+          }}
         >
           🚀
         </div>

@@ -1,3 +1,4 @@
+/* CustomCursor.css */
 * {
   cursor: none !important;
 }
@@ -10,7 +11,7 @@
   background-color: #ff506d;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-33%, -18%) rotate(-43deg);
+  transform: translate(-50%, -50%) rotate(-43deg);
   transition: 
     width 0.2s ease, 
     height 0.2s ease, 
@@ -20,22 +21,67 @@
   clip-path: polygon(60% 0%, 0% 100%, -5% 105%, 100% 100%);
   shape-rendering: crispEdges;
   filter: drop-shadow(0 0 20px rgba(255, 80, 109, 0.8));
+  display: none;
 }
 
+/* Entrance animation */
+.custom-cursor-bg.entrance {
+  animation: cursorEntrance 1s ease forwards;
+}
+
+/* Exit animation */
+.custom-cursor-bg.exit {
+  animation: cursorExit 0.5s ease forwards;
+}
+
+/* Entrance keyframes */
+@keyframes cursorEntrance {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-43deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(677deg);
+    opacity: 1;
+  }
+}
+
+/* Exit keyframes */
+@keyframes cursorExit {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(677deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0) rotate(-43deg);
+    opacity: 0;
+  }
+}
+
+/* Hover state for wrapper */
 .custom-cursor-bg.active {
   width: 3vw;
   height: 3vw;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-33%, -18%) rotate(720deg);
+  transform: translate(-50%, -50%) rotate(720deg);
   filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
 }
 
-/* New class for big circle on dsPara hover */
+/* Accolades hover state */
+.custom-cursor-bg.accolades-hover {
+  width: 3vw;
+  height: 3vw;
+  clip-path: circle(50% at 50% 50%);
+  transform: translate(-50%, -50%) rotate(720deg);
+  filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
+}
+
+/* Big circle on dsPara hover */
 .custom-cursor-bg.big-circle {
-  width: 5vw; /* Adjust size as needed */
+  width: 5vw;
   height: 5vw;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%); /* Center the circle */
+  transform: translate(-50%, -50%);
   transition: 
     width 0.3s ease, 
     height 0.3s ease, 
@@ -45,31 +91,39 @@
   filter: drop-shadow(0 0 50px rgba(255, 80, 109, 1));
 }
 
+/* Elastic state */
 .custom-cursor-bg.elastic {
   width: 3vw;
   height: 3vw;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-33%, -18%) rotate(720deg);
+  transform: translate(-50%, -50%) rotate(720deg);
   filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
   transition: transform 0.7s ease, width 0.2s ease, height 0.2s ease;
 }
 
-/* Rest of your CSS remains unchanged */
+/* Text styling */
 .custom-cursor-text {
   position: fixed;
   font-size: 0.7vw;
   font-family: sans-serif;
   pointer-events: none;
   z-index: 10000;
-  transform: translate(-25%, 80%);
+  transform: translate(-50%, -50%);
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
   transition: font-size 0.2s ease;
 }
 
+/* Text styling for accolades */
+.custom-cursor-text.accolades-hover {
+  font-size: 0.6vw;
+  transform: translate(-50%, -50%);
+}
+
+/* Emoji styling */
 .custom-cursor-emoji {
   position: fixed;
   pointer-events: none;
   z-index: 10000;
-  transform: translate(-25%, -10%);
+  transform: translate(-50%, -50%);
   font-size: 1.5vw;
 }

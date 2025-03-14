@@ -1,3 +1,4 @@
+// AccoladesSection.js
 import React, { useState, useRef } from 'react';
 import FollowCursor from './imports/FollowCursor/FollowCursor';
 
