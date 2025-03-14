@@ -1,4 +1,3 @@
-// useMousePosition.js
 import { useState, useEffect } from 'react';
 
 const useMousePosition = () => {

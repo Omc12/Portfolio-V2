@@ -16,31 +16,27 @@ const FallingText = ({
   const canvasContainerRef = useRef(null);
   const [effectStarted, setEffectStarted] = useState(false);
 
-  // Render the static text into word spans. This text preserves layout.
+  // Render static text into word spans
   useEffect(() => {
     if (!staticTextRef.current) return;
     const words = text.split(" ");
     const newHTML = words
       .map((word) => {
-        const isHighlighted = highlightWords.some((hw) =>
-          word.startsWith(hw)
-        );
+        const isHighlighted = highlightWords.some((hw) => word.startsWith(hw));
         return `<span class="word ${isHighlighted ? highlightClass : ""}">${word}</span>`;
       })
       .join(" ");
     staticTextRef.current.innerHTML = newHTML;
   }, [text, highlightWords, highlightClass]);
 
-  // Trigger the falling effect 500ms after the container enters the viewport.
+  // Trigger falling effect when in viewport
   useEffect(() => {
     if (!containerRef.current) return;
 
     const checkAndStart = () => {
       const rect = containerRef.current.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
-        setTimeout(() => {
-          setEffectStarted(true);
-        }, 500);
+        setTimeout(() => setEffectStarted(true), 500);
         return true;
       }
       return false;
@@ -51,9 +47,7 @@ const FallingText = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            setEffectStarted(true);
-          }, 500);
+          setTimeout(() => setEffectStarted(true), 500);
           observer.disconnect();
         }
       },
@@ -63,26 +57,16 @@ const FallingText = ({
     return () => observer.disconnect();
   }, []);
 
-  // When the effect starts, clone the static text into an overlay for simulation.
+  // Physics simulation
   useEffect(() => {
-    if (!effectStarted) return;
-    if (
-      !staticTextRef.current ||
-      !canvasContainerRef.current ||
-      !containerRef.current
-    )
-      return;
+    if (!effectStarted || !staticTextRef.current || !canvasContainerRef.current || !containerRef.current) return;
 
-    // Hide the static text (but keep its space)
     staticTextRef.current.style.visibility = "hidden";
 
-    // Create a simulation layer by cloning the static text's HTML.
     const simulationContainer = document.createElement("div");
     simulationContainer.innerHTML = staticTextRef.current.innerHTML;
-    // Append it to the canvas container (which is absolutely positioned over the static text).
     canvasContainerRef.current.appendChild(simulationContainer);
 
-    // Select all word elements from the simulation layer.
     const wordSpans = simulationContainer.querySelectorAll(".word");
     const containerRect = containerRef.current.getBoundingClientRect();
 
@@ -94,7 +78,6 @@ const FallingText = ({
     const engine = Engine.create();
     engine.world.gravity.y = gravity;
 
-    // Create a renderer for debugging (if wireframes is enabled).
     const render = Render.create({
       element: canvasContainerRef.current,
       engine,
@@ -106,17 +89,17 @@ const FallingText = ({
       },
     });
 
-    // Create invisible boundaries.
+    // Boundaries: Floor at the bottom of the container
     const boundaryOptions = { isStatic: true, render: { fillStyle: "transparent" } };
-    const floor = Bodies.rectangle(width / 2, height + 25, width, 50, boundaryOptions);
+    const floorHeight = 50; // Thickness of the floor
+    const floor = Bodies.rectangle(width / 2, height - floorHeight / 2, width, floorHeight, boundaryOptions);
     const leftWall = Bodies.rectangle(-25, height / 2, 50, height, boundaryOptions);
     const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, boundaryOptions);
     const ceiling = Bodies.rectangle(width / 2, -25, width, 50, boundaryOptions);
 
-    // Create a Matter.js body for each word element.
+    // Create word bodies
     const wordBodies = Array.from(wordSpans).map((elem) => {
       const rect = elem.getBoundingClientRect();
-      // Calculate position relative to the container.
       const x = rect.left - containerRect.left + rect.width / 2;
       const y = rect.top - containerRect.top + rect.height / 2;
       const body = Bodies.rectangle(x, y, rect.width, rect.height, {
@@ -125,13 +108,11 @@ const FallingText = ({
         frictionAir: 0.01,
         friction: 0.2,
       });
-      // Give a small random initial velocity.
       Matter.Body.setVelocity(body, { x: (Math.random() - 0.5) * 5, y: 0 });
       Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.05);
       return { elem, body };
     });
 
-    // Set each word element to absolute positioning within the simulation layer.
     wordBodies.forEach(({ elem, body }) => {
       elem.style.position = "absolute";
       elem.style.left = `${body.position.x}px`;
@@ -152,7 +133,6 @@ const FallingText = ({
     Runner.run(runner, engine);
     Render.run(render);
 
-    // Update loop to sync DOM positions with physics bodies.
     const updateLoop = () => {
       wordBodies.forEach(({ body, elem }) => {
         const { x, y } = body.position;
@@ -165,7 +145,6 @@ const FallingText = ({
     };
     updateLoop();
 
-    // Cleanup on unmount.
     return () => {
       Render.stop(render);
       Runner.stop(runner);
@@ -178,14 +157,12 @@ const FallingText = ({
   }, [effectStarted, gravity, backgroundColor, wireframes]);
 
   return (
-    <div ref={containerRef} className="falling-text-container">
-      {/* Static text placeholder (preserves layout) */}
+    <div ref={containerRef} className="falling-text-container" style={{ height: "100%" }}>
       <div
         ref={staticTextRef}
         className="falling-text-target"
         style={{ fontSize, lineHeight: 1.4 }}
       />
-      {/* Simulation overlay container */}
       <div
         ref={canvasContainerRef}
         className="falling-text-canvas"

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import FlowingMenu from './imports/FlowingMenu/FlowingMenu';
 import FallingText from './imports/FallingText/FallingText';
 import CountUp from './imports/Counter/Counter';
-import useMousePosition from './imports/Mask/useMousePosition'; // Assuming this is in utils folder
+import useMousePosition from './imports/Mask/useMousePosition'; // Adjust path as needed
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,7 +55,14 @@ const StatsSection = () => {
   const contentRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const { x, y } = useMousePosition();
-  const size = isHovered ? 200 : 0;
+  const size = isHovered ? 17 : 0; // Size in vw units
+  const offsetX = 0;    // No horizontal offset
+  const offsetY = -25;  // Moves mask circle upward (in vh units)
+
+  // Convert mouse position to viewport units with offsets
+  const maskX = (x / window.innerWidth * 100) - (size / 2) + offsetX;
+  const maskY = (y / window.innerHeight * 100) - (size / 2) + offsetY;
+  const maskSize = size;
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -139,8 +146,8 @@ const StatsSection = () => {
             <motion.div
               className="mask"
               animate={{
-                WebkitMaskPosition: `${x - (size / 2)-0}px ${y - (size / 2)-125}px`,
-                WebkitMaskSize: `${size}px`,
+                WebkitMaskPosition: `${maskX}vw ${maskY}vh`, // Using vh for y-axis to move upward
+                WebkitMaskSize: `${maskSize}vw`,
               }}
               transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
               style={{
@@ -149,7 +156,7 @@ const StatsSection = () => {
                 background: "#adff2f",
                 position: "absolute",
                 color: "black",
-                width: "100%", // Match #dsPara width
+                width: "100%",
                 height: "100%",
                 zIndex: 10001,
               }}
@@ -165,9 +172,9 @@ const StatsSection = () => {
                   <CountUp from={0} to={350} separator="," direction="up" duration={1} className="count-up-text" />
                 </span> commits, contributed to <span>
                   <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+  repositories, boosted my efficiency by <span>
+                </span>+ repositories, boosted my efficiency by <span>
                   <CountUp from={0} to={32} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>%  and took part in <span>
+                </span>% and took part in <span>
                   <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
                 </span>+ hackathons.
               </p>
