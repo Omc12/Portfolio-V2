@@ -7,6 +7,8 @@ import AccoladesSection from './AccoladesSection';
 import ScrollProgress from './ScrollProgress'; // Import the new component
 import './css/initial.css';
 import CustomCursor from './CustomCursor';
+import RevealLinks from './ContactSection';
+import KnowMore from './KnowMore';
 
 const Main = () => {
   return (
@@ -18,6 +20,8 @@ const Main = () => {
       <StatsSection />
       <ProjectsSection />
       <AccoladesSection />
+      <RevealLinks />
+      <KnowMore />
     </div>
   );
 };

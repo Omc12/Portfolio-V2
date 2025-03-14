@@ -1,0 +1,52 @@
+.reveal-links-section {
+    display: grid;
+    place-content: center;
+    gap: 0.5vw;
+    padding: 6vw 2vw;
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.flip-link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    color: black;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.75;
+    font-size: 2.25vw;
+}
+
+@media (min-width: 640px) {
+    .flip-link {
+      font-size: 5vw;
+    }
+}
+
+@media (min-width: 768px) {
+    .flip-link {
+      font-size: 6vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .flip-link {
+      font-size: 7vw;
+    }
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.flip-link-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
