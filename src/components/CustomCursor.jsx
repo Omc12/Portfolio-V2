@@ -1,3 +1,4 @@
+// CustomCursor.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './css/CustomCursor.css';
 
@@ -8,11 +9,12 @@ const CustomCursor = () => {
   const [isElastic, setIsElastic] = useState(false);
   const textRef = useRef(null);
 
-  // Update cursor position and mask position for dsPara
+  // Update cursor position and, if needed, update dsPara’s mask CSS vars
   const updateCursor = (e) => {
     setPosition({ x: e.clientX, y: e.clientY });
 
     if (isHoveringDsPara) {
+      // If you still want to update dsPara mask variables, you can do so here.
       const dsPara = document.getElementById('dsPara');
       if (dsPara) {
         const rect = dsPara.getBoundingClientRect();
@@ -24,7 +26,7 @@ const CustomCursor = () => {
     }
   };
 
-  // Check if cursor is over a .wrapper or #dsPara element
+  // Determine if hovering over a wrapper or #dsPara element
   const handleElementHover = (e) => {
     const isWrapper = e.target.closest('.wrapper') !== null;
     const isDsPara = e.target.closest('#dsPara') !== null;
@@ -32,7 +34,7 @@ const CustomCursor = () => {
     setIsHoveringDsPara(isDsPara);
   };
 
-  // Compute brightness (unchanged)
+  // (Optional) Code to update text color remains unchanged…
   const getBrightness = (rgb) => {
     const result = rgb.match(/\d+/g);
     if (result && result.length >= 3) {
@@ -106,7 +108,15 @@ const CustomCursor = () => {
     <>
       <div
         className={`custom-cursor-bg ${isHoveringWrapper ? 'active' : ''} ${isHoveringDsPara ? 'big-circle' : ''}`}
-        style={{ left: `${position.x}px`, top: `${position.y}px` }}
+        style={{
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+          // Apply the mask properties when hovering over #dsPara:
+          WebkitMaskImage: isHoveringDsPara ? "url('../assets/mask.svg')" : "none",
+          maskImage: isHoveringDsPara ? "url('/mask.svg')" : "none",
+          WebkitMaskSize: isHoveringDsPara ? "cover" : "auto",
+          maskSize: isHoveringDsPara ? "cover" : "auto",
+        }}
       ></div>
       {isHoveringWrapper && (
         <div

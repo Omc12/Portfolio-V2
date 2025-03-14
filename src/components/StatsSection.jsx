@@ -55,7 +55,7 @@ const StatsSection = () => {
   const contentRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const { x, y } = useMousePosition();
-  const size = isHovered ? 400 : 40;
+  const size = isHovered ? 200 : 0;
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -139,7 +139,7 @@ const StatsSection = () => {
             <motion.div
               className="mask"
               animate={{
-                WebkitMaskPosition: `${x - (size / 2)}px ${y - (size / 2)}px`,
+                WebkitMaskPosition: `${x - (size / 2)-0}px ${y - (size / 2)-125}px`,
                 WebkitMaskSize: `${size}px`,
               }}
               transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
@@ -150,6 +150,7 @@ const StatsSection = () => {
                 position: "absolute",
                 color: "black",
                 width: "100%", // Match #dsPara width
+                height: "100%",
                 zIndex: 10001,
               }}
             >

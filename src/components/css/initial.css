@@ -256,14 +256,14 @@ body {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding-left: 2.5%;
   box-sizing: border-box;
+  margin-top: -1vw;
 }
 
 /* Ensure the mask div aligns with dsPara */
 .DescriptiveStatsSub {
   width: 100%;
-  height: 65%;
+  height: 75%;
   position: relative; /* Add this to position the mask relative to this container */
 }
 
@@ -276,6 +276,8 @@ body {
   font-style: normal;
   width: 70%;
   position: relative; /* Ensure it stays in the flow */
+  margin-top: 5vw;
+  padding-left: 5vw;
 }
 
 #dsPara span {
@@ -286,8 +288,8 @@ body {
 
 /* Style the mask paragraph to match dsPara */
 .mask p#dsPara {
-  margin: 2.6% 0 0 0; /* Remove default margin to align perfectly */
-  padding: 0; /* Remove padding if any */
+  margin: 5vw 0 0 0; /* Remove default margin to align perfectly */
+  padding: 0 0 0 5vw; /* Remove padding if any */
 }
 
 /* ===================== */
