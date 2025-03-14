@@ -286,6 +286,10 @@ body {
   font-style: oblique;
 }
 
+.mask #dsPara span {
+  color: rgb(207, 83, 83);
+}
+
 /* Style the mask paragraph to match dsPara */
 .mask p#dsPara {
   margin: 5vw 0 0 0; /* Remove default margin to align perfectly */

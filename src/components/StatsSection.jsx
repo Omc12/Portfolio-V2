@@ -146,7 +146,7 @@ const StatsSection = () => {
               style={{
                 maskImage: "url('./src/assets/mask.svg')", // Ensure mask.svg is in public folder
                 maskRepeat: "no-repeat",
-                background: "#ec4e39",
+                background: "#adff2f",
                 position: "absolute",
                 color: "black",
                 width: "100%", // Match #dsPara width
@@ -159,14 +159,17 @@ const StatsSection = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                Right now, I'm gemdu uch as GSAP and Framer Motion.
-                To date, I've resolved over <span>
-                  <CountUp from={0} to={200} separator="," direction="up" duration={1} className="count-up-text" />
-                </span> bugs, produced <span>
-                  <CountUp from={0} to={100000} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+ lines of code, and finished more than <span>
-                  <CountUp from={0} to={25} separator="," direction="up" duration={1} className="count-up-text" />
-                </span> projects.
+                I've been coding for over <span>
+                  <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
+                </span>+ years. Last year, I made more than <span>
+                  <CountUp from={0} to={350} separator="," direction="up" duration={1} className="count-up-text" />
+                </span> commits, contributed to <span>
+                  <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
+                </span>+  repositories, boosted my efficiency by <span>
+                  <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
+                </span>%  and took part in <span>
+                  <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
+                </span>+ hackathons.
               </p>
             </motion.div>
             {/* Original Paragraph */}
