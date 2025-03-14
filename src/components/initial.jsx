@@ -3,7 +3,7 @@ import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
 import StatsSection from './StatsSection';
 import ProjectsSection from './ProjectsSection';
-import TestimonialSection from './TestimonialSection';
+import AccoladesSection from './AccoladesSection';
 import ScrollProgress from './ScrollProgress'; // Import the new component
 import './css/initial.css';
 import CustomCursor from './CustomCursor';
@@ -17,7 +17,7 @@ const Main = () => {
       <AboutSection />
       <StatsSection />
       <ProjectsSection />
-      <TestimonialSection />
+      <AccoladesSection />
     </div>
   );
 };

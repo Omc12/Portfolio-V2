@@ -166,7 +166,7 @@ const StatsSection = () => {
                 </span> commits, contributed to <span>
                   <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
                 </span>+  repositories, boosted my efficiency by <span>
-                  <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
+                  <CountUp from={0} to={32} separator="," direction="up" duration={1} className="count-up-text" />
                 </span>%  and took part in <span>
                   <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
                 </span>+ hackathons.
