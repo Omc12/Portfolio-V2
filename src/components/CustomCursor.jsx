@@ -1,3 +1,4 @@
+// CustomCursor.js
 import React, { useState, useEffect, useRef } from 'react';
 import './css/CustomCursor.css';
 
@@ -9,7 +10,7 @@ const CustomCursor = () => {
   const [isHoveringWrapper, setIsHoveringWrapper] = useState(false);
   const [isHoveringDsPara, setIsHoveringDsPara] = useState(false);
   const [isHoveringAccolades, setIsHoveringAccolades] = useState(false);
-  const [isHoveringMenu, setIsHoveringMenu] = useState(false); // Tracks menu/button hover
+  const [isHoveringMenu, setIsHoveringMenu] = useState(false); // New state for menu hover
   const [isElastic, setIsElastic] = useState(false);
   const [hasMoved, setHasMoved] = useState(false);
   const [isFocused, setIsFocused] = useState(document.hasFocus());
@@ -54,13 +55,15 @@ const CustomCursor = () => {
     setHasMoved(true);
     setPosition({ x: e.clientX, y: e.clientY });
 
+    // Check accolades section
     const accoladesSection = document.querySelector('.Section5');
     if (accoladesSection) {
       const rect = accoladesSection.getBoundingClientRect();
-      const isInAccolades = e.clientX >= rect.left && 
-                          e.clientX <= rect.right && 
-                          e.clientY >= rect.top && 
-                          e.clientY <= rect.bottom;
+      const isInAccolades =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
       setIsHoveringAccolades(isInAccolades);
     }
 
@@ -77,14 +80,14 @@ const CustomCursor = () => {
   };
 
   const handleElementHover = (e) => {
+    // Check if the hovered element is within an element with class "menu-cursor"
+    const isMenu = e.target.closest('.menu-cursor') !== null;
+    setIsHoveringMenu(isMenu);
+
     const isWrapper = e.target.closest('.wrapper') !== null;
     const isDsPara = e.target.closest('#dsPara') !== null;
-    // Use the actual class names from AnimatedMenu.module.css (adjust as needed)
-    const isMenu = e.target.closest('[class*="menu"]') !== null || 
-                  e.target.closest('[class*="button"]') !== null;
     setIsHoveringWrapper(isWrapper);
     setIsHoveringDsPara(isDsPara);
-    setIsHoveringMenu(isMenu);
   };
 
   const getBrightness = (rgb) => {
@@ -151,10 +154,10 @@ const CustomCursor = () => {
   }, [isHoveringDsPara]);
 
   useEffect(() => {
-    if ((isHoveringWrapper || isHoveringAccolades || isHoveringMenu) && textRef.current) {
+    if ((isHoveringWrapper || isHoveringAccolades) && textRef.current) {
       updateTextColor();
     }
-  }, [position, isHoveringWrapper, isHoveringAccolades, isHoveringMenu]);
+  }, [position, isHoveringWrapper, isHoveringAccolades]);
 
   return (
     <>
@@ -162,30 +165,30 @@ const CustomCursor = () => {
         className={`custom-cursor-bg 
           ${isHoveringMenu ? 'normal' : ''} 
           ${!isHoveringMenu && isHoveringWrapper ? 'active' : ''} 
-          ${!isHoveringMenu && isHoveringDsPara ? 'big-circle' : ''} 
-          ${!isHoveringMenu && isHoveringAccolades ? 'accolades-hover' : ''}`}
+          ${isHoveringDsPara ? 'big-circle' : ''} 
+          ${!isHoveringMenu && isHoveringAccolades ? 'accolades-hover' : ''}
+        `}
         style={{
           left: hasMoved ? `${position.x}px` : '50vw',
           top: hasMoved ? `${position.y}px` : '50vh',
-          WebkitMaskImage: isHoveringDsPara && !isHoveringMenu ? "url('../assets/mask.svg')" : "none",
-          maskImage: isHoveringDsPara && !isHoveringMenu ? "url('/mask.svg')" : "none",
-          WebkitMaskSize: isHoveringDsPara && !isHoveringMenu ? "cover" : "auto",
-          maskSize: isHoveringDsPara && !isHoveringMenu ? "cover" : "auto",
+          WebkitMaskImage: isHoveringDsPara ? "url('../assets/mask.svg')" : "none",
+          maskImage: isHoveringDsPara ? "url('/mask.svg')" : "none",
+          WebkitMaskSize: isHoveringDsPara ? "cover" : "auto",
+          maskSize: isHoveringDsPara ? "cover" : "auto",
         }}
       ></div>
-      {((isHoveringWrapper || isHoveringAccolades || isHoveringMenu) && !isElastic) && isFocused && (
+      {((isHoveringWrapper || isHoveringAccolades) && !isHoveringMenu) && isFocused && (
         <div
           ref={textRef}
           className={`custom-cursor-text 
-            ${isHoveringMenu ? 'normal' : ''} 
-            ${!isHoveringMenu && isHoveringWrapper ? 'active' : ''} 
-            ${!isHoveringMenu && isHoveringAccolades ? 'accolades-hover' : ''}`}
+            ${isHoveringWrapper ? 'active' : ''} 
+            ${isHoveringAccolades ? 'accolades-hover' : ''}`}
           style={{ 
             left: hasMoved ? `${position.x}px` : '50vw', 
             top: hasMoved ? `${position.y}px` : '50vh' 
           }}
         >
-          {isHoveringMenu ? '' : isHoveringAccolades ? 'HOVER' : 'DRAG'}
+          {isHoveringAccolades ? 'HOVER' : 'DRAG'}
         </div>
       )}
       {isElastic && isFocused && (

@@ -1,3 +1,4 @@
+// AnimatedMenuHeader.js
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
@@ -10,11 +11,8 @@ const links = [
   { title: "Contact", href: "/" },
 ];
 
-// Footer links data (optional, add your own if needed)
-const footerLinks = [
-  // { title: "Facebook", href: "/" },
-  // { title: "LinkedIn", href: "/" },
-];
+// Footer links data (optional)
+const footerLinks = [];
 
 // Menu animation variants for Framer Motion
 const menuVariants = {
@@ -48,7 +46,10 @@ const slideIn = {
 // Button component with hamburger icon
 function Button({ isActive, toggleMenu }) {
   return (
-    <div className={`${styles.button} ${isActive ? styles.active : ''}`} onClick={toggleMenu}>
+    <div
+      className={`${styles.button} ${isActive ? styles.active : ''} menu-cursor`}
+      onClick={toggleMenu}
+    >
       <div className={`${styles.icon} ${isActive ? styles.close : ''}`}></div>
     </div>
   );
@@ -115,14 +116,14 @@ function Nav({ isActive }) {
   );
 }
 
-// Main AnimatedMenuHeader component
+// Main AnimatedMenuHeader component with added "menu-cursor" class
 function AnimatedMenuHeader() {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className={styles.header}>
+    <div className={`${styles.header} menu-cursor`}>
       <motion.div
-        className={styles.menu}
+        className={`${styles.menu} menu-cursor`}
         variants={menuVariants}
         animate={isActive ? "open" : "closed"}
         initial="closed"
