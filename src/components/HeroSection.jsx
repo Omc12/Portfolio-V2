@@ -1,8 +1,23 @@
 import React from 'react';
+import ScrollVelocitySingle from "./imports/ScrollVelocity/ScrollVelocity";
 
 const HeroSection = () => {
   return (
     <div className="Section1">
+      <div className='VelocityLong'>
+        <ScrollVelocitySingle 
+          text="Om Chimurkar •" 
+          velocity={100} 
+          className="custom-scroll-text" 
+        />
+      </div>
+      <div className='VelocityShort'>
+        <ScrollVelocitySingle 
+          text="*Classified" 
+          velocity={100} 
+          className="custom-scroll-text" 
+        />
+      </div>
       <div className="heroTextMain">
         <h3 id="heroText">better.</h3>
       </div>

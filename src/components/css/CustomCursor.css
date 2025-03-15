@@ -101,6 +101,21 @@
   transition: transform 0.7s ease, width 0.2s ease, height 0.2s ease;
 }
 
+/* Normal state (overrides hover when over menu/button) */
+.custom-cursor-bg.normal {
+  width: 1vw;
+  height: 1vw;
+  clip-path: polygon(60% 0%, 0% 100%, -5% 105%, 100% 100%);
+  transform: translate(-50%, -50%) rotate(-43deg);
+  filter: drop-shadow(0 0 20px rgba(255, 80, 109, 0.8));
+  transition: 
+    width 0.2s ease, 
+    height 0.2s ease, 
+    clip-path 0.2s ease, 
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
 /* Text styling */
 .custom-cursor-text {
   position: fixed;
@@ -116,6 +131,12 @@
 /* Text styling for accolades */
 .custom-cursor-text.accolades-hover {
   font-size: 0.6vw;
+  transform: translate(-50%, -50%);
+}
+
+/* Text styling for normal state */
+.custom-cursor-text.normal {
+  font-size: 0.7vw;
   transform: translate(-50%, -50%);
 }
 

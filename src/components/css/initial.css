@@ -26,10 +26,10 @@ body {
 
 #scroll-percent {
     position: fixed;
-    top: 1vw;
+    top: 10px;
     right: 1vw;
     font-size: 16px;
-    color: #fff;
+    color: #ffffff;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
     padding: 5px 10px;
     border-radius: 5px;
@@ -37,8 +37,8 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-style: normal;
+    mix-blend-mode: difference;
   }
-  
 
 /* ===================== */
 /* Section1: Hero Section */
@@ -55,6 +55,26 @@ body {
   gap: 1%;
   box-sizing: border-box;
   background-color: #efefef;
+}
+
+.custom-scroll-text {
+  font-family: "Gochi Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.VelocityLong {
+  position: absolute;
+  transform: rotate(-15deg);
+  background-color: greenyellow;
+}
+
+.VelocityShort {
+  position: absolute;
+  transform: rotate(25deg);
+  left: -12%;
+  background-color: rgb(0, 0, 0);
+  color: greenyellow;
 }
 
 .heroTextMain {
