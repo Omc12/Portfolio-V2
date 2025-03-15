@@ -15,6 +15,19 @@
       font-weight: 400;
       font-style: normal;
     }
+
+    .confi {
+      position: absolute;
+      top: 0%;
+      right: 10%;
+      width: 20vw;
+      height: 20vw;
+      background-image: url('../../assets/Confi.png');
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transform: rotate(45deg);
+    }
   
     .VelocityLong {
       position: absolute;
@@ -98,6 +111,14 @@
 @media screen and (min-width: 768px) and (max-width:1024px){
   .Section1 {
 
+    .confi {
+      top: 20%;
+      right: 15%;
+      width: 30vw;
+      height: 30vw;
+      transform: rotate(45deg);
+    }
+
     .VelocityShort {
       transform: rotate(35deg);
       left: -20%;
@@ -146,6 +167,13 @@
 
 @media screen and (max-width: 768px) {
   .Section1 {
+    .confi {
+      top: 0%;
+      right: 0%;
+      width: 50vw;
+      height: 50vw;
+      transform: rotate(45deg);
+    }
 
     .VelocityShort {
       transform: rotate(65deg);

@@ -4,6 +4,7 @@ import ScrollVelocitySingle from "./imports/ScrollVelocity/ScrollVelocity";
 const HeroSection = () => {
   return (
     <div className="Section1">
+      <div className='confi'></div>
       <div className='VelocityLong'>
         <ScrollVelocitySingle 
           text="Om Chimurkar •" 
