@@ -85,7 +85,7 @@ const StatsSection = () => {
           snap: {
             snapTo: (progress) => {
               if (currentDirection > 0) {
-                return progress < 0.23 ? 0 : 1;
+                return progress < 0.13 ? 0 : 1;
               } else {
                 return progress < 0.93 ? 0 : 1;
               }
