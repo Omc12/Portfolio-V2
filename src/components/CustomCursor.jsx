@@ -166,12 +166,11 @@ const CustomCursor = () => {
           ${isHoveringMenu ? 'normal' : ''} 
           ${!isHoveringMenu && isHoveringWrapper ? 'active' : ''} 
           ${isHoveringDsPara ? 'big-circle' : ''} 
-          ${!isHoveringMenu && isHoveringAccolades ? 'accolades-hover' : ''}
-        `}
+          ${!isHoveringMenu && isHoveringAccolades ? 'accolades-hover' : ''}`}
         style={{
           left: hasMoved ? `${position.x}px` : '50vw',
           top: hasMoved ? `${position.y}px` : '50vh',
-          WebkitMaskImage: isHoveringDsPara ? "url('../assets/mask.svg')" : "none",
+          WebkitMaskImage: isHoveringDsPara ? "url('/mask.svg')" : "none",
           maskImage: isHoveringDsPara ? "url('/mask.svg')" : "none",
           WebkitMaskSize: isHoveringDsPara ? "cover" : "auto",
           maskSize: isHoveringDsPara ? "cover" : "auto",

@@ -176,8 +176,10 @@ const StatsSection = () => {
               }}
               transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
               style={{
-                maskImage: "url('./src/assets/mask.svg')", // Ensure mask.svg is in public folder
+                maskImage: "url('/mask.svg')", // Updated path
+                WebkitMaskImage: "url('/mask.svg')", // Add Webkit prefix for consistency
                 maskRepeat: "no-repeat",
+                WebkitMaskRepeat: "no-repeat",
                 background: "#adff2f",
                 position: "absolute",
                 color: "black",
