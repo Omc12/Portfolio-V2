@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&display=swap');
+
+:root, .main {
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+body {
+  background-color: #efefef;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  user-select: none;
+}
+
+#scroll-percent {
+  position: fixed;
+  top: 10px;
+  right: 1vw;
+  font-size: 16px;
+  color: #ffffff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 9999;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  mix-blend-mode: difference;
+}

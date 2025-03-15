@@ -115,7 +115,7 @@ const StatsSection = () => {
           },
           onUpdate: (self) => {
             currentDirection = self.direction;
-            if (self.progress > 0.3 && self.progress < 0.9) {
+            if (self.progress > 0.1 && self.progress < 0.93) {
               document.body.style.overflow = 'hidden';
             } else {
               document.body.style.overflow = '';

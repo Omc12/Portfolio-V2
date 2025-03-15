@@ -3,7 +3,7 @@ import AnimatedText from './imports/AnimatedText/AnimatedText';
 
 const AboutSection = () => {
   return (
-    <div className="Section2">
+    <div id="about-section" className="Section2">
       <h2 id="aboutMini">About</h2>
       <div id="aboutSub">
         <p id="aboutPara">

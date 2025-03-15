@@ -19,7 +19,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <div className="Section4">
+    <div className="Section4" id='projects-section'>
       <h2 id="projectsHead">Projects</h2>
       <div className="draggableContainer" ref={containerRef}>
         <h2 id="projectsPunchy">That's it?</h2>

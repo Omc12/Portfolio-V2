@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import styles from './AnimatedMenu.module.css';
 
-// Navigation links data
+// Navigation links data with target div IDs
 const links = [
-  { title: "About", href: "/" },
-  { title: "Projects", href: "/" },
-  { title: "Contact", href: "/" },
+  { title: "About", targetId: "about-section" },
+  { title: "Projects", targetId: "projects-section" },
+  { title: "Contact", targetId: "contact-section" },
 ];
 
 // Footer links data (optional)
@@ -43,6 +43,23 @@ const slideIn = {
   exit: { opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } },
 };
 
+// Function to smoothly scroll to the target div using offsetTop
+function scrollToSection(id, extraOffset = -20) {
+  const element = document.getElementById(id);
+  if (element) {
+    const baseOffset = 0; // your fixed header offset
+    const headerOffset = baseOffset + extraOffset;
+    const offsetPosition = element.offsetTop - headerOffset;
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  } else {
+    console.error(`Element with id ${id} not found.`);
+  }
+}
+
+
 // Button component with hamburger icon
 function Button({ isActive, toggleMenu }) {
   return (
@@ -55,13 +72,12 @@ function Button({ isActive, toggleMenu }) {
   );
 }
 
-// Navigation component with GSAP link animations
-function Nav({ isActive }) {
+// Navigation component with GSAP link animations and click handling
+function Nav({ isActive, closeMenu, setScrollTarget }) {
   const linkRefs = useRef([]);
 
   useEffect(() => {
     if (isActive) {
-      // Animate links in when menu opens
       gsap.fromTo(
         linkRefs.current,
         { opacity: 0, rotateX: 90, y: 80, x: -20 },
@@ -77,7 +93,6 @@ function Nav({ isActive }) {
         }
       );
     } else {
-      // Animate links out when menu closes
       gsap.to(linkRefs.current, {
         opacity: 0,
         duration: 0.5,
@@ -92,7 +107,16 @@ function Nav({ isActive }) {
       <div className={styles.body}>
         {links.map((link, i) => (
           <div key={`b_${i}`} className={styles.linkContainer}>
-            <a href={link.href} ref={(el) => (linkRefs.current[i] = el)}>
+            <a
+              href={`#${link.targetId}`}
+              ref={(el) => (linkRefs.current[i] = el)}
+              onClick={(e) => {
+                e.preventDefault();
+                // Set the target for scrolling and close the menu immediately.
+                setScrollTarget(link.targetId);
+                closeMenu();
+              }}
+            >
               {link.title}
             </a>
           </div>
@@ -116,9 +140,12 @@ function Nav({ isActive }) {
   );
 }
 
-// Main AnimatedMenuHeader component with added "menu-cursor" class
+// Main AnimatedMenuHeader component with deferred scrolling logic
 function AnimatedMenuHeader() {
   const [isActive, setIsActive] = useState(false);
+  const [scrollTarget, setScrollTarget] = useState(null);
+
+  const closeMenu = () => setIsActive(false);
 
   return (
     <div className={`${styles.header} menu-cursor`}>
@@ -127,8 +154,19 @@ function AnimatedMenuHeader() {
         variants={menuVariants}
         animate={isActive ? "open" : "closed"}
         initial="closed"
+        // Once the close animation is complete, scroll if a target is set.
+        onAnimationComplete={() => {
+          if (!isActive && scrollTarget) {
+            scrollToSection(scrollTarget);
+            setScrollTarget(null);
+          }
+        }}
       >
-        <Nav isActive={isActive} />
+        <Nav
+          isActive={isActive}
+          closeMenu={closeMenu}
+          setScrollTarget={setScrollTarget}
+        />
       </motion.div>
       <Button isActive={isActive} toggleMenu={() => setIsActive(!isActive)} />
     </div>

@@ -3,7 +3,7 @@ import { RevealLinks } from './imports/Links/RevealLinks'; // adjust the import 
 
 const ContactSection = () => {
   return (
-    <div className="Section6">
+    <div className="Section6" id='contact-section'>
       <h2 id="contactHead">Links</h2>
       <div className="links">
         <RevealLinks />

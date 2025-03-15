@@ -5,7 +5,7 @@ import StatsSection from './StatsSection';
 import ProjectsSection from './ProjectsSection';
 import AccoladesSection from './AccoladesSection';
 import ScrollProgress from './ScrollProgress'; // Import the new component
-import './css/initial.css';
+import './css/main.scss';
 import CustomCursor from './CustomCursor';
 import RevealLinks from './ContactSection';
 import KnowMore from './KnowMore';
