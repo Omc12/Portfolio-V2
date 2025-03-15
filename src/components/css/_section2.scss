@@ -73,3 +73,67 @@
       }
     }
   }
+
+  @media screen and (min-width: 768px) and (max-width:1024px){
+  
+    .Section2 {
+      height: 105vw;
+
+      #aboutMini {
+        font-size: 10vw;
+      }
+      
+      #aboutSub {
+        width: 80%;
+        height: 84%;
+
+          #aboutPara {
+            font-size: 4.3vw;
+            line-height: 1.4;
+          }
+          
+          #aboutParaMini1 {
+            width: 60%;
+            font-size: 2vw;
+          }
+          
+          #aboutParaMini2 {
+            width: 60%;
+            font-size: 2vw;
+            margin-left: 0%;
+          }
+      }
+  }
+
+  }
+
+  @media screen and (max-width: 768px){
+    .Section2 {
+      height: 200vw;
+
+      #aboutMini {
+        font-size: 13vw;
+      }
+      
+      #aboutSub {
+        width: 90%;
+        height: 90%;
+
+          #aboutPara {
+            font-size: 6vw;
+            line-height: 1.4;
+          }
+          
+          #aboutParaMini1 {
+            width: 80%;
+            font-size: 4vw;
+          }
+          
+          #aboutParaMini2 {
+            width: 80%;
+            font-size: 4vw;
+            margin-left: 0%;
+          }
+      }
+  }
+  }

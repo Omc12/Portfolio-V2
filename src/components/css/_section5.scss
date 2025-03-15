@@ -124,3 +124,167 @@
       }
     }
   }
+
+  @media screen and (min-width: 768px) and (max-width:1024px){ 
+    .Section5 {
+      height: 100vw;
+
+      #AccoladesHead {
+        font-size: 10vw;
+      }
+
+      #AccoladesContainer  {
+        height: 70vw;
+
+        #ac1 {
+          font-size: 5vw;
+          top: -13%;
+          left: 128%;
+        }
+
+        #ac2 {
+          font-size: 8vw;
+          top: -17%;
+          left: 128%;
+        }
+
+        #ac3 {
+          font-size: 5vw;
+          top: -15%;
+          left: 128%;
+        }
+
+        #ac4 {
+          font-size: 6vw;
+          top: -4%;
+          left: 35%;
+        }
+
+        #ac5 {
+          font-size: 5vw;
+          top: -5%;
+          left: 35%;
+        }
+
+        #ac6 {
+          font-size: 8vw;
+          top: -5%;
+          left: 35%;
+        }
+
+        #ac7 {
+          font-size: 7vw;
+          top: 7%;
+          left: -59%;
+        }
+
+        #ac8 {
+          font-size: 5vw;
+          top: 5%;
+          left: -59%;
+        }
+
+        #ac9 {
+          font-size: 6vw;
+          top: 6%;
+          left: -59%;
+        }
+
+        #ac10 {
+          font-size: 6vw;
+          top: 17%;
+          left: -140%;
+        }
+
+        #ac11 {
+          font-size: 6vw;
+          top: 15%;
+          left: -140%;
+        }
+    }
+
+    }
+  }
+
+  @media screen and (max-width: 768px)  {
+
+    .Section5 {
+      height: 150vw;
+
+      #AccoladesHead {
+        font-size: 13vw;
+      }
+
+      #AccoladesContainer  {
+        height: 120vw;
+
+        #ac1 {
+          font-size: 10vw;
+          top: -13%;
+          left: 190%;
+        }
+
+        #ac2 {
+          font-size: 12vw;
+          top: -17%;
+          left: 190%;
+        }
+
+        #ac3 {
+          font-size: 9vw;
+          top: 23%;
+          left: 128%;
+        }
+
+        #ac4 {
+          font-size: 7vw;
+          top: -4%;
+          left: 35%;
+        }
+
+        #ac5 {
+          font-size: 10vw;
+          top: -5%;
+          left: 35%;
+        }
+
+        #ac6 {
+          font-size: 8vw;
+          top: -5%;
+          left: 35%;
+        }
+
+        #ac7 {
+          font-size: 7vw;
+          top: 4%;
+          left: -59%;
+        }
+
+        #ac8 {
+          font-size: 10vw;
+          top: 6%;
+          left: -59%;
+        }
+
+        #ac9 {
+          font-size: 8vw;
+          top: 3%;
+          left: -200%;
+        }
+
+        #ac10 {
+          font-size: 9vw;
+          top: 13%;
+          left: -210%;
+        }
+
+        #ac11 {
+          font-size: 7vw;
+          top: 15%;
+          left: -200%;
+        }
+    }
+
+    }
+
+  }

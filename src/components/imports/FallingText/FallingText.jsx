@@ -157,7 +157,7 @@ const FallingText = ({
   }, [effectStarted, gravity, backgroundColor, wireframes]);
 
   return (
-    <div ref={containerRef} className="falling-text-container" style={{ height: "100%" }}>
+    <div ref={containerRef} className="falling-text-container">
       <div
         ref={staticTextRef}
         className="falling-text-target"

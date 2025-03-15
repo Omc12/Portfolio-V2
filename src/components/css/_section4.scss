@@ -113,3 +113,80 @@
       }
     }
   }
+
+  @media screen and (min-width: 768px) and (max-width:1024px){
+
+    .Section4 {
+      height: 105vw;
+
+      #projectsHead {
+        font-size: 10vw;
+      }
+      
+      .draggableContainer {
+        height: 60vw;
+          
+          .wrapper {
+            width: 30%;
+            height: 45%;
+          }
+          
+          .text-wrapper {
+            width: 30%;
+            height: 45%;
+              .text-wrapper-head {
+                font-size: 3vw;
+              }
+              
+              .text-wrapper-p {
+                font-size: 1.5vw;
+              }
+          }
+          
+          .wrapperText {
+            font-size: 1.6vw;
+            font-weight: 400;
+          }
+      }
+  }
+
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .Section4 {
+      height: 80vh;
+
+      #projectsHead {
+        font-size: 13vw;
+      }
+      
+      .draggableContainer {
+        height: 130vw;
+        width: 90vw;
+          
+          .wrapper {
+            width: 40%;
+            height: 35%;
+          }
+          
+          .text-wrapper {
+            width: 40%;
+            height: 35%;
+              .text-wrapper-head {
+                font-size: 5vw;
+              }
+              
+              .text-wrapper-p {
+                font-size: 2vw;
+              }
+          }
+          
+          .wrapperText {
+            font-size: 2.6vw;
+            font-weight: 400;
+          }
+      }
+  }
+
+  }

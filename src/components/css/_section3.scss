@@ -1,94 +1,158 @@
 .Section3 {
-    position: relative;
-    overflow: hidden;
-    height: 100vh;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background-color: blue;
+}
+
+#statsHead {
+  margin: 3vw 0 0 3vw;
+  display: flex;
+  align-self: flex-start;
+  line-height: 1;
+  font-size: 4vw;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: capitalize;
+}
+
+.horizontalContent {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  min-width: 200vw;
+  padding: 0;
+  box-sizing: border-box;
+  gap: 0vw;
+  height: 80vh;
+}
+
+.FlowingMenu {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
+
+.flowingContainer {
+  display: flex;
+  height: 100%;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.DescriptiveStats {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-top: -2vh;
+}
+
+.DescriptiveStatsSub {
+  width: 100%;
+  height: 75%;
+  position: relative;
+}
+
+#dsPara {
+  line-height: 1.5;
+  font-size: 2.5vw;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  width: 70%;
+  position: relative;
+  margin-top: 5vh;
+  padding-left: 5vw;
+}
+
+#dsPara span {
+  color: white;
+  font-weight: 400;
+  font-style: oblique;
+}
+
+.mask #dsPara {
+  margin: 5vh 0 0 0;
+  padding: 0 0 0 5vw;
+}
+
+.mask #dsPara span {
+  color: rgb(207, 83, 83);
+}
+
+@media screen and (min-width: 768px) and (max-width:1024px) {
+  .Section3{
+    height: 150vh;
     width: 100vw;
-    background-color: blue;
-  
-    #statsHead {
-      margin: 3vw 0 0 3vw;
-      display: flex;
-      align-self: flex-start;
-      line-height: 1;
-      font-size: 4vw;
-      color: #000;
-      font-family: "Poppins", sans-serif;
-      font-weight: 500;
-      font-style: normal;
-      text-transform: capitalize;
-    }
-  
-    .horizontalContent {
-      display: flex;
-      flex-direction: row;
-      width: fit-content;
-      min-width: 200vw;
-      padding: 0;
-      box-sizing: border-box;
-      gap: 0vw;
-      height: 80vh;
-    }
-  
-    .FlowingMenu {
-      width: 100vw;
-      display: flex;
-      flex-direction: row;
-      align-self: center;
-    }
-  
-    .flowingContainer {
-      display: flex;
-      height: 100%;
-      width: 100vw;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  
-    .DescriptiveStats {
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      box-sizing: border-box;
-      margin-top: -2vh;
-  
-      .DescriptiveStatsSub {
-        width: 100%;
-        height: 75%;
-        position: relative;
-      }
-  
-      #dsPara {
-        line-height: 1.5;
-        font-size: 2.5vw;
-        color: #000;
-        font-family: "Poppins", sans-serif;
-        font-weight: 300;
-        font-style: normal;
-        width: 70%;
-        position: relative;
-        margin-top: 5vh;
-        padding-left: 5vw;
-  
-        span {
-          color: white;
-          font-weight: 400;
-          font-style: oblique;
-        }
-      }
-    }
-  
-    .mask {
-      #dsPara {
-        margin: 5vh 0 0 0;
-        padding: 0 0 0 5vw;
-  
-        span {
-          color: rgb(207, 83, 83);
-        }
-      }
-    }
+
+  #statsHead {
+    font-size: 10vw;
   }
+
+  .horizontalContent {
+    min-width: 100vw;
+  }
+
+  .DescriptiveStatsSub {
+    height: 100%;
+  }
+
+  .DescriptiveStats #dsPara {
+    font-size: 4.3vw;
+    margin-top: 5vh;
+    padding-left: 5vw;
+  }
+
+  .mask #dsPara {
+    margin: 5vh 0 0 0;
+    padding: 0 0 0 5vw;
+  }
+}
+}
+
+@media screen and (max-width: 768px) {
+
+  .Section3{
+    height: 130vh;
+    width: 100vw;
+
+  #statsHead {
+    font-size: 13vw;
+  }
+
+  .flowingContainer {
+    height: 60vh;
+  }
+
+  .horizontalContent {
+    min-width: 100vw;
+  }
+
+  .DescriptiveStatsSub {
+    height: 100%;
+  }
+
+  .DescriptiveStats #dsPara {
+    font-size: 6vw;
+    margin-top: 5vh;
+    padding-left: 5vw;
+  }
+
+  .mask #dsPara {
+    margin: 5vh 0 0 0;
+    padding: 0 0 0 5vw;
+  }
+}
+
+}

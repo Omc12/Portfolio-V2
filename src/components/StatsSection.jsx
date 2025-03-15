@@ -56,8 +56,9 @@ const StatsSection = () => {
   const [isHovered, setIsHovered] = useState(false);
   const { x, y } = useMousePosition();
   const size = isHovered ? 17 : 0; // Size in vw units
-  const offsetX = 0;    // No horizontal offset
-  const offsetY = -25;  // Moves mask circle upward (in vh units)
+  const offsetX = window.innerWidth < 1024 ? 5 : 0;    // No horizontal offset
+  const offsetY = window.innerWidth < 1024 ? -13 : -25;
+  // Moves mask circle upward (in vh units)
 
   // Convert mouse position to viewport units with offsets
   const maskX = (x / window.innerWidth * 100) - (size / 2) + offsetX;
@@ -67,14 +68,21 @@ const StatsSection = () => {
   useEffect(() => {
     const section = sectionRef.current;
     const content = contentRef.current;
+    if (!section || !content) return;
 
-    if (section && content) {
+    // Create a matchMedia instance to handle responsive behavior
+    const mm = gsap.matchMedia();
+
+    // On larger screens: set up the horizontal scroll animation
+    mm.add("(min-width: 1025px)", () => {
+      // Set a wide width so that we have extra horizontal space
       content.style.width = "200vw";
+      // Reset any display properties (if set by tablet styles)
+      content.style.display = "";
       const contentWidth = content.offsetWidth;
-      
       let currentDirection = 1;
-      
-      gsap.timeline({
+
+      const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           pin: true,
@@ -84,11 +92,9 @@ const StatsSection = () => {
           anticipatePin: 1,
           snap: {
             snapTo: (progress) => {
-              if (currentDirection > 0) {
-                return progress < 0.13 ? 0 : 1;
-              } else {
-                return progress < 0.93 ? 0 : 1;
-              }
+              return currentDirection > 0 
+                ? progress < 0.13 ? 0 : 1 
+                : progress < 0.93 ? 0 : 1;
             },
             duration: 0.1,
             delay: 0,
@@ -122,13 +128,32 @@ const StatsSection = () => {
             }
           },
         }
-      }).to(content, {
+      });
+
+      timeline.to(content, {
         x: () => -(contentWidth - window.innerWidth),
         ease: "none"
       });
-    }
+    });
 
+    // On tablet and smaller screens: stack sections vertically
+    mm.add("(max-width: 1024px)", () => {
+      // Reset width and remove horizontal layout
+      content.style.width = "100%";
+      // Set display to block (or you could use flex-direction: column in your CSS)
+      content.style.display = "block";
+
+      // Optionally, if your horizontal layout was using inline-block or flex for children,
+      // make sure they stack vertically:
+      Array.from(content.children).forEach(child => {
+        child.style.width = "100%";
+        // You can also add margin or padding here if needed to separate the sections
+      });
+    });
+
+    // Cleanup on component unmount
     return () => {
+      mm.revert();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
@@ -146,7 +171,7 @@ const StatsSection = () => {
             <motion.div
               className="mask"
               animate={{
-                WebkitMaskPosition: `${maskX}vw ${maskY}vh`, // Using vh for y-axis to move upward
+                WebkitMaskPosition: `${maskX}vw ${maskY}vh`,
                 WebkitMaskSize: `${maskSize}vw`,
               }}
               transition={{ type: "tween", ease: "backOut", duration: 0.5 }}

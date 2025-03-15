@@ -115,3 +115,28 @@
     transform: translateX(-50%);
   }
 }
+
+@media screen and (min-width: 768px) and (max-width:1024px){
+
+  .menu__item-link {
+    font-size: 4vw;
+  }
+
+  .marquee__text {
+    font-size: 5vw;
+  }
+
+}
+
+@media screen and (max-width: 768px){
+
+  .menu__item-link {
+    font-size: 6vw;
+  }
+
+  .marquee__text {
+    font-size: 6vw;
+  }
+
+
+}

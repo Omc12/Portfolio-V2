@@ -19,9 +19,24 @@
   flex-shrink: 0;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width:1024px){
+
   .scroller {
-    font-size: 6vw;
-    line-height: 6vw;
+    font-size: 15vw;
+    line-height: 15vw;
   }
+
+}
+
+@media screen and (max-width: 768px) {
+
+  .parallax {
+    width: 300vw;
+  }
+
+  .scroller {
+    font-size: 25vw;
+    line-height: 25vw;
+  }
+
 }

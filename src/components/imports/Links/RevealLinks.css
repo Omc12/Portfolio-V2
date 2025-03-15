@@ -18,25 +18,7 @@
     font-weight: 900;
     text-transform: uppercase;
     line-height: 0.75;
-    font-size: 2.25vw;
-}
-
-@media (min-width: 640px) {
-    .flip-link {
-      font-size: 5vw;
-    }
-}
-
-@media (min-width: 768px) {
-    .flip-link {
-      font-size: 6vw;
-    }
-}
-
-@media (min-width: 1024px) {
-    .flip-link {
-      font-size: 7vw;
-    }
+    font-size: 7vw;
 }
 
 .inline-block {
@@ -49,4 +31,14 @@
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+@media screen and (max-width: 768px) {
+
+    .flip-link {
+        font-size: 15vw;
+        text-align: center;
+        margin: 0.5vw;
+    }
+
 }

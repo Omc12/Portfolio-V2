@@ -148,3 +148,16 @@
   transform: translate(-50%, -50%);
   font-size: 1.5vw;
 }
+
+@media screen and (max-width:1024px){ 
+
+  /* Revert to the default cursor for all elements */
+  
+  /* Hide custom cursor elements */
+  .custom-cursor-bg,
+  .custom-cursor-text,
+  .custom-cursor-emoji {
+    display: none !important;
+  }
+
+}
