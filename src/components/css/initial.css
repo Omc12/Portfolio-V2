@@ -43,7 +43,7 @@ body {
 /* ===================== */
 /* Section1: Hero Section */
 /* ===================== */
-/* Section1: Hero Section */
+
 .Section1 {
   display: flex;
   height: 100vh;
@@ -482,7 +482,7 @@ body {
 }
 
 #AccoladesContainer p {
-  color: rgb(0, 0, 0);
+  color: rgb(112, 112, 112);
   font-family: "Poppins", sans-serif;
   font-style: normal;
   margin: 0.4vw;
@@ -492,29 +492,29 @@ body {
 
 #ac1 {
   font-size: 4vw;
-  font-weight: 400;
-  top: -20%;
+  font-weight: 500;
+  top: -15%;
   left: 80%;
 }
 
 #ac2 {
   font-size: 5vw;
   font-weight: 500;
-  top: -21%;
+  top: -20%;
   left: 80%;
 }
 
 #ac3 {
   font-size: 4vw;
-  font-weight: 400;
-  top: -19.4%;
+  font-weight: 500;
+  top: -11%;
   left: 80%;
 }
 
 #ac4 {
   font-size: 7vw;
   font-weight: 700;
-  top: -23%;
+  top: -17%;
   left: 80%;
 }
 
@@ -527,43 +527,43 @@ body {
 
 #ac6 {
   font-size: 3vw;
-  font-weight: 300;
+  font-weight: 400;
   top: 4%;
   left: -2%;
 }
 
 #ac7 {
   font-size: 4vw;
-  font-weight: 400;
+  font-weight: 500;
   top: 3%;
   left: -2%;
 }
 
 #ac8 {
   font-size: 4vw;
-  font-weight: 400;
-  top: 22.5%;
+  font-weight: 500;
+  top: 19%;
   left: -85%;
 }
 
 #ac9 {
   font-size: 3vw;
-  font-weight: 300;
-  top: 23.5%;
+  font-weight: 400;
+  top: 17%;
   left: -85%;
 }
 
 #ac10 {
   font-size: 5vw;
   font-weight: 500;
-  top: 21%;
+  top: 20%;
   left: -85%;
 }
 
 #ac11 {
   font-size: 3vw;
-  font-weight: 300;
-  top: 23%;
+  font-weight: 500;
+  top: 18%;
   left: -85%;
 }
 
