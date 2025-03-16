@@ -10,7 +10,7 @@ const CustomCursor = () => {
   const [isHoveringWrapper, setIsHoveringWrapper] = useState(false);
   const [isHoveringDsPara, setIsHoveringDsPara] = useState(false);
   const [isHoveringAccolades, setIsHoveringAccolades] = useState(false);
-  const [isHoveringMenu, setIsHoveringMenu] = useState(false); // New state for menu hover
+  const [isHoveringMenu, setIsHoveringMenu] = useState(false);
   const [isElastic, setIsElastic] = useState(false);
   const [hasMoved, setHasMoved] = useState(false);
   const [isFocused, setIsFocused] = useState(document.hasFocus());
@@ -55,7 +55,6 @@ const CustomCursor = () => {
     setHasMoved(true);
     setPosition({ x: e.clientX, y: e.clientY });
 
-    // Check accolades section
     const accoladesSection = document.querySelector('.Section5');
     if (accoladesSection) {
       const rect = accoladesSection.getBoundingClientRect();
@@ -66,26 +65,13 @@ const CustomCursor = () => {
         e.clientY <= rect.bottom;
       setIsHoveringAccolades(isInAccolades);
     }
-
-    if (isHoveringDsPara) {
-      const dsPara = document.getElementById('dsPara');
-      if (dsPara) {
-        const rect = dsPara.getBoundingClientRect();
-        const relativeX = e.clientX - rect.left;
-        const relativeY = e.clientY - rect.top;
-        dsPara.style.setProperty('--mask-x', `${relativeX}px`);
-        dsPara.style.setProperty('--mask-y', `${relativeY}px`);
-      }
-    }
   };
 
   const handleElementHover = (e) => {
-    // Check if the hovered element is within an element with class "menu-cursor"
     const isMenu = e.target.closest('.menu-cursor') !== null;
-    setIsHoveringMenu(isMenu);
-
     const isWrapper = e.target.closest('.wrapper') !== null;
     const isDsPara = e.target.closest('#dsPara') !== null;
+    setIsHoveringMenu(isMenu);
     setIsHoveringWrapper(isWrapper);
     setIsHoveringDsPara(isDsPara);
   };
@@ -151,7 +137,7 @@ const CustomCursor = () => {
       window.removeEventListener('dragover', updateCursor);
       document.removeEventListener('mousemove', handleElementHover);
     };
-  }, [isHoveringDsPara]);
+  }, []);
 
   useEffect(() => {
     if ((isHoveringWrapper || isHoveringAccolades) && textRef.current) {
@@ -165,15 +151,11 @@ const CustomCursor = () => {
         className={`custom-cursor-bg 
           ${isHoveringMenu ? 'normal' : ''} 
           ${!isHoveringMenu && isHoveringWrapper ? 'active' : ''} 
-          ${isHoveringDsPara ? 'big-circle' : ''} 
+          ${isHoveringDsPara ? 'vanish' : ''} 
           ${!isHoveringMenu && isHoveringAccolades ? 'accolades-hover' : ''}`}
         style={{
           left: hasMoved ? `${position.x}px` : '50vw',
           top: hasMoved ? `${position.y}px` : '50vh',
-          WebkitMaskImage: isHoveringDsPara ? "url('/mask.svg')" : "none",
-          maskImage: isHoveringDsPara ? "url('/mask.svg')" : "none",
-          WebkitMaskSize: isHoveringDsPara ? "cover" : "auto",
-          maskSize: isHoveringDsPara ? "cover" : "auto",
         }}
       ></div>
       {((isHoveringWrapper || isHoveringAccolades) && !isHoveringMenu) && isFocused && (

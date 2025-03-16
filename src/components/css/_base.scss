@@ -38,3 +38,9 @@ body {
   font-style: normal;
   mix-blend-mode: difference;
 }
+
+@media screen and (max-width: 768px) {
+  #scroll-percent {
+    visibility: hidden;
+  }
+}

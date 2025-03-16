@@ -9,6 +9,8 @@
     gap: 1%;
     box-sizing: border-box;
     background-color: #efefef;
+    overflow: visible !important;
+    position: relative;
   
     .custom-scroll-text {
       font-family: "Gochi Hand", cursive;
@@ -111,6 +113,7 @@
 @media screen and (min-width: 768px) and (max-width:1024px){
   .Section1 {
 
+
     .confi {
       top: 20%;
       right: 15%;
@@ -167,6 +170,7 @@
 
 @media screen and (max-width: 768px) {
   .Section1 {
+    overflow: hidden !important;
     .confi {
       top: 0%;
       right: 0%;

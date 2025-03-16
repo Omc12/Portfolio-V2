@@ -24,12 +24,12 @@
   display: none;
 }
 
-/* Entrance animation */
+/* Entrance animation (when tab gains focus) */
 .custom-cursor-bg.entrance {
   animation: cursorEntrance 1s ease forwards;
 }
 
-/* Exit animation */
+/* Exit animation (when tab loses focus) */
 .custom-cursor-bg.exit {
   animation: cursorExit 0.5s ease forwards;
 }
@@ -76,19 +76,15 @@
   filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
 }
 
-/* Big circle on dsPara hover */
-.custom-cursor-bg.big-circle {
-  width: 5vw;
-  height: 5vw;
-  clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%);
-  transition: 
-    width 0.3s ease, 
-    height 0.3s ease, 
-    clip-path 0.3s ease, 
-    transform 0.3s ease,
-    filter 0.3s ease;
-  filter: drop-shadow(0 0 50px rgba(255, 80, 109, 1));
+/* Vanish state for dsPara */
+.custom-cursor-bg.vanish {
+  animation: cursorExit 0.5s ease forwards;
+  transition: none;
+}
+
+/* Ensure cursor reappears smoothly when leaving dsPara */
+.custom-cursor-bg:not(.vanish):not(.exit) {
+  animation: cursorEntrance 0.5s ease forwards;
 }
 
 /* Elastic state */
@@ -150,14 +146,11 @@
 }
 
 @media screen and (max-width:1024px){ 
-
   /* Revert to the default cursor for all elements */
-  
   /* Hide custom cursor elements */
   .custom-cursor-bg,
   .custom-cursor-text,
   .custom-cursor-emoji {
     display: none !important;
   }
-
 }

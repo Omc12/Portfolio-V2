@@ -6,13 +6,12 @@
 }
 
 .menu {
-  width: 3vw; /* Matches closed state with circular button */
-  height: 3vw; /* Matches closed state with circular button */
+  width: 3vw;
+  height: 3vw;
   overflow: hidden;
   background-color: #c9fd74;
   border-radius: 2vw;
   position: relative;
-
 }
 
 .button {
@@ -30,7 +29,7 @@
 }
 
 .button.active {
-  background-color: black; /* Changes background when menu is open */
+  background-color: black;
 }
 
 .icon {
@@ -52,27 +51,27 @@
 }
 
 .icon::before {
-  top: -4px; /* Positions top bar of hamburger */
+  top: -4px;
 }
 
 .icon::after {
-  top: 4px; /* Positions bottom bar of hamburger */
+  top: 4px;
 }
 
 .icon.close {
-  background-color: transparent; /* Hides middle bar when forming "X" */
+  background-color: transparent;
 }
 
 .icon.close::before {
   transform: rotate(45deg);
   top: 0;
-  background-color: #c9fd74; /* Matches menu background for contrast */
+  background-color: #c9fd74;
 }
 
 .icon.close::after {
   transform: rotate(-45deg);
   top: 0;
-  background-color: #c9fd74; /* Matches menu background for contrast */
+  background-color: #c9fd74;
 }
 
 .nav {
@@ -99,7 +98,7 @@
   text-decoration: none;
   color: black;
   font-size: 2vw;
-  opacity: 0; /* Hidden until animated by GSAP */
+  opacity: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: normal;
@@ -116,4 +115,26 @@
   margin-top: 5px;
   text-decoration: none;
   color: black;
+}
+
+/* Media query to hide all elements below 768px */
+@media (max-width: 768px) {
+  .header,
+  .menu,
+  .button,
+  .button.active,
+  .icon,
+  .icon::before,
+  .icon::after,
+  .icon.close,
+  .icon.close::before,
+  .icon.close::after,
+  .nav,
+  .body,
+  .linkContainer,
+  .linkContainer a,
+  .footer,
+  .footer a {
+    visibility: hidden;
+  }
 }
