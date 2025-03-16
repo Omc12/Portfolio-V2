@@ -27,7 +27,9 @@ const demoItems = [
       'PYTHON',
       'MATLAB',
       'NUMPY',
-      'GIT'
+      'GIT',
+      'LENIS',
+      'SCSS'
     ]
   },
   { 
@@ -229,7 +231,7 @@ const StatsSection = () => {
               </span> projects.
             </p>
             <FallingText
-              text={`UI/UX DESIGN Web Development GSAP Framer Motion r3f 3js react tailwind pytorch bootstrap github leetcode`}
+              text={`UI/UX Design Lenis Sass GSAP Framer Motion r3f 3js react tailwind pytorch bootstrap github leetcode`}
               highlightWords={[]}
               highlightClass="highlighted"
               trigger="hover"
