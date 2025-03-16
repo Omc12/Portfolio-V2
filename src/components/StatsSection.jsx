@@ -96,7 +96,7 @@ const StatsSection = () => {
           snap: {
             snapTo: (progress) => {
               return currentDirection > 0 
-                ? progress < 0.13 ? 0 : 1 
+                ? progress < 0.23 ? 0 : 1 
                 : progress < 0.93 ? 0 : 1;
             },
             duration: 0.1,
@@ -124,7 +124,7 @@ const StatsSection = () => {
           },
           onUpdate: (self) => {
             currentDirection = self.direction;
-            if (self.progress > 0.1 && self.progress < 0.93) {
+            if (self.progress > 0.2 && self.progress < 0.93) {
               document.body.style.overflow = 'hidden';
             } else {
               document.body.style.overflow = '';

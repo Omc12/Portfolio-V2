@@ -125,14 +125,14 @@
         top: 18%;
         left: -85%;
       }
-      
-      #clickText {
-        color: #000;
-        font-family: "Poppins", sans-serif;
-        font-weight: 300;
-        font-style: normal;
-        font-size: 3vw;
-      }
+    }
+    #clickText {
+      color: #000;
+      font-family: "Poppins", sans-serif;
+      font-weight: 300;
+      font-style: normal;
+      font-size: 3vw;
+      visibility: hidden;
     }
   }
 
