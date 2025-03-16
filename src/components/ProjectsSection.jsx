@@ -67,7 +67,7 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">Machine learning</p>
         </motion.div>
-        {/* Blue text wrapper for Notepad */}
+        {/* #1F51FF text wrapper for Notepad */}
         <motion.div
           className="text-wrapper draggable wrapper"
           drag
@@ -89,7 +89,7 @@ const ProjectsSection = () => {
             It's a notepad with AI integrated in it at a base level
           </p>
         </motion.div>
-        {/* Blue text wrapper for LLMs */}
+        {/* #1F51FF text wrapper for LLMs */}
         <motion.div
           className="text-wrapper draggable wrapper"
           drag

@@ -93,7 +93,7 @@ const StatsSection = () => {
           snap: {
             snapTo: (progress) => {
               return currentDirection > 0 
-                ? progress < 0.13 ? 0 : 1 
+                ? progress < 0.07 ? 0 : 1 
                 : progress < 0.93 ? 0 : 1;
             },
             duration: 0.1,
@@ -180,7 +180,7 @@ const StatsSection = () => {
                 WebkitMaskImage: "url('/mask.svg')", // Add Webkit prefix for consistency
                 maskRepeat: "no-repeat",
                 WebkitMaskRepeat: "no-repeat",
-                background: "#adff2f",
+                background: "#7FFF00;",
                 position: "absolute",
                 color: "black",
                 width: "100%",

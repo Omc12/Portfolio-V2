@@ -30,10 +30,10 @@
     font-family: "Gochi Hand", cursive;
     font-weight: 400;
     font-style: normal;
-    color: greenyellow;
+    color: #7FFF00;
     text-transform: uppercase;
     font-size: 2.7vw;
-    border: greenyellow 0.2vw solid;
+    border: #7FFF00 0.2vw solid;
     border-radius: 0.3vw;
     padding: 2px;
   }
