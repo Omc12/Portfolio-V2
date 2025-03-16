@@ -114,6 +114,15 @@
     }
   }
 
+  #dragText {
+    color: #000;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    visibility: hidden;
+    font-size: 3vw;
+  }
+
   @media screen and (min-width: 768px) and (max-width:1024px){
 
     .Section4 {
@@ -148,6 +157,11 @@
             font-weight: 400;
           }
       }
+  }
+
+  #dragText {
+    font-size: 2.3vw;
+    visibility: visible;
   }
 
   }
@@ -187,6 +201,11 @@
             font-weight: 400;
           }
       }
+  }
+
+  #dragText {
+    font-size: 3.5vw;
+    visibility: visible;
   }
 
   }

@@ -5,7 +5,10 @@ import { motion } from 'framer-motion';
 import FlowingMenu from './imports/FlowingMenu/FlowingMenu';
 import FallingText from './imports/FallingText/FallingText';
 import CountUp from './imports/Counter/Counter';
-import useMousePosition from './imports/Mask/useMousePosition'; // Adjust path as needed
+import useMousePosition from './imports/Mask/useMousePosition';
+import CircularText from './imports/CircularText/CircularText';
+  
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -161,6 +164,14 @@ const StatsSection = () => {
   return (
     <div className="Section3" ref={sectionRef}>
       <h2 id="statsHead">stats</h2>
+      <div className='touchText'>
+        <CircularText
+          text="TOUCH•TOUCH•TOUCH•"
+          onHover="speedUp"
+          spinDuration={20}
+          className="custom-class"
+        />
+      </div>
       <div className="horizontalContent" ref={contentRef}>
         <div className="flowingContainer">
           <FlowingMenu items={demoItems} />

@@ -8,6 +8,9 @@
     box-sizing: border-box;
     padding: 3% 3% 0 3%;
     gap: 2vw;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
   
     #AccoladesHead {
       margin: 0;
@@ -122,6 +125,14 @@
         top: 18%;
         left: -85%;
       }
+      
+      #clickText {
+        color: #000;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        font-size: 3vw;
+      }
     }
   }
 
@@ -202,7 +213,10 @@
           left: -140%;
         }
     }
-
+      #clickText {
+        font-size: 2.3vw;
+        visibility: visible;
+      }
     }
   }
 
@@ -283,6 +297,11 @@
           top: 15%;
           left: -200%;
         }
+    }
+    
+      #clickText {
+        font-size: 3.5vw;
+        visibility: visible;
     }
 
     }

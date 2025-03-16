@@ -134,6 +134,7 @@ const ProjectsSection = () => {
           <p className="wrapperText">Audio based ML</p>
         </motion.div>
       </div>
+      <p id='dragText'>Drag the cards</p>
     </div>
   );
 };

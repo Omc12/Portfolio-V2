@@ -82,6 +82,9 @@ const AccoladesSection = () => {
           className="follow-cursor-gif"
         />
       </div>
+
+      <p id='clickText'>Click on the names</p>
+
     </div>
   );
 };

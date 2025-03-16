@@ -39,8 +39,23 @@ body {
   mix-blend-mode: difference;
 }
 
+.touchText {
+  width: 10vw;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  visibility: hidden;
+}
+
 @media screen and (max-width: 768px) {
   #scroll-percent {
     visibility: hidden;
+  }
+
+  .touchText {
+    visibility: visible;
+    top: 0.5%;
+    right: 15%;
   }
 }
