@@ -29,7 +29,7 @@ const demoItems = [
       'NUMPY',
       'GIT',
       'LENIS',
-      'SCSS'
+      'SASS'
     ]
   },
   { 

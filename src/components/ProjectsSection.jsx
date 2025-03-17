@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import NN from '../assets/NeuralNetworks.png';
+import NML from '../assets/notml.png'
+import AML from '../assets/audioml.png'
 
 const ProjectsSection = () => {
   const containerRef = useRef(null);
@@ -41,7 +43,7 @@ const ProjectsSection = () => {
           }}
         >
           <div className="wrapperImg">
-            <img src={NN} className="wrapperImgStyle" alt="NotML" />
+            <img src={NML} className="wrapperImgStyle" alt="NotML" />
           </div>
           <p className="wrapperText">NotML</p>
         </motion.div>
@@ -129,7 +131,7 @@ const ProjectsSection = () => {
           }}
         >
           <div className="wrapperImg">
-            <img src={NN} className="wrapperImgStyle" alt="Audio based ML" />
+            <img src={AML} className="wrapperImgStyle" alt="Audio based ML" />
           </div>
           <p className="wrapperText">Audio based ML</p>
         </motion.div>
