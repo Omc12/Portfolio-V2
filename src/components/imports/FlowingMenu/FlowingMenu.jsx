@@ -35,7 +35,8 @@ function MenuItem({ text, images }) {
             ? { type: 'image', value: item }
             : { type: 'text', value: item }
         );
-        const numNeeded = Math.ceil(containerWidth / elementWidth);
+        // Calculate needed items based on container width, but ensure it's at least all items
+        const numNeeded = Math.max(Math.ceil(containerWidth / elementWidth), baseContent.length);
         const newContent = [];
         for (let i = 0; i < numNeeded; i++) {
           newContent.push(baseContent[i % baseContent.length]);
@@ -43,6 +44,7 @@ function MenuItem({ text, images }) {
         setMarqueeContent(newContent);
       }
     };
+    
 
     updateMarqueeContent();
     window.addEventListener('resize', updateMarqueeContent);

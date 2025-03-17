@@ -138,5 +138,12 @@
     font-size: 6vw;
   }
 
+  .marquee__inner-wrap {
+    width: 300%;
+  }
+
+  .marquee__inner {
+    width: 300%;
+  }
 
 }

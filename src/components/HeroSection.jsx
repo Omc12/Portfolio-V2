@@ -4,7 +4,6 @@ import ScrollVelocitySingle from "./imports/ScrollVelocity/ScrollVelocity";
 const HeroSection = () => {
   return (
     <div className="Section1">
-      <div className='confi'></div>
       <div className='VelocityLong'>
         <ScrollVelocitySingle 
           text="Om Chimurkar •" 
@@ -14,7 +13,7 @@ const HeroSection = () => {
       </div>
       <div className='VelocityShort'>
         <ScrollVelocitySingle 
-          text="*Classified" 
+          text="* Classified Document" 
           velocity={100} 
           className="custom-scroll-text" 
         />
