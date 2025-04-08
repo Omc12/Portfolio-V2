@@ -1,10 +1,16 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import NN from '../assets/NeuralNetworks.png';
-import NML from '../assets/notml.png'
-import AML from '../assets/audioml.png'
+import NML from '../assets/notml.png';
+import AML from '../assets/audioml.png';
 
 const ProjectsSection = () => {
+  const LINKS = {
+    notML: "https://notml.in",
+    machineLearning: "https://github.com/Not-ML/ML-3",
+    audioML: "https://github.com/Not-ML/audio-ml",
+  };
+
   const containerRef = useRef(null);
   const [zIndex, setZIndex] = useState(0);
 
@@ -21,23 +27,24 @@ const ProjectsSection = () => {
   };
 
   return (
-    <div className="Section4" id='projects-section'>
+    <div className="Section4" id="projects-section">
       <h2 id="projectsHead">Projects</h2>
       <div className="draggableContainer" ref={containerRef}>
         <h2 id="projectsPunchy">That's it?</h2>
-        {/* Image wrapper */}
+        {/* NotML card */}
         <motion.div
           className="wrapper draggable"
           drag
           dragConstraints={containerRef}
           dragElastic={0.65}
           onMouseDown={updateZIndex}
+          onTap={() => window.open(LINKS.notML, "_blank")}
           initial={{ rotate: -16 }}
           animate={{ rotate: -16 }}
           whileDrag={{ rotate: -16 }}
           style={{
             position: "absolute",
-            top: "0%",
+            top: "10%",
             left: "45%",
             zIndex,
           }}
@@ -47,19 +54,20 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">NotML</p>
         </motion.div>
-        {/* Image wrapper */}
+        {/* Machine Learning card */}
         <motion.div
           className="wrapper draggable"
           drag
           dragConstraints={containerRef}
           dragElastic={0.65}
           onMouseDown={updateZIndex}
+          onTap={() => window.open(LINKS.machineLearning, "_blank")}
           initial={{ rotate: 15 }}
           animate={{ rotate: 15 }}
           whileDrag={{ rotate: 15 }}
           style={{
             position: "absolute",
-            top: "20%",
+            top: "30%",
             left: "35%",
             zIndex,
           }}
@@ -69,7 +77,7 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">Machine learning</p>
         </motion.div>
-        {/* #1F51FF text wrapper for Notepad */}
+        {/* Notepad text card */}
         <motion.div
           className="text-wrapper draggable wrapper"
           drag
@@ -81,7 +89,7 @@ const ProjectsSection = () => {
           whileDrag={{ rotate: -26 }}
           style={{
             position: "absolute",
-            top: "25%",
+            top: "35%",
             left: "50%",
             zIndex,
           }}
@@ -91,7 +99,7 @@ const ProjectsSection = () => {
             It's a notepad with AI integrated in it at a base level
           </p>
         </motion.div>
-        {/* #1F51FF text wrapper for LLMs */}
+        {/* LLMs text card */}
         <motion.div
           className="text-wrapper draggable wrapper"
           drag
@@ -103,7 +111,7 @@ const ProjectsSection = () => {
           whileDrag={{ rotate: 6 }}
           style={{
             position: "absolute",
-            top: "10%",
+            top: "20%",
             left: "30%",
             zIndex,
           }}
@@ -113,19 +121,20 @@ const ProjectsSection = () => {
             Creating Large Language Models while learning pytorch
           </p>
         </motion.div>
-        {/* Image wrapper */}
+        {/* Audio based ML card */}
         <motion.div
           className="wrapper draggable"
           drag
           dragConstraints={containerRef}
           dragElastic={0.65}
           onMouseDown={updateZIndex}
+          onTap={() => window.open(LINKS.audioML, "_blank")}
           initial={{ rotate: -6 }}
           animate={{ rotate: -6 }}
           whileDrag={{ rotate: -6 }}
           style={{
             position: "absolute",
-            top: "10%",
+            top: "20%",
             left: "55%",
             zIndex,
           }}
@@ -136,7 +145,7 @@ const ProjectsSection = () => {
           <p className="wrapperText">Audio based ML</p>
         </motion.div>
       </div>
-      <p id='dragText'>Drag the cards</p>
+      <p id="dragText">Drag the cards</p>
     </div>
   );
 };
