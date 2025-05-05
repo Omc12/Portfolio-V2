@@ -1,5 +1,5 @@
 import React from 'react';
-import ScrollVelocitySingle from "./imports/ScrollVelocity/ScrollVelocity";
+import ScrollVelocitySingle from "./utils/ScrollVelocity/ScrollVelocity";
 
 const HeroSection = () => {
   return (

@@ -9,7 +9,7 @@ import './css/main.scss';
 import CustomCursor from './CustomCursor';
 import RevealLinks from './ContactSection';
 import KnowMore from './KnowMore';
-import AnimatedMenuHeader from './imports/TheButton/AnimatedMenu';
+import AnimatedMenuHeader from './utils/TheButton/AnimatedMenu';
 import Loader from './Loader';
 
 const Main = () => {

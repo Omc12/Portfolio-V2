@@ -1,6 +1,6 @@
 // AccoladesSection.js
 import React, { useState, useRef } from 'react';
-import FollowCursor from './imports/FollowCursor/FollowCursor';
+import FollowCursor from './utils/FollowCursor/FollowCursor';
 
 // Import local GIFs
 import ankushGif from '../assets/officeMeme.gif';

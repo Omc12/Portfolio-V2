@@ -1,5 +1,5 @@
 import React from 'react'
-import DecryptedText from './imports/DecryptingText/DecryptingText'
+import DecryptedText from './utils/DecryptingText/DecryptingText'
 
 const BackToTop = () => {
   const scrollToTop = () => {
@@ -40,7 +40,7 @@ const KnowMore = () => {
             encryptedClassName="encrypted"
           />
         </h2>
-        <h3 id='h32'>About Me?</h3>
+        <h3 id='h32' >About Me?</h3>
       </div>
       <div className='section7Tail'>
         <p id='plus'>+</p>

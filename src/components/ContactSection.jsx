@@ -1,5 +1,5 @@
 import React from 'react';
-import { RevealLinks } from './imports/Links/RevealLinks'; // adjust the import path as needed
+import { RevealLinks } from './utils/Links/RevealLinks'; // adjust the import path as needed
 
 const ContactSection = () => {
   return (

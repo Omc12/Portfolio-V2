@@ -2,11 +2,11 @@ import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
-import FlowingMenu from './imports/FlowingMenu/FlowingMenu';
-import FallingText from './imports/FallingText/FallingText';
-import CountUp from './imports/Counter/Counter';
-import useMousePosition from './imports/Mask/useMousePosition';
-import CircularText from './imports/CircularText/CircularText';
+import FlowingMenu from './utils/FlowingMenu/FlowingMenu';
+import FallingText from './utils/FallingText/FallingText';
+import CountUp from './utils/Counter/Counter';
+import useMousePosition from './utils/Mask/useMousePosition';
+import CircularText from './utils/CircularText/CircularText';
   
 
 
@@ -210,9 +210,9 @@ const StatsSection = () => {
                   <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
                 </span>+ years. Last year, I made more than <span>
                   <CountUp from={0} to={350} separator="," direction="up" duration={1} className="count-up-text" />
-                </span> commits, contributed to <span>
-                  <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+ repositories, boosted my efficiency by <span>
+                </span> commits, and worked on <span>
+                  <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
+                </span>+ projects, boosted my efficiency by <span>
                   <CountUp from={0} to={32} separator="," direction="up" duration={1} className="count-up-text" />
                 </span>% and took part in <span>
                   <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />

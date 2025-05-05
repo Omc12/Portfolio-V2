@@ -1,5 +1,5 @@
 import React from 'react';
-import AnimatedText from './imports/AnimatedText/AnimatedText';
+import AnimatedText from './utils/AnimatedText/AnimatedText';
 
 const AboutSection = () => {
   return (
