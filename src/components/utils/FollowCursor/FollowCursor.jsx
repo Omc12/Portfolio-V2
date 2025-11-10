@@ -23,7 +23,8 @@ const calcX = (y, containerCenterY, rotationFactor) => (y - containerCenterY) / 
 const calcY = (x, containerCenterX, rotationFactor) => (x - containerCenterX) / rotationFactor;
 
 const FollowCursor = ({
-  gif,
+  gif, // legacy GIF fallback
+  videoSources, // optional: { mp4: string, webm?: string, poster?: string }
   initialX,
   initialY,
   className = '',
@@ -145,6 +146,31 @@ const FollowCursor = ({
     };
   }, [api, gif, offsetX, offsetY, cardWidth, cardHeight, rotationFactor, enableTilt, initialX, initialY]);
 
+  const content = (() => {
+    if (videoSources && (videoSources.mp4 || videoSources.webm)) {
+      // Use a video element with identical sizing; absolute positioned inside animated container
+      return (
+        <video
+          className="card-media"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          autoPlay
+          muted
+          playsInline
+          loop
+          poster={videoSources.poster || undefined}
+        >
+          {videoSources.webm && <source src={videoSources.webm} type="video/webm" />}
+          <source src={videoSources.mp4} type="video/mp4" />
+          {gif && <img src={gif} alt="media" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+        </video>
+      );
+    }
+    if (gif) {
+      return <div className="card-media" style={{ width: '100%', height: '100%', backgroundImage: `url(${gif})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />;
+    }
+    return null;
+  })();
+
   return (
     <div className={`follow-cursor-container ${className}`} ref={containerRef}>
       <animated.div
@@ -157,10 +183,11 @@ const FollowCursor = ({
             (xVal, yVal, rx, ry, s) =>
               `perspective(${perspective}) translate(${xVal}px, ${yVal}px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${s})`
           ),
-          backgroundImage: gif ? `url(${gif})` : 'none',
           opacity,
         }}
-      />
+      >
+        {content}
+      </animated.div>
     </div>
   );
 };

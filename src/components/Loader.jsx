@@ -1,60 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import './css/loader.scss';
-
-// Image assets to preload
 import NN from '../assets/NeuralNetworks.png';
-import ankushGif from '../assets/officeMeme.gif';
-import dhruvGif from '../assets/mergeMeme.gif';
-import harshitGif from '../assets/drakeMeme.gif';
-import yugGif from '../assets/spongebobMeme.gif';
-import aarushGif from '../assets/jacksparrowMeme.gif';
-import sHarshitGif from '../assets/rickMeme.gif';
-import riteshGif from '../assets/shrekMeme.gif';
-import kushagraGif from '../assets/gotMeme.gif';
-import rohanGif from '../assets/baldMeme.gif';
-import yunusGif from '../assets/rockyMeme.gif';
-import chethanGif from '../assets/zombieMeme.gif';
 
-const imageSources = [
-  NN,
-  ankushGif,
-  dhruvGif,
-  harshitGif,
-  yugGif,
-  aarushGif,
-  sHarshitGif,
-  riteshGif,
-  kushagraGif,
-  rohanGif,
-  yunusGif,
-  chethanGif,
-];
+// Only preload a minimal critical set (e.g. hero/project preview); heavy accolades assets will be prefetched later
+const criticalImages = [NN];
 
 const Loader = ({ onLoaded }) => {
-  const [loading, setLoading] = useState(true);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    let loadedCount = 0;
-
-    const checkAllLoaded = () => {
-      loadedCount++;
-      if (loadedCount === imageSources.length) {
-        setTimeout(() => {
-          setLoading(false);
-          if (onLoaded) onLoaded();
-        }, 500); // optional slight delay
-      }
-    };
-
-    imageSources.forEach((src) => {
+    let loaded = 0;
+    const total = criticalImages.length;
+    if (total === 0) {
+      setDone(true);
+      onLoaded && onLoaded();
+      return;
+    }
+    criticalImages.forEach(src => {
       const img = new Image();
       img.src = src;
-      img.onload = img.onerror = checkAllLoaded;
+      img.onload = img.onerror = () => {
+        loaded++;
+        if (loaded === total) {
+          // Slight delay keeps visual parity
+          setTimeout(() => {
+            setDone(true);
+            onLoaded && onLoaded();
+          }, 300);
+        }
+      };
     });
   }, [onLoaded]);
 
-  if (!loading) return null;
-
+  if (done) return null;
   return <div className="loader-animated" />;
 };
 

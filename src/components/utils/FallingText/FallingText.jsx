@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-import Matter from "matter-js";
 import "./FallingText.css";
 
 const FallingText = ({
@@ -57,20 +56,32 @@ const FallingText = ({
     return () => observer.disconnect();
   }, []);
 
+  // Preload matter-js in idle time to avoid jank when effect starts
+  useEffect(() => {
+    if ('requestIdleCallback' in window) {
+      // @ts-ignore
+      requestIdleCallback(() => import('matter-js').catch(() => {}));
+    } else {
+      setTimeout(() => import('matter-js').catch(() => {}), 1000);
+    }
+  }, []);
+
   // Physics simulation
   useEffect(() => {
+    let cleanup = () => {};
     if (!effectStarted || !staticTextRef.current || !canvasContainerRef.current || !containerRef.current) return;
 
-    staticTextRef.current.style.visibility = "hidden";
+    (async () => {
+      const Matter = (await import('matter-js')).default || (await import('matter-js'));
+      const { Engine, Render, World, Bodies, Runner } = Matter;
+      staticTextRef.current.style.visibility = "hidden";
 
-    const simulationContainer = document.createElement("div");
-    simulationContainer.innerHTML = staticTextRef.current.innerHTML;
-    canvasContainerRef.current.appendChild(simulationContainer);
+      const simulationContainer = document.createElement("div");
+      simulationContainer.innerHTML = staticTextRef.current.innerHTML;
+      canvasContainerRef.current.appendChild(simulationContainer);
 
-    const wordSpans = simulationContainer.querySelectorAll(".word");
-    const containerRect = containerRef.current.getBoundingClientRect();
-
-    const { Engine, Render, World, Bodies, Runner } = Matter;
+      const wordSpans = simulationContainer.querySelectorAll(".word");
+      const containerRect = containerRef.current.getBoundingClientRect();
     const width = containerRect.width;
     const height = containerRect.height;
     if (width <= 0 || height <= 0) return;
@@ -129,31 +140,34 @@ const FallingText = ({
       ...wordBodies.map((wb) => wb.body),
     ]);
 
-    const runner = Runner.create();
-    Runner.run(runner, engine);
-    Render.run(render);
+      const runner = Runner.create();
+      Runner.run(runner, engine);
+      Render.run(render);
 
-    const updateLoop = () => {
-      wordBodies.forEach(({ body, elem }) => {
-        const { x, y } = body.position;
-        elem.style.left = `${x}px`;
-        elem.style.top = `${y}px`;
-        elem.style.transform = `translate(-50%, -50%) rotate(${body.angle}rad)`;
-      });
-      Matter.Engine.update(engine, 16.666);
-      requestAnimationFrame(updateLoop);
-    };
-    updateLoop();
+      const updateLoop = () => {
+        wordBodies.forEach(({ body, elem }) => {
+          const { x, y } = body.position;
+          elem.style.left = `${x}px`;
+          elem.style.top = `${y}px`;
+          elem.style.transform = `translate(-50%, -50%) rotate(${body.angle}rad)`;
+        });
+        Matter.Engine.update(engine, 16.666);
+        requestAnimationFrame(updateLoop);
+      };
+      updateLoop();
 
-    return () => {
-      Render.stop(render);
-      Runner.stop(runner);
-      if (render.canvas && canvasContainerRef.current) {
-        canvasContainerRef.current.removeChild(render.canvas);
-      }
-      World.clear(engine.world);
-      Engine.clear(engine);
-    };
+      cleanup = () => {
+        Render.stop(render);
+        Runner.stop(runner);
+        if (render.canvas && canvasContainerRef.current) {
+          canvasContainerRef.current.removeChild(render.canvas);
+        }
+        World.clear(engine.world);
+        Engine.clear(engine);
+      };
+    })();
+
+    return () => cleanup();
   }, [effectStarted, gravity, backgroundColor, wireframes]);
 
   return (

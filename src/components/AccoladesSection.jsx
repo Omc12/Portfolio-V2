@@ -70,6 +70,8 @@ const AccoladesSection = () => {
         ))}
         <FollowCursor
           gif={hoveredItem ? gifMap[hoveredItem.name] : null}
+          /* videoSources can be injected later after conversion without changing layout */
+          videoSources={null}
           initialX={hoveredItem ? hoveredItem.initialX : 0}
           initialY={hoveredItem ? hoveredItem.initialY : 0}
           offsetX="33vw"

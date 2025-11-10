@@ -50,7 +50,7 @@ const ProjectsSection = () => {
           }}
         >
           <div className="wrapperImg">
-            <img src={NML} className="wrapperImgStyle" alt="NotML" />
+            <img src={NML} className="wrapperImgStyle" alt="NotML" loading="lazy" />
           </div>
           <p className="wrapperText">NotML</p>
         </motion.div>
@@ -73,7 +73,7 @@ const ProjectsSection = () => {
           }}
         >
           <div className="wrapperImg">
-            <img src={NN} className="wrapperImgStyle" alt="Machine Learning" />
+            <img src={NN} className="wrapperImgStyle" alt="Machine Learning" loading="lazy" />
           </div>
           <p className="wrapperText">Machine learning</p>
         </motion.div>
@@ -140,7 +140,7 @@ const ProjectsSection = () => {
           }}
         >
           <div className="wrapperImg">
-            <img src={AML} className="wrapperImgStyle" alt="Audio based ML" />
+            <img src={AML} className="wrapperImgStyle" alt="Audio based ML" loading="lazy" />
           </div>
           <p className="wrapperText">Audio based ML</p>
         </motion.div>

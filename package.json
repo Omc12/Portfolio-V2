@@ -10,24 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-spring/web": "^9.7.5",
-    "@react-three/drei": "^10.0.4",
-    "@react-three/fiber": "^9.1.0",
-    "@react-three/rapier": "^2.0.0",
+  "@react-spring/web": "^9.7.5",
     "@studio-freight/lenis": "^1.0.42",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "animate.css": "^4.1.1",
-    "d3": "^7.9.0",
     "framer-motion": "^12.5.0",
     "gsap": "^3.12.7",
     "matter-js": "^0.20.0",
-    "meshline": "^3.3.1",
-    "ogl": "^1.0.11",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "sass": "^1.85.1",
-    "three": "^0.174.0"
+  "three": "^0.174.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
