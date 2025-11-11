@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import { useSpring, animated, to } from "@react-spring/web";
 import './FollowCursor.css';
 
@@ -148,11 +148,17 @@ const FollowCursor = ({
     };
   }, [api, gif, videoSources, offsetX, offsetY, cardWidth, cardHeight, rotationFactor, enableTilt, initialX, initialY]);
 
+  const mediaKey = useMemo(() => {
+    const v = (videoSources && (videoSources.webm || videoSources.mp4)) || '';
+    return v || gif || 'none';
+  }, [videoSources, gif]);
+
   const content = (() => {
     if (videoSources && (videoSources.mp4 || videoSources.webm)) {
       // Use a video element with identical sizing; absolute positioned inside animated container
       return (
         <video
+          key={mediaKey}
           className="card-media"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           autoPlay
@@ -168,7 +174,7 @@ const FollowCursor = ({
       );
     }
     if (gif) {
-      return <div className="card-media" style={{ width: '100%', height: '100%', backgroundImage: `url(${gif})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />;
+      return <div key={mediaKey} className="card-media" style={{ width: '100%', height: '100%', backgroundImage: `url(${gif})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />;
     }
     return null;
   })();
