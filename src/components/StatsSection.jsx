@@ -21,36 +21,36 @@ const demoItems = [
       'JAVASCRIPT',
       'REACT',
       'TAILWIND',
-      'REACT 3 FIBER',
       'BOOTSTRAP',
-      'THREE JS',
-      'PYTHON',
-      'MATLAB',
-      'NUMPY',
       'GIT',
       'LENIS',
-      'SASS'
+      'SASS',
+      'PYTHON'
     ]
   },
   { 
     text: 'competitive programming', 
     images: [
-      '150+ questions solved', 
+      '300+ questions solved', 
       'leetcode rating: 1530',
-      'active for 50+ days',
+      'active for 100+ days',
       'Acceptance rate: 75+%'
     ]
   },
   { 
-    text: 'Creativity Stack', 
+    text: 'Machine Learning', 
     images: [
-      'Figma', 
-      'Photoshop',
-      'After Effects',
-      'Premiere Pro',
-      'Davinci Resolve',
-      'Pen and Paper',
-      'Blender'
+      'NUMPY',
+      'PANDAS',
+      'MATPLOTLIB',
+      'SK LEARN',
+      'LLMs',
+      'KNNs',
+      'XG Boost',
+      'RFR',
+      'PIPELINES',
+      'LINEAR REGRESSION',
+      'GRADIENT BOOSTING'
     ]
   },
 ];
@@ -206,32 +206,30 @@ const StatsSection = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                I've been coding for over <span>
-                  <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+ years. Last year, I made more than <span>
-                  <CountUp from={0} to={350} separator="," direction="up" duration={1} className="count-up-text" />
-                </span> commits, and worked on <span>
+                I've learnt about<span>
+                  <CountUp from={0} to={8} separator="," direction="up" duration={1} className="count-up-text" />
+                </span>+ regression techniques. Used them in over <span>
                   <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+ projects, boosted my efficiency by <span>
-                  <CountUp from={0} to={32} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>% and took part in <span>
+                </span> projects, and practiced on <span>
+                  <CountUp from={0} to={30} separator="," direction="up" duration={1} className="count-up-text" />
+                </span>+ datasets, and took part in <span>
                   <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
                 </span>+ hackathons.
               </p>
             </motion.div>
             {/* Original Paragraph */}
             <p id="dsPara">
-              Right now, I'm exploring fresh frameworks such as GSAP and Framer Motion.
-              To date, I've resolved over <span>
-                <CountUp from={0} to={200} separator="," direction="up" duration={1} className="count-up-text" />
-              </span> bugs, produced <span>
-                <CountUp from={0} to={100000} separator="," direction="up" duration={1} className="count-up-text" />
-              </span>+ lines of code, and finished more than <span>
-                <CountUp from={0} to={25} separator="," direction="up" duration={1} className="count-up-text" />
-              </span> projects.
+              Right now, I'm exploring LLMs, transformers and RAG.
+              To date, I've made over <span>
+                <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
+              </span> projects, worked on <span>
+                <CountUp from={0} to={20} separator="," direction="up" duration={1} className="count-up-text" />
+              </span>+ datasets, and took part in <span>
+                <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
+              </span>+ kaggle competitions.
             </p>
             <FallingText
-              text={`UI/UX Design Lenis Sass GSAP Framer Motion r3f 3js react tailwind pytorch bootstrap github leetcode`}
+              text={`UI/UX Design Lenis Sass GSAP Framer-Motion react tailwind pytorch bootstrap matplotlib pandas numpy sklearn xgboost llms`}
               highlightWords={[]}
               highlightClass="highlighted"
               trigger="hover"
