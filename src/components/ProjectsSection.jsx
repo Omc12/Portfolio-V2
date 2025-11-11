@@ -3,6 +3,17 @@ import { motion } from 'framer-motion';
 import NN from '../assets/NeuralNetworks.png';
 import NML from '../assets/notml.png';
 import AML from '../assets/audioml.png';
+import NNAvif from '../assets/images/NeuralNetworks.avif';
+import NMLAvif from '../assets/images/notml.avif';
+import AMLAvif from '../assets/images/audioml.avif';
+// Future optimized variants (to be added after conversion)
+// import NNAvif from '../assets/NeuralNetworks.avif';
+// import NNWebp from '../assets/NeuralNetworks.webp';
+// import NMLAvif from '../assets/notml.avif';
+// import NMLWebp from '../assets/notml.webp';
+// import AMLAvif from '../assets/audioml.avif';
+// import AMLWebp from '../assets/audioml.webp';
+import OptimizedPicture from './utils/OptimizedPicture.jsx';
 
 const ProjectsSection = () => {
   const LINKS = {
@@ -50,7 +61,13 @@ const ProjectsSection = () => {
           }}
         >
           <div className="wrapperImg">
-            <img src={NML} className="wrapperImgStyle" alt="NotML" loading="lazy" />
+            <OptimizedPicture
+              src={NML}
+              alt="NotML"
+              className="wrapperImgStyle"
+              loading="lazy"
+              sources={[{srcSet: NMLAvif, type: 'image/avif'}]}
+            />
           </div>
           <p className="wrapperText">NotML</p>
         </motion.div>
@@ -73,7 +90,13 @@ const ProjectsSection = () => {
           }}
         >
           <div className="wrapperImg">
-            <img src={NN} className="wrapperImgStyle" alt="Machine Learning" loading="lazy" />
+            <OptimizedPicture
+              src={NN}
+              alt="Machine Learning"
+              className="wrapperImgStyle"
+              loading="lazy"
+              sources={[{srcSet: NNAvif, type: 'image/avif'}]}
+            />
           </div>
           <p className="wrapperText">Machine learning</p>
         </motion.div>
@@ -140,7 +163,13 @@ const ProjectsSection = () => {
           }}
         >
           <div className="wrapperImg">
-            <img src={AML} className="wrapperImgStyle" alt="Audio based ML" loading="lazy" />
+            <OptimizedPicture
+              src={AML}
+              alt="Audio based ML"
+              className="wrapperImgStyle"
+              loading="lazy"
+              sources={[{srcSet: AMLAvif, type: 'image/avif'}]}
+            />
           </div>
           <p className="wrapperText">Audio based ML</p>
         </motion.div>

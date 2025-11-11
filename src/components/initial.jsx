@@ -1,42 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
-import StatsSection from './StatsSection';
-import ProjectsSection from './ProjectsSection';
-import AccoladesSection from './AccoladesSection';
+const StatsSection = lazy(() => import('./StatsSection'));
+const ProjectsSection = lazy(() => import('./ProjectsSection'));
+const AccoladesSection = lazy(() => import('./AccoladesSection'));
+const KnowMore = lazy(() => import('./KnowMore'));
 import ScrollProgress from './ScrollProgress';
 import './css/main.scss';
 import CustomCursor from './CustomCursor';
 import RevealLinks from './ContactSection';
-import KnowMore from './KnowMore';
 import AnimatedMenuHeader from './utils/TheButton/AnimatedMenu';
 import Loader from './Loader';
 
-// Lazy accolades GIF prefetch (keeping original assets, converting to video will be separate step)
-import ankushGif from '../assets/officeMeme.gif';
-import dhruvGif from '../assets/mergeMeme.gif';
-import harshitGif from '../assets/drakeMeme.gif';
-import yugGif from '../assets/spongebobMeme.gif';
-import aarushGif from '../assets/jacksparrowMeme.gif';
-import sHarshitGif from '../assets/rickMeme.gif';
-import riteshGif from '../assets/shrekMeme.gif';
-import kushagraGif from '../assets/gotMeme.gif';
-import rohanGif from '../assets/baldMeme.gif';
-import yunusGif from '../assets/rockyMeme.gif';
-import chethanGif from '../assets/zombieMeme.gif';
+// Prefetch optimized WebM videos for accolades (no visual change)
+import officeWebm from '../assets/videos/officeMeme.webm';
+import mergeWebm from '../assets/videos/mergeMeme.webm';
+import drakeWebm from '../assets/videos/drakeMeme.webm';
+import spongebobWebm from '../assets/videos/spongebobMeme.webm';
+import jacksparrowWebm from '../assets/videos/jacksparrowMeme.webm';
+import rickWebm from '../assets/videos/rickMeme.webm';
+import shrekWebm from '../assets/videos/shrekMeme.webm';
+import gotWebm from '../assets/videos/gotMeme.webm';
+import baldWebm from '../assets/videos/baldMeme.webm';
+import rockyWebm from '../assets/videos/rockyMeme.webm';
+import zombieWebm from '../assets/videos/zombieMeme.webm';
 
 const accoladesHeavy = [
-  ankushGif,
-  dhruvGif,
-  harshitGif,
-  yugGif,
-  aarushGif,
-  sHarshitGif,
-  riteshGif,
-  kushagraGif,
-  rohanGif,
-  yunusGif,
-  chethanGif,
+  officeWebm,
+  mergeWebm,
+  drakeWebm,
+  spongebobWebm,
+  jacksparrowWebm,
+  rickWebm,
+  shrekWebm,
+  gotWebm,
+  baldWebm,
+  rockyWebm,
+  zombieWebm,
 ];
 
 const Main = () => {
@@ -46,8 +46,12 @@ const Main = () => {
     if (!showContent) return;
     const startPrefetch = () => {
       accoladesHeavy.forEach(src => {
-        const img = new Image();
-        img.src = src;
+        const v = document.createElement('video');
+        v.preload = 'auto';
+        v.src = src;
+        // Attempt to buffer then release element
+        v.load?.();
+        setTimeout(() => { try { v.src = ''; } catch {} }, 5000);
       });
     };
     if ('requestIdleCallback' in window) {
@@ -57,6 +61,22 @@ const Main = () => {
       setTimeout(startPrefetch, 500);
     }
   }, [showContent]);
+
+  // Idle prefetch for split chunks to avoid any choppiness
+  useEffect(() => {
+    const preload = () => {
+      import('./StatsSection');
+      import('./ProjectsSection');
+      import('./AccoladesSection');
+      import('./KnowMore');
+    };
+    if ('requestIdleCallback' in window) {
+      // @ts-ignore
+      requestIdleCallback(preload, { timeout: 2000 });
+    } else {
+      setTimeout(preload, 800);
+    }
+  }, []);
 
   return (
     <>
@@ -68,11 +88,19 @@ const Main = () => {
           <ScrollProgress />
           <HeroSection />
           <AboutSection />
-          <StatsSection />
-          <ProjectsSection />
-          <AccoladesSection />
+          <Suspense fallback={null}>
+            <StatsSection />
+          </Suspense>
+          <Suspense fallback={null}>
+            <ProjectsSection />
+          </Suspense>
+          <Suspense fallback={null}>
+            <AccoladesSection />
+          </Suspense>
           <RevealLinks />
-          <KnowMore />
+          <Suspense fallback={null}>
+            <KnowMore />
+          </Suspense>
         </div>
       )}
     </>

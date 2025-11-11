@@ -83,7 +83,8 @@ const FollowCursor = ({
   useEffect(() => {
     const handleMouseMove = (event) => {
       const container = containerRef.current;
-      if (!container || !gif) return;
+      const hasMedia = Boolean(gif) || (videoSources && (videoSources.mp4 || videoSources.webm));
+      if (!container || !hasMedia) return;
 
       const rect = container.getBoundingClientRect();
       const px = event.clientX - rect.left;
@@ -129,10 +130,11 @@ const FollowCursor = ({
       handleMouseMove({ clientX: touch.clientX, clientY: touch.clientY });
     };
 
-    if (gif && !hasAnimatedIn.current) {
+  const hasMedia = Boolean(gif) || (videoSources && (videoSources.mp4 || videoSources.webm));
+  if (hasMedia && !hasAnimatedIn.current) {
       api.start({ opacity: 1, immediate: false });
       hasAnimatedIn.current = true;
-    } else if (!gif && hasAnimatedIn.current) {
+  } else if (!hasMedia && hasAnimatedIn.current) {
       api.start({ opacity: 0, immediate: false });
       hasAnimatedIn.current = false;
     }
@@ -144,7 +146,7 @@ const FollowCursor = ({
       window.removeEventListener("touchmove", handleTouchMove);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [api, gif, offsetX, offsetY, cardWidth, cardHeight, rotationFactor, enableTilt, initialX, initialY]);
+  }, [api, gif, videoSources, offsetX, offsetY, cardWidth, cardHeight, rotationFactor, enableTilt, initialX, initialY]);
 
   const content = (() => {
     if (videoSources && (videoSources.mp4 || videoSources.webm)) {

@@ -15,6 +15,19 @@ import rohanGif from '../assets/baldMeme.gif';
 import yunusGif from '../assets/rockyMeme.gif';
 import chethanGif from '../assets/zombieMeme.gif';
 
+// Optimized videos (looping, muted)
+import officeWebm from '../assets/videos/officeMeme.webm';
+import mergeWebm from '../assets/videos/mergeMeme.webm';
+import drakeWebm from '../assets/videos/drakeMeme.webm';
+import spongebobWebm from '../assets/videos/spongebobMeme.webm';
+import jacksparrowWebm from '../assets/videos/jacksparrowMeme.webm';
+import rickWebm from '../assets/videos/rickMeme.webm';
+import shrekWebm from '../assets/videos/shrekMeme.webm';
+import gotWebm from '../assets/videos/gotMeme.webm';
+import baldWebm from '../assets/videos/baldMeme.webm';
+import rockyWebm from '../assets/videos/rockyMeme.webm';
+import zombieWebm from '../assets/videos/zombieMeme.webm';
+
 const gifMap = {
   'ankush': ankushGif,
   'dhruv': dhruvGif,
@@ -27,6 +40,20 @@ const gifMap = {
   'rohan': rohanGif,
   'yunus': yunusGif,
   'chethan': chethanGif,
+};
+
+const videoMap = {
+  'ankush': { webm: officeWebm },
+  'dhruv': { webm: mergeWebm },
+  'harshit': { webm: drakeWebm },
+  'yug': { webm: spongebobWebm },
+  'aarush': { webm: jacksparrowWebm },
+  's.harshit': { webm: rickWebm },
+  'ritesh': { webm: shrekWebm },
+  'kushagra': { webm: gotWebm },
+  'rohan': { webm: baldWebm },
+  'yunus': { webm: rockyWebm },
+  'chethan': { webm: zombieWebm },
 };
 
 const accoladesData = [
@@ -70,8 +97,7 @@ const AccoladesSection = () => {
         ))}
         <FollowCursor
           gif={hoveredItem ? gifMap[hoveredItem.name] : null}
-          /* videoSources can be injected later after conversion without changing layout */
-          videoSources={null}
+          videoSources={hoveredItem ? { webm: videoMap[hoveredItem.name]?.webm } : null}
           initialX={hoveredItem ? hoveredItem.initialX : 0}
           initialY={hoveredItem ? hoveredItem.initialY : 0}
           offsetX="33vw"
