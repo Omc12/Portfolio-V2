@@ -166,7 +166,7 @@ const ProjectsSection = () => {
           style={{
             position: "absolute",
             top: "25%",
-            left: "50%",
+            left: "60%",
             zIndex,
           }}
         >
@@ -189,12 +189,12 @@ const ProjectsSection = () => {
           dragElastic={0.65}
           onMouseDown={updateZIndex}
           onTap={() => window.open(LINKS.signalist, "_blank")}
-          initial={{ rotate: -34 }}
-          animate={{ rotate: -34 }}
-          whileDrag={{ rotate: -34 }}
+          initial={{ rotate: 34 }}
+          animate={{ rotate: 34 }}
+          whileDrag={{ rotate: 34 }}
           style={{
             position: "absolute",
-            top: "30%",
+            top: "10%",
             left: "20%",
             zIndex,
           }}
@@ -252,8 +252,8 @@ const ProjectsSection = () => {
           whileDrag={{ rotate: 10 }}
           style={{
             position: "absolute",
-            top: "40%",
-            left: "10%",
+            top: "65%",
+            left: "30%",
             zIndex,
           }}
         >
@@ -281,8 +281,8 @@ const ProjectsSection = () => {
           whileDrag={{ rotate: -15 }}
           style={{
             position: "absolute",
-            top: "45%",
-            left: "20%",
+            top: "55%",
+            left: "45%",
             zIndex,
           }}
         >
