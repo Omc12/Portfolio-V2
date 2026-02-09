@@ -23,8 +23,11 @@ const ProjectsSection = () => {
     notML: "https://notml.in",
     imageClassifier: "https://github.com/Omc12/Image_Classifier-Dogs_vs_Cats-",
     aqiPred: "https://github.com/Omc12/AQI_Pred_Model",
-    agrosage: "https://github.com/Omc12/agrosage-ai-assistant",
-    shortUrl: "https://github.com/Omc12/shortUrl",
+    signalist: "https://github.com/Omc12/Signalist",
+    ragAblation: "https://github.com/Omc12/RAG-Evaluation---Ablation-Study",
+    stockNews: "https://github.com/Omc12/RAG-stock-news",
+    marketSentinel: "https://github.com/Omc12/MarketSentinel",
+    mavis: "https://github.com/Omc12/Mavis",
   };
 
   const containerRef = useRef(null);
@@ -178,14 +181,14 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">AQI Predictor</p>
         </motion.div>
-        {/* AgroSage card */}
+        {/* Signalist card */}
         <motion.div
           className="wrapper draggable"
           drag
           dragConstraints={containerRef}
           dragElastic={0.65}
           onMouseDown={updateZIndex}
-          onTap={() => window.open(LINKS.agrosage, "_blank")}
+          onTap={() => window.open(LINKS.signalist, "_blank")}
           initial={{ rotate: -34 }}
           animate={{ rotate: -34 }}
           whileDrag={{ rotate: -34 }}
@@ -205,16 +208,16 @@ const ProjectsSection = () => {
               sources={[{srcSet: ABS3, type: 'image/avif'}]}
             />
           </div>
-          <p className="wrapperText">Agrosage AI Assistant</p>
+          <p className="wrapperText">Signalist</p>
         </motion.div>
-        {/* ShortUrl card */}
+        {/* RAG Ablation card */}
         <motion.div
           className="wrapper draggable"
           drag
           dragConstraints={containerRef}
           dragElastic={0.65}
           onMouseDown={updateZIndex}
-          onTap={() => window.open(LINKS.shortUrl, "_blank")}
+          onTap={() => window.open(LINKS.ragAblation, "_blank")}
           initial={{ rotate: -24 }}
           animate={{ rotate: -24 }}
           whileDrag={{ rotate: -24 }}
@@ -234,7 +237,116 @@ const ProjectsSection = () => {
               sources={[{srcSet: ABS1, type: 'image/avif'}]}
             />
           </div>
-          <p className="wrapperText">ShortURL</p>
+          <p className="wrapperText">RAG Ablation Study</p>
+        </motion.div>
+        {/* Stock News card */}
+        <motion.div
+          className="wrapper draggable"
+          drag
+          dragConstraints={containerRef}
+          dragElastic={0.65}
+          onMouseDown={updateZIndex}
+          onTap={() => window.open(LINKS.stockNews, "_blank")}
+          initial={{ rotate: 10 }}
+          animate={{ rotate: 10 }}
+          whileDrag={{ rotate: 10 }}
+          style={{
+            position: "absolute",
+            top: "40%",
+            left: "10%",
+            zIndex,
+          }}
+        >
+          <div className="wrapperImg">
+            <OptimizedPicture
+              src={ABS2}
+              alt="Abstract image"
+              className="wrapperImgStyle"
+              loading="lazy"
+              sources={[{srcSet: ABS2, type: 'image/avif'}]}
+            />
+          </div>
+          <p className="wrapperText">Stock News(RAG)</p>
+        </motion.div>
+        {/* Market Sentinel card */}
+        <motion.div
+          className="wrapper draggable"
+          drag
+          dragConstraints={containerRef}
+          dragElastic={0.65}
+          onMouseDown={updateZIndex}
+          onTap={() => window.open(LINKS.marketSentinel, "_blank")}
+          initial={{ rotate: -15 }}
+          animate={{ rotate: -15 }}
+          whileDrag={{ rotate: -15 }}
+          style={{
+            position: "absolute",
+            top: "45%",
+            left: "20%",
+            zIndex,
+          }}
+        >
+          <div className="wrapperImg">
+            <OptimizedPicture
+              src={ABS3}
+              alt="Abstract image"
+              className="wrapperImgStyle"
+              loading="lazy"
+              sources={[{srcSet: ABS3, type: 'image/avif'}]}
+            />
+          </div>
+          <p className="wrapperText">Market Sentinel</p>
+        </motion.div>
+        {/* Mavis card */}
+        <motion.div
+          className="wrapper draggable"
+          drag
+          dragConstraints={containerRef}
+          dragElastic={0.65}
+          onMouseDown={updateZIndex}
+          onTap={() => window.open(LINKS.mavis, "_blank")}
+          initial={{ rotate: 20 }}
+          animate={{ rotate: 20 }}
+          whileDrag={{ rotate: 20 }}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "10%",
+            zIndex,
+          }}
+        >
+          <div className="wrapperImg">
+            <OptimizedPicture
+              src={ABS1}
+              alt="Abstract image"
+              className="wrapperImgStyle"
+              loading="lazy"
+              sources={[{srcSet: ABS1, type: 'image/avif'}]}
+            />
+          </div>
+          <p className="wrapperText">Mavis</p>
+        </motion.div>
+        {/* RAG text card */}
+        <motion.div
+          className="text-wrapper draggable wrapper"
+          drag
+          dragConstraints={containerRef}
+          dragElastic={0.65}
+          onMouseDown={updateZIndex}
+          initial={{ rotate: -10 }}
+          animate={{ rotate: -10 }}
+          whileDrag={{ rotate: -10 }}
+          style={{
+            position: "absolute",
+            top: "55%",
+            left: "20%",
+            zIndex,
+          }}
+        >
+          <h2 className="text-wrapper-head">RAG</h2>
+          <p className="text-wrapper-p">
+            using rag with ensembles to get better results
+          </p>
         </motion.div>
       </div>
       <p id="dragText">Drag the cards</p>
