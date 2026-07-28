@@ -16,41 +16,40 @@ const demoItems = [
   { 
     text: 'tech stack', 
     images: [
-      'HTML', 
-      'CSS',
-      'JAVASCRIPT',
-      'REACT',
-      'TAILWIND',
-      'BOOTSTRAP',
+      'PYTORCH', 
+      'CUDA',
+      'TRITON',
+      'MLX',
+      'GGML',
+      'PYTHON',
+      'C++',
+      'FASTAPI',
       'GIT',
-      'LENIS',
-      'SASS',
-      'PYTHON'
+      'VECTOR DBS'
     ]
   },
   { 
     text: 'competitive programming', 
     images: [
-      '300+ questions solved', 
-      'leetcode rating: 1530',
-      'active for 100+ days',
-      'Acceptance rate: 75+%'
+      '350+ questions solved', 
+      'leetcode rating: 1750+',
+      'gpa: 8.1 / 10.0',
+      '3rd year B.Tech AI'
     ]
   },
   { 
-    text: 'Machine Learning', 
+    text: 'Machine Learning & Systems', 
     images: [
+      'SVD FACTORIZATION',
+      'KV-CACHE COMPRESSION',
+      'CUSTOM ATTENTION KERNELS',
+      'LLM INFERENCE',
+      'RAG ARCHITECTURES',
+      'QUANTIZATION',
+      'BENCHMARK DESIGN',
       'NUMPY',
       'PANDAS',
-      'MATPLOTLIB',
-      'SK LEARN',
-      'LLMs',
-      'KNNs',
-      'XG Boost',
-      'RFR',
-      'PIPELINES',
-      'LINEAR REGRESSION',
-      'GRADIENT BOOSTING'
+      'PYTORCH'
     ]
   },
 ];
@@ -206,30 +205,28 @@ const StatsSection = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                I've learnt about<span>
-                  <CountUp from={0} to={8} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+ regression techniques. Used them in over <span>
+                Author of <span>
+                  <CountUp from={0} to={2} separator="," direction="up" duration={1} className="count-up-text" />
+                </span> published research papers & technical reports. Built <span>
                   <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
-                </span> projects, and practiced on <span>
-                  <CountUp from={0} to={30} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+ datasets, and took part in <span>
-                  <CountUp from={0} to={5} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+ hackathons.
+                </span>+ ML & LLM projects, solved <span>
+                  <CountUp from={0} to={350} separator="," direction="up" duration={1} className="count-up-text" />
+                </span>+ LeetCode problems (Rating 1750+), maintaining 8.1 GPA as a 3rd-year B.Tech AI student.
               </p>
             </motion.div>
             {/* Original Paragraph */}
             <p id="dsPara">
-              Right now, I'm exploring LLMs, transformers and RAG.
-              To date, I've made over <span>
-                <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
-              </span> projects, worked on <span>
-                <CountUp from={0} to={20} separator="," direction="up" duration={1} className="count-up-text" />
-              </span>+ datasets, and took part in <span>
-                <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
-              </span>+ kaggle competitions.
+              3rd-year B.Tech AI student focused on LLM Inference Optimization, KV-Cache Compression, and RAG Systems.
+              Published <span>
+                <CountUp from={0} to={2} separator="," direction="up" duration={1} className="count-up-text" />
+              </span> research papers, engineered <span>
+                <CountUp from={0} to={4} separator="," direction="up" duration={1} className="count-up-text" />
+              </span> custom attention kernel backends (CUDA, Triton, MLX, GGML), and solved <span>
+                <CountUp from={0} to={350} separator="," direction="up" duration={1} className="count-up-text" />
+              </span>+ LeetCode problems.
             </p>
             <FallingText
-              text={`UI/UX Design Lenis Sass GSAP Framer-Motion react tailwind pytorch bootstrap matplotlib pandas numpy sklearn xgboost llms`}
+              text={`PyTorch CUDA Triton MLX GGML SVD LLM-Inference Quantization RAG FastAPI Python C++ VectorDBs LeetCode1750+ NumPy Pandas Sklearn`}
               highlightWords={[]}
               highlightClass="highlighted"
               trigger="hover"

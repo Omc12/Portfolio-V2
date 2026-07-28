@@ -44,7 +44,7 @@ const KnowMore = () => {
       </div>
       <div className='section7Tail'>
         <p id='plus'>+</p>
-        <p>2025 © All rights reserved.</p>
+        <p>2026 © Om Chimurkar. All rights reserved.</p>
         <p id='plus'>+</p>
       </div>
     </div>

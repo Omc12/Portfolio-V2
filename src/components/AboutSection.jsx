@@ -7,13 +7,13 @@ const AboutSection = () => {
       <h2 id="aboutMini">About</h2>
       <div id="aboutSub">
         <p id="aboutPara">
-          <AnimatedText text= 'I am currently working with Machine Learning and LLMs. I am learning about Transformers & Deep Learning. I am also a MERN Stack developer.'/>
+          <AnimatedText text= '3rd-year Artificial Intelligence undergraduate specializing in Machine Learning Systems & LLM Inference Optimization.'/>
         </p>
         <p id="aboutParaMini1">
-          I’ve explored techniques like Linear Regression, KNNs, XGBoost, RFR, basic neural networks, data preprocessing and model evaluation, applying them in small but meaningful projects such as house price prediction, image classification, and working with classic datasets like Iris.
+          My research and engineering focus on training-free KV-cache compression (DKV), custom attention kernels (CUDA, Triton, MLX, GGML), and low-rank SVD factorizations to push long-context transformer inference past hardware memory boundaries.
         </p>
         <p id="aboutParaMini2">
-          I’ve been learning about deep learning and transformers by first strengthening my base in models like linear regression and basic neural networks, then exploring how attention mechanisms, sequence modeling, applying these concepts in small experiments.
+          Beyond systems optimization, I conduct empirical research on enterprise RAG architectures—evaluating hybrid BM25+Vector retrieval and MMR re-ranking strategies—and build high-performance Python, C++, and PyTorch/CUDA machine learning pipelines.
         </p>
       </div>
     </div>

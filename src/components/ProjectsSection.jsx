@@ -20,6 +20,7 @@ import OptimizedPicture from './utils/OptimizedPicture.jsx';
 
 const ProjectsSection = () => {
   const LINKS = {
+    dkv: "https://github.com/Omc12/Differential-KV",
     notML: "https://notml.in",
     imageClassifier: "https://github.com/Omc12/Image_Classifier-Dogs_vs_Cats-",
     aqiPred: "https://github.com/Omc12/AQI_Pred_Model",
@@ -50,6 +51,35 @@ const ProjectsSection = () => {
       <h2 id="projectsHead">Projects</h2>
       <div className="draggableContainer" ref={containerRef}>
         <h2 id="projectsPunchy">That's it?</h2>
+        {/* DKV Research card */}
+        <motion.div
+          className="wrapper draggable"
+          drag
+          dragConstraints={containerRef}
+          dragElastic={0.65}
+          onMouseDown={updateZIndex}
+          onTap={() => window.open(LINKS.dkv, "_blank")}
+          initial={{ rotate: -8 }}
+          animate={{ rotate: -8 }}
+          whileDrag={{ rotate: -8 }}
+          style={{
+            position: "absolute",
+            top: "15%",
+            left: "25%",
+            zIndex,
+          }}
+        >
+          <div className="wrapperImg">
+            <OptimizedPicture
+              src={ABS2}
+              alt="DKV KV-Cache Compression"
+              className="wrapperImgStyle"
+              loading="lazy"
+              sources={[{srcSet: ABS2, type: 'image/avif'}]}
+            />
+          </div>
+          <p className="wrapperText">DKV (KV-Cache SVD)</p>
+        </motion.div>
         {/* NotML card */}
         <motion.div
           className="wrapper draggable"
@@ -108,7 +138,7 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">Image Classifier</p>
         </motion.div>
-        {/* Notepad text card */}
+        {/* KV-Cache Compression text card */}
         <motion.div
           className="text-wrapper draggable wrapper"
           drag
@@ -125,12 +155,12 @@ const ProjectsSection = () => {
             zIndex,
           }}
         >
-          <h2 className="text-wrapper-head">Notepad</h2>
+          <h2 className="text-wrapper-head">DKV</h2>
           <p className="text-wrapper-p">
-            It's a notepad with AI integrated in it at a base level
+            Differential KV-cache compression with rank-32 SVD & exact residual tokens.
           </p>
         </motion.div>
-        {/* LLMs text card */}
+        {/* LLMs & Systems text card */}
         <motion.div
           className="text-wrapper draggable wrapper"
           drag
@@ -147,9 +177,9 @@ const ProjectsSection = () => {
             zIndex,
           }}
         >
-          <h2 className="text-wrapper-head">LLMs</h2>
+          <h2 className="text-wrapper-head">ML Systems</h2>
           <p className="text-wrapper-p">
-            Working with llms and integrating them in my projects.
+            Custom CUDA, Triton & MLX kernels for fast, memory-efficient LLM inference.
           </p>
         </motion.div>
         {/* Audio based ML card */}

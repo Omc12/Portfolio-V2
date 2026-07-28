@@ -5,10 +5,19 @@ import "./RevealLinks.css";
 export const RevealLinks = () => {
   return (
     <section className="reveal-links-section">
-      <FlipLink href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=omchimurkar6@example.com">
+      <FlipLink href="mailto:omchimurkar45@gmail.com">
         Mail
       </FlipLink>
-      <FlipLink href="https://www.linkedin.com/in/om-chimurkar/">
+      <FlipLink href="https://scholar.google.com/citations?user=7NXAM-wAAAAJ">
+        Scholar
+      </FlipLink>
+      <FlipLink href="https://www.researchgate.net/profile/Om-Chimurkar">
+        ResearchGate
+      </FlipLink>
+      <FlipLink href="https://orcid.org/0009-0004-0518-4598">
+        ORCID
+      </FlipLink>
+      <FlipLink href="https://www.linkedin.com/in/om-chimurkar">
         Linkedin
       </FlipLink>
       <FlipLink href="https://github.com/Omc12">
