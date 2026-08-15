@@ -11,6 +11,9 @@ const CustomCursor = () => {
   const [isHoveringDsPara, setIsHoveringDsPara] = useState(false);
   const [isHoveringAccolades, setIsHoveringAccolades] = useState(false);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
+  const [isHoveringResume, setIsHoveringResume] = useState(false);
+  const [isHoveringKnowMore, setIsHoveringKnowMore] = useState(false);
+  const [isHoveringLink, setIsHoveringLink] = useState(false);
   const [isElastic, setIsElastic] = useState(false);
   const [hasMoved, setHasMoved] = useState(false);
   const [isFocused, setIsFocused] = useState(document.hasFocus());
@@ -68,108 +71,56 @@ const CustomCursor = () => {
   };
 
   const handleElementHover = (e) => {
-    const isMenu = e.target.closest('.menu-cursor') !== null;
-    const isWrapper = e.target.closest('.wrapper') !== null;
-    const isDsPara = e.target.closest('#dsPara') !== null;
+    const target = e.target;
+    if (!target) return;
+    const isMenu = target.closest('.menu-cursor') !== null;
+    const isWrapper = target.closest('.wrapper') !== null;
+    const isDsPara = target.closest('#dsPara') !== null;
+    const isResume = target.closest('.resumeDownloadBtn') !== null;
+    const isKnowMore = target.closest('.clickableKnowMore') !== null;
+    const isLink = !isResume && !isKnowMore && target.closest('a, button, .FlipLink, .menu__item-link') !== null;
+
     setIsHoveringMenu(isMenu);
     setIsHoveringWrapper(isWrapper);
     setIsHoveringDsPara(isDsPara);
+    setIsHoveringResume(isResume);
+    setIsHoveringKnowMore(isKnowMore);
+    setIsHoveringLink(isLink);
   };
 
-  const getBrightness = (rgb) => {
-    const result = rgb.match(/\d+/g);
-    if (result && result.length >= 3) {
-      const [r, g, b] = result.map(Number);
-      return 0.299 * r + 0.587 * g + 0.114 * b;
-    }
-    return 255;
+  const isInteractive = isHoveringWrapper || isHoveringAccolades || isHoveringResume || isHoveringKnowMore || isHoveringLink;
+
+  const getCursorText = () => {
+    if (isHoveringResume) return 'GET CV';
+    if (isHoveringKnowMore) return 'LINKEDIN ↗';
+    if (isHoveringLink) return 'CLICK ↗';
+    if (isHoveringWrapper) return 'DRAG / VISIT';
+    if (isHoveringAccolades) return 'HOVER 🎬';
+    return '';
   };
-
-  const getEffectiveBackground = (elem) => {
-    let bg = window.getComputedStyle(elem).backgroundColor;
-    while ((bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') && elem.parentElement) {
-      elem = elem.parentElement;
-      bg = window.getComputedStyle(elem).backgroundColor;
-    }
-    return bg;
-  };
-
-  const updateTextColor = () => {
-    if (!textRef.current) return;
-    const originalPointerEvents = textRef.current.style.pointerEvents;
-    textRef.current.style.pointerEvents = 'none';
-    const rect = textRef.current.getBoundingClientRect();
-    const sampleX = rect.left + rect.width / 2;
-    const sampleY = rect.top + rect.height / 2;
-    const elementBelow = document.elementFromPoint(sampleX, sampleY);
-    textRef.current.style.pointerEvents = originalPointerEvents;
-    if (!elementBelow) return;
-    const bgColor = getEffectiveBackground(elementBelow);
-    const brightness = getBrightness(bgColor);
-    textRef.current.style.color = brightness > 128 ? '#fff' : '#fff';
-  };
-
-  useEffect(() => {
-    const cursorBg = document.querySelector('.custom-cursor-bg');
-    if (!cursorBg) return;
-
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          setIsElastic(cursorBg.classList.contains('elastic'));
-        }
-      });
-    });
-
-    observer.observe(cursorBg, { attributes: true });
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('pointermove', updateCursor);
-    window.addEventListener('drag', updateCursor);
-    window.addEventListener('dragover', updateCursor);
-    document.addEventListener('mousemove', handleElementHover);
-
-    return () => {
-      window.removeEventListener('pointermove', updateCursor);
-      window.removeEventListener('drag', updateCursor);
-      window.removeEventListener('dragover', updateCursor);
-      document.removeEventListener('mousemove', handleElementHover);
-    };
-  }, []);
-
-  useEffect(() => {
-    if ((isHoveringWrapper || isHoveringAccolades) && textRef.current) {
-      updateTextColor();
-    }
-  }, [position, isHoveringWrapper, isHoveringAccolades]);
 
   return (
     <>
       <div
         className={`custom-cursor-bg 
           ${isHoveringMenu ? 'normal' : ''} 
-          ${!isHoveringMenu && isHoveringWrapper ? 'active' : ''} 
-          ${isHoveringDsPara ? 'vanish' : ''} 
-          ${!isHoveringMenu && isHoveringAccolades ? 'accolades-hover' : ''}`}
+          ${!isHoveringMenu && isInteractive ? 'active' : ''} 
+          ${isHoveringDsPara ? 'vanish' : ''}`}
         style={{
           left: hasMoved ? `${position.x}px` : '50vw',
           top: hasMoved ? `${position.y}px` : '50vh',
         }}
       ></div>
-      {((isHoveringWrapper || isHoveringAccolades) && !isHoveringMenu) && isFocused && (
+      {!isHoveringMenu && isInteractive && isFocused && (
         <div
           ref={textRef}
-          className={`custom-cursor-text 
-            ${isHoveringWrapper ? 'active' : ''} 
-            ${isHoveringAccolades ? 'accolades-hover' : ''}`}
+          className="custom-cursor-text active"
           style={{ 
             left: hasMoved ? `${position.x}px` : '50vw', 
             top: hasMoved ? `${position.y}px` : '50vh' 
           }}
         >
-          {isHoveringAccolades ? 'HOVER' : 'DRAG'}
+          {getCursorText()}
         </div>
       )}
       {isElastic && isFocused && (

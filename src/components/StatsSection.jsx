@@ -226,9 +226,9 @@ const StatsSection = () => {
                 >
                   Author of <span>
                     <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
-                  </span> published preprints & 1 paper under review in IEEE TETCI. Built <span>
+                  </span> published preprints & 1 paper under review in IEEE TETCI. Architected DKV framework for scalable inference, built <span>
                     <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
-                  </span>+ ML & LLM projects, solved <span>
+                  </span>+ ML projects, and solved <span>
                     <CountUp from={0} to={400} separator="," direction="up" duration={1} className="count-up-text" />
                   </span>+ LeetCode problems (Rating 1750+), maintaining 8.1 GPA as a 3rd-year B.Tech AI student.
                 </p>
@@ -243,7 +243,7 @@ const StatsSection = () => {
                 <CountUp from={0} to={4} separator="," direction="up" duration={1} className="count-up-text" />
               </span> custom attention kernel backends (CUDA, Triton, MLX, GGML), and solved <span>
                 <CountUp from={0} to={400} separator="," direction="up" duration={1} className="count-up-text" />
-              </span>+ LeetCode problems.
+              </span>+ LeetCode problems (Rating 1750+).
             </p>
             <FallingText
               text={`PyTorch LLM-Inference DKV IEEE-TETCI SVD Quantization RAG Model-Evaluation Python FastAPI VectorDBs 400+Solved 1750+Rating`}
