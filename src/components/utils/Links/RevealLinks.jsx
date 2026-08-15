@@ -5,6 +5,9 @@ import "./RevealLinks.css";
 export const RevealLinks = () => {
   return (
     <section className="reveal-links-section">
+      <FlipLink href="/Resume-Om_Chimurkar.pdf" download="Resume-Om_Chimurkar.pdf">
+        Resume
+      </FlipLink>
       <FlipLink href="mailto:omchimurkar45@gmail.com">
         Mail
       </FlipLink>
@@ -33,7 +36,7 @@ export const RevealLinks = () => {
 const DURATION = 0.25;
 const STAGGER = 0.025;
 
-const FlipLink = ({ children, href }) => {
+const FlipLink = ({ children, href, download }) => {
   return (
     <motion.a
       initial="initial"
@@ -41,6 +44,7 @@ const FlipLink = ({ children, href }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      download={download}
       className="flip-link"
     >
       <div>

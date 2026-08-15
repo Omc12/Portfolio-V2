@@ -66,6 +66,47 @@
         left: 75vw;
       }
     }
+
+    .resumeDownloadContainer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 1vw 0;
+      z-index: 10;
+    }
+
+    .resumeDownloadBtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8vw 2vw;
+      background-color: #000;
+      color: #7FFF00;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.1vw;
+      font-weight: 600;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+
+      &:hover {
+        background-color: #7FFF00;
+        color: #000;
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 8px 25px rgba(127, 255, 0, 0.35);
+      }
+
+      svg {
+        transition: transform 0.3s ease;
+        stroke: currentColor;
+      }
+
+      &:hover svg {
+        transform: translateY(2px);
+      }
+    }
   
     .section7Tail {
       width: 100%;
@@ -124,6 +165,11 @@
       #plus {
         font-size: 2.5vw;
       }
+
+      .resumeDownloadBtn {
+        font-size: 2vw;
+        padding: 1.2vw 3.5vw;
+      }
   }
 
   }
@@ -162,6 +208,11 @@
           #h32 {
             left: 75vw;
           }
+      }
+
+      .resumeDownloadBtn {
+        font-size: 3.5vw;
+        padding: 2.5vw 6vw;
       }
       
       .section7Tail {

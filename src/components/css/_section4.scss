@@ -113,6 +113,54 @@
         font-style: normal;
       }
     }
+
+    .projectsFooter {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4vw;
+      box-sizing: border-box;
+
+      #dragText {
+        margin: 0;
+      }
+
+      .cardLegend {
+        display: flex;
+        align-items: center;
+        gap: 1.2vw;
+        font-family: "Poppins", sans-serif;
+        font-size: 1vw;
+        font-weight: 500;
+
+        .legendItem {
+          display: flex;
+          align-items: center;
+          gap: 0.5vw;
+        }
+
+        .legendBox {
+          width: 0.9vw;
+          height: 0.9vw;
+          border-radius: 2px;
+          display: inline-block;
+        }
+
+        .clickableBox {
+          background-color: #7FFF00;
+          border: 1px solid #5ec200;
+        }
+
+        .unclickableBox {
+          background-color: #1F51FF;
+        }
+
+        .legendText {
+          color: #000;
+        }
+      }
+    }
   }
 
   #dragText {
@@ -158,6 +206,18 @@
             font-weight: 400;
           }
       }
+
+      .projectsFooter {
+        .cardLegend {
+          font-size: 1.8vw;
+          gap: 2vw;
+
+          .legendBox {
+            width: 1.6vw;
+            height: 1.6vw;
+          }
+        }
+      }
   }
 
   #dragText {
@@ -201,6 +261,18 @@
             font-size: 2.6vw;
             font-weight: 400;
           }
+      }
+
+      .projectsFooter {
+        .cardLegend {
+          font-size: 2.8vw;
+          gap: 2.5vw;
+
+          .legendBox {
+            width: 2.5vw;
+            height: 2.5vw;
+          }
+        }
       }
   }
 

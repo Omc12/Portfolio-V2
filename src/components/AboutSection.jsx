@@ -7,13 +7,13 @@ const AboutSection = () => {
       <h2 id="aboutMini">About</h2>
       <div id="aboutSub">
         <p id="aboutPara">
-          <AnimatedText text= '3rd-year Artificial Intelligence undergraduate specializing in Machine Learning Systems & LLM Inference Optimization.'/>
+          <AnimatedText text= 'AI researcher focused on large language model inference, transformer memory systems, and efficient long-context serving.'/>
         </p>
         <p id="aboutParaMini1">
-          My research and engineering focus on training-free KV-cache compression (DKV), custom attention kernels (CUDA, Triton, MLX, GGML), and low-rank SVD factorizations to push long-context transformer inference past hardware memory boundaries.
+          My recent work includes DKV (Differential KV Cache Compression for Scalable Long-Context Inference), an open-source framework reducing KV-cache memory through differential representations and shared low-rank reconstruction while maintaining generation quality. Submitted to IEEE Transactions on Emerging Topics in Computational Intelligence (TETCI).
         </p>
         <p id="aboutParaMini2">
-          Beyond systems optimization, I conduct empirical research on enterprise RAG architectures—evaluating hybrid BM25+Vector retrieval and MMR re-ranking strategies—and build high-performance Python, C++, and PyTorch/CUDA machine learning pipelines.
+          Beyond DKV, I explore efficient transformer architectures, AI evaluation, model serving, and systems optimization—turning first-principles ideas into reproducible tools, open-source implementations, and production-ready AI systems.
         </p>
       </div>
     </div>

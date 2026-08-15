@@ -1,34 +1,22 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import NN from '../assets/NeuralNetworks.png';
 import NML from '../assets/notml.png';
 import AML from '../assets/audioml.png';
-import NNAvif from '../assets/images/NeuralNetworks.avif';
 import NMLAvif from '../assets/images/notml.avif';
 import AMLAvif from '../assets/images/audioml.avif';
-import ABS1 from '../assets/images/abstract1.avif'
-import ABS2 from '../assets/images/abstract2.avif'
-import ABS3 from '../assets/images/abstract3.avif'
-// Future optimized variants (to be added after conversion)
-// import NNAvif from '../assets/NeuralNetworks.avif';
-// import NNWebp from '../assets/NeuralNetworks.webp';
-// import NMLAvif from '../assets/notml.avif';
-// import NMLWebp from '../assets/notml.webp';
-// import AMLAvif from '../assets/audioml.avif';
-// import AMLWebp from '../assets/audioml.webp';
+import ABS1 from '../assets/images/abstract1.avif';
+import ABS2 from '../assets/images/abstract2.avif';
+import ABS3 from '../assets/images/abstract3.avif';
 import OptimizedPicture from './utils/OptimizedPicture.jsx';
 
 const ProjectsSection = () => {
   const LINKS = {
     dkv: "https://github.com/Omc12/Differential-KV",
     notML: "https://notml.in",
-    imageClassifier: "https://github.com/Omc12/Image_Classifier-Dogs_vs_Cats-",
     aqiPred: "https://github.com/Omc12/AQI_Pred_Model",
     signalist: "https://github.com/Omc12/Signalist",
     ragAblation: "https://github.com/Omc12/RAG-Evaluation---Ablation-Study",
     stockNews: "https://github.com/Omc12/RAG-stock-news",
-    marketSentinel: "https://github.com/Omc12/MarketSentinel",
-    mavis: "https://github.com/Omc12/Mavis",
   };
 
   const containerRef = useRef(null);
@@ -109,35 +97,6 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">NotML</p>
         </motion.div>
-        {/* Machine Learning card */}
-        <motion.div
-          className="wrapper draggable"
-          drag
-          dragConstraints={containerRef}
-          dragElastic={0.65}
-          onMouseDown={updateZIndex}
-          onTap={() => window.open(LINKS.imageClassifier, "_blank")}
-          initial={{ rotate: 15 }}
-          animate={{ rotate: 15 }}
-          whileDrag={{ rotate: 15 }}
-          style={{
-            position: "absolute",
-            top: "30%",
-            left: "35%",
-            zIndex,
-          }}
-        >
-          <div className="wrapperImg">
-            <OptimizedPicture
-              src={NN}
-              alt="Machine Learning"
-              className="wrapperImgStyle"
-              loading="lazy"
-              sources={[{srcSet: NNAvif, type: 'image/avif'}]}
-            />
-          </div>
-          <p className="wrapperText">Image Classifier</p>
-        </motion.div>
         {/* KV-Cache Compression text card */}
         <motion.div
           className="text-wrapper draggable wrapper"
@@ -157,7 +116,7 @@ const ProjectsSection = () => {
         >
           <h2 className="text-wrapper-head">DKV</h2>
           <p className="text-wrapper-p">
-            Differential KV-cache compression with rank-32 SVD & exact residual tokens.
+            Differential KV-cache compression for scalable long-context inference (Submitted to IEEE TETCI).
           </p>
         </motion.div>
         {/* LLMs & Systems text card */}
@@ -298,64 +257,6 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">Stock News(RAG)</p>
         </motion.div>
-        {/* Market Sentinel card */}
-        <motion.div
-          className="wrapper draggable"
-          drag
-          dragConstraints={containerRef}
-          dragElastic={0.65}
-          onMouseDown={updateZIndex}
-          onTap={() => window.open(LINKS.marketSentinel, "_blank")}
-          initial={{ rotate: -15 }}
-          animate={{ rotate: -15 }}
-          whileDrag={{ rotate: -15 }}
-          style={{
-            position: "absolute",
-            top: "55%",
-            left: "45%",
-            zIndex,
-          }}
-        >
-          <div className="wrapperImg">
-            <OptimizedPicture
-              src={ABS3}
-              alt="Abstract image"
-              className="wrapperImgStyle"
-              loading="lazy"
-              sources={[{srcSet: ABS3, type: 'image/avif'}]}
-            />
-          </div>
-          <p className="wrapperText">Market Sentinel</p>
-        </motion.div>
-        {/* Mavis card */}
-        <motion.div
-          className="wrapper draggable"
-          drag
-          dragConstraints={containerRef}
-          dragElastic={0.65}
-          onMouseDown={updateZIndex}
-          onTap={() => window.open(LINKS.mavis, "_blank")}
-          initial={{ rotate: 20 }}
-          animate={{ rotate: 20 }}
-          whileDrag={{ rotate: 20 }}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "10%",
-            zIndex,
-          }}
-        >
-          <div className="wrapperImg">
-            <OptimizedPicture
-              src={ABS1}
-              alt="Abstract image"
-              className="wrapperImgStyle"
-              loading="lazy"
-              sources={[{srcSet: ABS1, type: 'image/avif'}]}
-            />
-          </div>
-          <p className="wrapperText">Mavis</p>
-        </motion.div>
         {/* RAG text card */}
         <motion.div
           className="text-wrapper draggable wrapper"
@@ -379,7 +280,19 @@ const ProjectsSection = () => {
           </p>
         </motion.div>
       </div>
-      <p id="dragText">Drag the cards</p>
+      <div className="projectsFooter">
+        <p id="dragText">Drag the cards</p>
+        <div className="cardLegend">
+          <div className="legendItem">
+            <span className="legendBox clickableBox"></span>
+            <span className="legendText">Clickable</span>
+          </div>
+          <div className="legendItem">
+            <span className="legendBox unclickableBox"></span>
+            <span className="legendText">Unclickable</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
