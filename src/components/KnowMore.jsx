@@ -20,6 +20,10 @@ const BackToTop = () => {
 };
 
 const KnowMore = () => {
+  const openLinkedIn = () => {
+    window.open('https://www.linkedin.com/in/om-chimurkar', '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className='Section7'>
       <div className='section7Head'>
@@ -27,7 +31,12 @@ const KnowMore = () => {
         <BackToTop />
         <p id='plus'>+</p>
       </div>
-      <div className='section7Sub'>
+      <div 
+        className='section7Sub clickableKnowMore'
+        onClick={openLinkedIn}
+        style={{ cursor: 'pointer' }}
+        title="Open LinkedIn Profile"
+      >
         <h3 id='h31'>Want To</h3>
         <h2>
           <DecryptedText 
