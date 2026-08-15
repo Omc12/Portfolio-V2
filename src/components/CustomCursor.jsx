@@ -78,7 +78,7 @@ const CustomCursor = () => {
     const isDsPara = target.closest('#dsPara') !== null;
     const isResume = target.closest('.resumeDownloadBtn') !== null;
     const isKnowMore = target.closest('.clickableKnowMore') !== null;
-    const isLink = !isResume && !isKnowMore && target.closest('a, button, .FlipLink, .menu__item-link') !== null;
+    const isLink = !isResume && !isKnowMore && !isWrapper && target.closest('a, button, .FlipLink') !== null;
 
     setIsHoveringMenu(isMenu);
     setIsHoveringWrapper(isWrapper);
@@ -88,14 +88,83 @@ const CustomCursor = () => {
     setIsHoveringLink(isLink);
   };
 
+  const getBrightness = (rgb) => {
+    const result = rgb.match(/\d+/g);
+    if (result && result.length >= 3) {
+      const [r, g, b] = result.map(Number);
+      return 0.299 * r + 0.587 * g + 0.114 * b;
+    }
+    return 255;
+  };
+
+  const getEffectiveBackground = (elem) => {
+    let bg = window.getComputedStyle(elem).backgroundColor;
+    while ((bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') && elem.parentElement) {
+      elem = elem.parentElement;
+      bg = window.getComputedStyle(elem).backgroundColor;
+    }
+    return bg;
+  };
+
+  const updateTextColor = () => {
+    if (!textRef.current) return;
+    const originalPointerEvents = textRef.current.style.pointerEvents;
+    textRef.current.style.pointerEvents = 'none';
+    const rect = textRef.current.getBoundingClientRect();
+    const sampleX = rect.left + rect.width / 2;
+    const sampleY = rect.top + rect.height / 2;
+    const elementBelow = document.elementFromPoint(sampleX, sampleY);
+    textRef.current.style.pointerEvents = originalPointerEvents;
+    if (!elementBelow) return;
+    const bgColor = getEffectiveBackground(elementBelow);
+    const brightness = getBrightness(bgColor);
+    textRef.current.style.color = brightness > 128 ? '#000' : '#fff';
+  };
+
+  useEffect(() => {
+    const cursorBg = document.querySelector('.custom-cursor-bg');
+    if (!cursorBg) return;
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          setIsElastic(cursorBg.classList.contains('elastic'));
+        }
+      });
+    });
+
+    observer.observe(cursorBg, { attributes: true });
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('pointermove', updateCursor);
+    window.addEventListener('drag', updateCursor);
+    window.addEventListener('dragover', updateCursor);
+    document.addEventListener('mousemove', handleElementHover);
+
+    return () => {
+      window.removeEventListener('pointermove', updateCursor);
+      window.removeEventListener('drag', updateCursor);
+      window.removeEventListener('dragover', updateCursor);
+      document.removeEventListener('mousemove', handleElementHover);
+    };
+  }, []);
+
+  useEffect(() => {
+    if ((isHoveringWrapper || isHoveringAccolades || isHoveringResume || isHoveringKnowMore || isHoveringLink) && textRef.current) {
+      updateTextColor();
+    }
+  }, [position, isHoveringWrapper, isHoveringAccolades, isHoveringResume, isHoveringKnowMore, isHoveringLink]);
+
   const isInteractive = isHoveringWrapper || isHoveringAccolades || isHoveringResume || isHoveringKnowMore || isHoveringLink;
 
   const getCursorText = () => {
-    if (isHoveringResume) return 'GET CV';
+    if (isHoveringResume) return 'CV 📄';
     if (isHoveringKnowMore) return 'LINKEDIN ↗';
-    if (isHoveringLink) return 'CLICK ↗';
-    if (isHoveringWrapper) return 'DRAG / VISIT';
-    if (isHoveringAccolades) return 'HOVER 🎬';
+    if (isHoveringLink) return 'OPEN ↗';
+    if (isHoveringAccolades) return 'HOVER';
+    if (isHoveringWrapper) return 'DRAG';
     return '';
   };
 
@@ -104,17 +173,26 @@ const CustomCursor = () => {
       <div
         className={`custom-cursor-bg 
           ${isHoveringMenu ? 'normal' : ''} 
-          ${!isHoveringMenu && isInteractive ? 'active' : ''} 
+          ${!isHoveringMenu && isHoveringWrapper ? 'active' : ''} 
+          ${!isHoveringMenu && isHoveringAccolades ? 'accolades-hover' : ''}
+          ${!isHoveringMenu && isHoveringResume ? 'resume-hover' : ''}
+          ${!isHoveringMenu && isHoveringKnowMore ? 'knowmore-hover' : ''}
+          ${!isHoveringMenu && isHoveringLink ? 'link-hover' : ''}
           ${isHoveringDsPara ? 'vanish' : ''}`}
         style={{
           left: hasMoved ? `${position.x}px` : '50vw',
           top: hasMoved ? `${position.y}px` : '50vh',
         }}
       ></div>
-      {!isHoveringMenu && isInteractive && isFocused && (
+      {isInteractive && !isHoveringMenu && isFocused && (
         <div
           ref={textRef}
-          className="custom-cursor-text active"
+          className={`custom-cursor-text 
+            ${isHoveringWrapper ? 'active' : ''} 
+            ${isHoveringAccolades ? 'accolades-hover' : ''}
+            ${isHoveringResume ? 'resume-hover' : ''}
+            ${isHoveringKnowMore ? 'knowmore-hover' : ''}
+            ${isHoveringLink ? 'link-hover' : ''}`}
           style={{ 
             left: hasMoved ? `${position.x}px` : '50vw', 
             top: hasMoved ? `${position.y}px` : '50vh' 
