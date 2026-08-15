@@ -57,7 +57,7 @@
 
 .marquee__inner-wrap {
   height: 100%;
-  width: 200%;
+  width: 100%;
   display: flex;
   transform: translateX(0);
 }
@@ -67,9 +67,15 @@
   align-items: center;
   position: relative;
   height: 100%;
-  width: 200%;
+  width: max-content;
   will-change: transform;
-  animation: marquee 15s linear infinite;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee__part {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .marquee__img {
@@ -91,7 +97,7 @@
   align-items: center;
   justify-content: center;
   width: auto;
-  margin: 2em 2vw;
+  margin: 0 2vw;
   height: 20%;
   font-size: 2vw;
   color: #ffffff;
@@ -108,10 +114,10 @@
 }
 
 @keyframes marquee {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
+  100% {
     transform: translateX(-50%);
   }
 }
@@ -139,11 +145,11 @@
   }
 
   .marquee__inner-wrap {
-    width: 300%;
+    width: 100%;
   }
 
   .marquee__inner {
-    width: 300%;
+    width: max-content;
   }
 
 }

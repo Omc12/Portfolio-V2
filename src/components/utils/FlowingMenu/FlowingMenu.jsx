@@ -14,42 +14,10 @@ function FlowingMenu({ items = [] }) {
   );
 }
 
-function MenuItem({ text, images }) {
+function MenuItem({ text, images = [] }) {
   const itemRef = React.useRef(null);
   const marqueeRef = React.useRef(null);
   const marqueeInnerRef = React.useRef(null);
-
-  // Compute a content array from the images array.
-  // Each entry is an object with type 'image' or 'text' based on its value.
-  const [marqueeContent, setMarqueeContent] = React.useState([]);
-
-  React.useEffect(() => {
-    const updateMarqueeContent = () => {
-      if (itemRef.current) {
-        const containerWidth = itemRef.current.getBoundingClientRect().width;
-        const elementWidth = 200; // fixed width for each element (should match CSS)
-        // Build base content from the images array.
-        // If an entry starts with 'http', treat it as an image; otherwise, as text.
-        const baseContent = images.map(item =>
-          item.startsWith('http')
-            ? { type: 'image', value: item }
-            : { type: 'text', value: item }
-        );
-        // Calculate needed items based on container width, but ensure it's at least all items
-        const numNeeded = Math.max(Math.ceil(containerWidth / elementWidth), baseContent.length);
-        const newContent = [];
-        for (let i = 0; i < numNeeded; i++) {
-          newContent.push(baseContent[i % baseContent.length]);
-        }
-        setMarqueeContent(newContent);
-      }
-    };
-    
-
-    updateMarqueeContent();
-    window.addEventListener('resize', updateMarqueeContent);
-    return () => window.removeEventListener('resize', updateMarqueeContent);
-  }, [images]);
 
   const animationDefaults = { duration: 0.6, ease: 'expo' };
 
@@ -90,24 +58,21 @@ function MenuItem({ text, images }) {
       .to(marqueeInnerRef.current, { y: edge === 'top' ? '101%' : '-101%' }, 0);
   };
 
-  // Duplicate the computed content so that the marquee spans 200% of the container.
-  const repeatedMarqueeContent = [...marqueeContent, ...marqueeContent].map((item, idx) => {
-    if (item.type === 'image') {
+  const renderItems = (itemsList) => itemsList.map((item, idx) => {
+    if (item.startsWith && item.startsWith('http')) {
       return (
         <div
           key={idx}
           className="marquee__img"
-          style={{ backgroundImage: `url(${item.value})` }}
+          style={{ backgroundImage: `url(${item})` }}
         />
       );
-    } else if (item.type === 'text') {
-      return (
-        <span key={idx} className="marquee__text">
-          {item.value}
-        </span>
-      );
     }
-    return null;
+    return (
+      <span key={idx} className="marquee__text">
+        {item}
+      </span>
+    );
   });
 
   return (
@@ -122,7 +87,12 @@ function MenuItem({ text, images }) {
       <div className="marquee" ref={marqueeRef}>
         <div className="marquee__inner-wrap" ref={marqueeInnerRef}>
           <div className="marquee__inner" aria-hidden="true">
-            {repeatedMarqueeContent}
+            <div className="marquee__part">
+              {renderItems(images)}
+            </div>
+            <div className="marquee__part">
+              {renderItems(images)}
+            </div>
           </div>
         </div>
       </div>
