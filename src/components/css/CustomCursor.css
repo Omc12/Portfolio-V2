@@ -34,7 +34,7 @@
 
 /* Entrance animation (when tab gains focus) */
 .custom-cursor-bg.entrance {
-  animation: cursorEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cursorEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Exit animation (when tab loses focus) */
@@ -42,28 +42,37 @@
   animation: cursorExit 0.4s ease forwards;
 }
 
-/* Entrance keyframes */
+/* Keyframes without translate lock so shape classes apply transform cleanly */
 @keyframes cursorEntrance {
   0% {
-    transform: translate(0%, 0%) scale(0) rotate(-43deg);
+    scale: 0;
     opacity: 0;
   }
   100% {
-    transform: translate(0%, 0%) scale(1) rotate(-43deg);
+    scale: 1;
     opacity: 1;
   }
 }
 
-/* Exit keyframes */
 @keyframes cursorExit {
   0% {
-    transform: translate(0%, 0%) scale(1) rotate(-43deg);
+    scale: 1;
     opacity: 1;
   }
   100% {
-    transform: translate(0%, 0%) scale(0) rotate(-43deg);
+    scale: 0;
     opacity: 0;
   }
+}
+
+/* Active Shape Badges - centered symmetrically over mouse position */
+.custom-cursor-bg.active,
+.custom-cursor-bg.accolades-hover,
+.custom-cursor-bg.link-hover,
+.custom-cursor-bg.top-hover,
+.custom-cursor-bg.resume-hover,
+.custom-cursor-bg.knowmore-hover {
+  transform: translate(-50%, -50%) rotate(0deg) !important;
 }
 
 /* Hover state for wrapper (drag projects) */
@@ -74,7 +83,6 @@
   border: none;
   border-radius: 50%;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 30px rgba(31, 81, 255, 0.9));
 }
 
@@ -86,7 +94,6 @@
   border: none;
   border-radius: 50%;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 35px rgba(255, 80, 109, 0.9));
 }
 
@@ -98,7 +105,6 @@
   border: none;
   border-radius: 50%;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 25px rgba(127, 255, 0, 0.95));
 }
 
@@ -110,7 +116,6 @@
   border: none;
   border-radius: 50%;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 25px rgba(127, 255, 0, 0.95));
 }
 
@@ -122,7 +127,6 @@
   border: 2px solid #7FFF00;
   border-radius: 0px;
   clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
-  transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.95));
 }
 
@@ -134,7 +138,6 @@
   border: 2px solid #7FFF00;
   border-radius: 6px;
   clip-path: none;
-  transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 30px rgba(127, 255, 0, 0.95));
 }
 
