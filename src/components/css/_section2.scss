@@ -47,10 +47,12 @@
         display: flex;
         align-self: flex-start;
         align-items: center;
-        justify-content: center;
-        line-height: 1.5;
-        font-size: 0.8vw;
-        width: 30%;
+        justify-content: flex-start;
+        line-height: 1.6;
+        font-size: 1.1vw;
+        width: 70%;
+        margin-left: 0;
+        margin-top: 2vw;
         color: #000;
         font-family: "Poppins", sans-serif;
         font-weight: 300;
@@ -60,12 +62,13 @@
       #aboutParaMini2 {
         display: flex;
         align-self: flex-start;
-        margin-left: 35%;
         align-items: center;
-        justify-content: center;
-        line-height: 1.5;
-        font-size: 0.8vw;
-        width: 30%;
+        justify-content: flex-start;
+        line-height: 1.6;
+        font-size: 1.1vw;
+        width: 70%;
+        margin-left: 0;
+        margin-top: 1.2vw;
         color: #000;
         font-family: "Poppins", sans-serif;
         font-weight: 300;
@@ -93,14 +96,17 @@
           }
           
           #aboutParaMini1 {
-            width: 60%;
-            font-size: 2vw;
+            width: 85%;
+            font-size: 2.2vw;
+            margin-left: 0;
+            margin-top: 3vw;
           }
           
           #aboutParaMini2 {
-            width: 60%;
-            font-size: 2vw;
-            margin-left: 0%;
+            width: 85%;
+            font-size: 2.2vw;
+            margin-left: 0;
+            margin-top: 2vw;
           }
       }
   }
@@ -125,14 +131,17 @@
           }
           
           #aboutParaMini1 {
-            width: 80%;
+            width: 100%;
             font-size: 4vw;
+            margin-left: 0;
+            margin-top: 4vw;
           }
           
           #aboutParaMini2 {
-            width: 80%;
+            width: 100%;
             font-size: 4vw;
-            margin-left: 0%;
+            margin-left: 0;
+            margin-top: 3vw;
           }
       }
   }
