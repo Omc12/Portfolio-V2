@@ -59,17 +59,23 @@ const demoItems = [
 const StatsSection = () => {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
+  const statsSubRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  const { x, y } = useMousePosition();
-  const size = isHovered ? 17 : 0; // Size in vw units
-  const offsetX = window.innerWidth < 1024 ? 5 : 0;    // No horizontal offset
-  const offsetY = window.innerWidth < 1024 ? -13 : -25;
-  // Moves mask circle upward (in vh units)
+  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
 
-  // Convert mouse position to viewport units with offsets
-  const maskX = (x / window.innerWidth * 100) - (size / 2) + offsetX;
-  const maskY = (y / window.innerHeight * 100) - (size / 2) + offsetY;
-  const maskSize = size;
+  const handleMouseMove = (e) => {
+    if (statsSubRef.current) {
+      const rect = statsSubRef.current.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  const maskSizePx = isHovered ? Math.max(window.innerWidth * 0.18, 220) : 0;
+  const maskX = mousePos.x - maskSizePx / 2;
+  const maskY = mousePos.y - maskSizePx / 2;
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -180,18 +186,24 @@ const StatsSection = () => {
           <FlowingMenu items={demoItems} />
         </div>
         <div className="DescriptiveStats">
-          <div className="DescriptiveStatsSub">
+          <div 
+            className="DescriptiveStatsSub" 
+            ref={statsSubRef}
+            onMouseMove={handleMouseMove}
+          >
             {/* Masked Paragraph */}
             <motion.div
               className="mask"
               animate={{
-                WebkitMaskPosition: `${maskX}vw ${maskY}vh`,
-                WebkitMaskSize: `${maskSize}vw`,
+                WebkitMaskPosition: `${maskX}px ${maskY}px`,
+                maskPosition: `${maskX}px ${maskY}px`,
+                WebkitMaskSize: `${maskSizePx}px ${maskSizePx}px`,
+                maskSize: `${maskSizePx}px ${maskSizePx}px`,
               }}
-              transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
+              transition={{ type: "tween", ease: "backOut", duration: 0.3 }}
               style={{
-                maskImage: "url('/mask.svg')", // Updated path
-                WebkitMaskImage: "url('/mask.svg')", // Add Webkit prefix for consistency
+                maskImage: "url('/mask.svg')",
+                WebkitMaskImage: "url('/mask.svg')",
                 maskRepeat: "no-repeat",
                 WebkitMaskRepeat: "no-repeat",
                 background: "#7FFF00",
@@ -200,12 +212,14 @@ const StatsSection = () => {
                 width: "100%",
                 height: "100%",
                 zIndex: 10001,
+                pointerEvents: "none",
               }}
             >
               <p
                 id="dsPara"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
+                style={{ pointerEvents: "auto" }}
               >
                 Author of <span>
                   <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
@@ -228,7 +242,7 @@ const StatsSection = () => {
               </span>+ LeetCode problems.
             </p>
             <FallingText
-              text={`PyTorch LLM-Inference DKV IEEE-TETCI SVD Quantization RAG Python`}
+              text={`PyTorch LLM-Inference DKV IEEE-TETCI SVD Quantization RAG Model-Evaluation Python FastAPI VectorDBs 400+Solved 1750+Rating`}
               highlightWords={[]}
               highlightClass="highlighted"
               trigger="hover"
