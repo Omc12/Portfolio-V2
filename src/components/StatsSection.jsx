@@ -226,11 +226,9 @@ const StatsSection = () => {
                 >
                   Author of <span>
                     <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
-                  </span> published preprints & 1 paper under review in IEEE TETCI. Architected DKV framework for scalable inference, built <span>
-                    <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
-                  </span>+ ML projects, and solved <span>
-                    <CountUp from={0} to={400} separator="," direction="up" duration={1} className="count-up-text" />
-                  </span>+ LeetCode problems (Rating 1750+), maintaining 8.1 GPA as a 3rd-year B.Tech AI student.
+                  </span> published preprints & 1 paper under review in IEEE TETCI. Architected DKV framework for scalable long-context inference, engineered <span>
+                    <CountUp from={0} to={4} separator="," direction="up" duration={1} className="count-up-text" />
+                  </span> custom attention backends (CUDA, Triton, MLX), maintaining 8.1 GPA as a 3rd-year B.Tech AI student.
                 </p>
               </div>
             </motion.div>
@@ -241,9 +239,7 @@ const StatsSection = () => {
                 <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
               </span> preprints & 1 paper under review in IEEE TETCI, engineered <span>
                 <CountUp from={0} to={4} separator="," direction="up" duration={1} className="count-up-text" />
-              </span> custom attention kernel backends (CUDA, Triton, MLX, GGML), and solved <span>
-                <CountUp from={0} to={400} separator="," direction="up" duration={1} className="count-up-text" />
-              </span>+ LeetCode problems (Rating 1750+).
+              </span> custom attention kernel backends (CUDA, Triton, MLX, GGML), maintaining 8.1 GPA.
             </p>
             <FallingText
               text={`PyTorch HuggingFace Transformers CUDA Triton MLX FastAPI Python Git VectorDBs Quantization Low-Rank-SVD RAG`}

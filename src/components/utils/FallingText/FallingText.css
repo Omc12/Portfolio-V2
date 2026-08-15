@@ -7,13 +7,9 @@
   height: 100%;
   cursor: pointer;
   text-align: center;
-  padding-top: 2em;
-  top: -12.5vw;
+  padding-top: 1em;
+  top: -10vw;
   margin-right: 3%;
-  mask-image: linear-gradient(to bottom, 
-      rgba(0, 0, 0, 0) 55%,
-      rgba(0, 0, 0, 1) 55%   
-  );
   user-select: none;
   pointer-events: none;
 }

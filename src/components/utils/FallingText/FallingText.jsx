@@ -100,10 +100,11 @@ const FallingText = ({
       },
     });
 
-    // Boundaries: Floor at the bottom of the container
+    // Boundaries: Floor elevated above bottom of container so boxes stay 100% visible
     const boundaryOptions = { isStatic: true, render: { fillStyle: "transparent" } };
     const floorHeight = 50; // Thickness of the floor
-    const floor = Bodies.rectangle(width / 2, height - floorHeight / 2, width, floorHeight, boundaryOptions);
+    const floorOffsetY = Math.max(height * 0.16, 75);
+    const floor = Bodies.rectangle(width / 2, height - floorOffsetY, width, floorHeight, boundaryOptions);
     const leftWall = Bodies.rectangle(-25, height / 2, 50, height, boundaryOptions);
     const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, boundaryOptions);
     const ceiling = Bodies.rectangle(width / 2, -25, width, 50, boundaryOptions);
