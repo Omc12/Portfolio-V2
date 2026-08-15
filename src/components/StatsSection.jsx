@@ -228,7 +228,7 @@ const StatsSection = () => {
               </span>+ LeetCode problems.
             </p>
             <FallingText
-              text={`PyTorch Low-Rank-SVD LLM-Inference Quantization RAG Model-Evaluation Benchmark-Design Python JavaScript FastAPI Git VectorDBs LeetCode1750+ 400+Solved DKV IEEE-TETCI 3-Preprints CUDA Triton MLX`}
+              text={`PyTorch LLM-Inference DKV IEEE-TETCI SVD Quantization RAG Python`}
               highlightWords={[]}
               highlightClass="highlighted"
               trigger="hover"

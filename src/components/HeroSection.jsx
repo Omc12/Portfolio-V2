@@ -20,7 +20,7 @@ const HeroSection = () => {
         />
       </div>
       <div className="heroTextMain">
-        <h3 id="heroText">systems.</h3>
+        <h3 id="heroText">better.</h3>
       </div>
       <div className="heroNegative"></div>
       <div className="heroTextFiller">
