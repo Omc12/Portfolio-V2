@@ -10,28 +10,36 @@
   height: 1vw;
   background-color: #ff506d;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 99999;
   transform: translate(-50%, -50%) rotate(-43deg);
   transition: 
-    width 0.2s ease, 
-    height 0.2s ease, 
-    clip-path 0.7s ease, 
-    transform 0.7s ease,
-    filter 0.7s ease;
+    width 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+    height 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+    clip-path 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   clip-path: polygon(60% 0%, 0% 100%, -5% 105%, 100% 100%);
   shape-rendering: crispEdges;
   filter: drop-shadow(0 0 20px rgba(255, 80, 109, 0.8));
   display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor-icon {
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 /* Entrance animation (when tab gains focus) */
 .custom-cursor-bg.entrance {
-  animation: cursorEntrance 1s ease forwards;
+  animation: cursorEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Exit animation (when tab loses focus) */
 .custom-cursor-bg.exit {
-  animation: cursorExit 0.5s ease forwards;
+  animation: cursorExit 0.4s ease forwards;
 }
 
 /* Entrance keyframes */
@@ -41,7 +49,7 @@
     opacity: 0;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1) rotate(677deg);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
     opacity: 1;
   }
 }
@@ -49,7 +57,7 @@
 /* Exit keyframes */
 @keyframes cursorExit {
   0% {
-    transform: translate(-50%, -50%) scale(1) rotate(677deg);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
     opacity: 1;
   }
   100% {
@@ -58,57 +66,70 @@
   }
 }
 
-/* Hover state for wrapper */
+/* Hover state for wrapper (drag projects) */
 .custom-cursor-bg.active {
-  width: 3vw;
-  height: 3vw;
+  width: 2.8vw;
+  height: 2.8vw;
+  background-color: #1F51FF;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%) rotate(720deg);
-  filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
+  transform: translate(-50%, -50%) rotate(0deg);
+  filter: drop-shadow(0 0 30px rgba(31, 81, 255, 0.9));
 }
 
 /* Accolades hover state */
 .custom-cursor-bg.accolades-hover {
-  width: 3vw;
-  height: 3vw;
+  width: 2.8vw;
+  height: 2.8vw;
+  background-color: #ff506d;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%) rotate(720deg);
-  filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
+  transform: translate(-50%, -50%) rotate(0deg);
+  filter: drop-shadow(0 0 35px rgba(255, 80, 109, 0.9));
 }
 
-/* Unique Diamond Cursor Shape for Generic Links / FlipLinks */
+/* Pointer Hand Badge for Generic Links / FlipLinks */
 .custom-cursor-bg.link-hover {
-  width: 2.2vw;
-  height: 2.2vw;
+  width: 2.6vw;
+  height: 2.6vw;
   background-color: #7FFF00;
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  transform: translate(-50%, -50%) rotate(45deg);
+  clip-path: circle(50% at 50% 50%);
+  transform: translate(-50%, -50%) rotate(0deg);
+  filter: drop-shadow(0 0 25px rgba(127, 255, 0, 0.95));
+}
+
+/* Back To Top Arrow Badge */
+.custom-cursor-bg.top-hover {
+  width: 2.6vw;
+  height: 2.6vw;
+  background-color: #7FFF00;
+  clip-path: circle(50% at 50% 50%);
+  transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 25px rgba(127, 255, 0, 0.95));
 }
 
 /* Unique 3D Rhombus Badge Cursor for Download Resume Button */
 .custom-cursor-bg.resume-hover {
-  width: 3.2vw;
-  height: 3.2vw;
+  width: 2.8vw;
+  height: 2.8vw;
   background-color: #7FFF00;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  transform: translate(-50%, -50%) rotate(180deg);
+  transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 30px rgba(127, 255, 0, 1));
 }
 
 /* Unique Glowing Ring Badge for Know More / LinkedIn */
 .custom-cursor-bg.knowmore-hover {
-  width: 3.8vw;
-  height: 3.8vw;
-  background-color: #1F51FF;
+  width: 3.2vw;
+  height: 3.2vw;
+  background-color: #000000;
+  border: 2px solid #7FFF00;
   clip-path: circle(50% at 50% 50%);
   transform: translate(-50%, -50%);
-  filter: drop-shadow(0 0 30px rgba(31, 81, 255, 0.95));
+  filter: drop-shadow(0 0 30px rgba(127, 255, 0, 0.9));
 }
 
 /* Vanish state for dsPara */
 .custom-cursor-bg.vanish {
-  animation: cursorExit 0.5s ease forwards;
+  animation: cursorExit 0.4s ease forwards;
   transition: none;
 }
 
@@ -119,10 +140,10 @@
 
 /* Elastic state */
 .custom-cursor-bg.elastic {
-  width: 3vw;
-  height: 3vw;
+  width: 2.8vw;
+  height: 2.8vw;
   clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%) rotate(720deg);
+  transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 40px rgba(255, 80, 109, 0.9));
   transition: transform 0.7s ease, width 0.2s ease, height 0.2s ease;
 }
@@ -134,70 +155,20 @@
   clip-path: polygon(60% 0%, 0% 100%, -5% 105%, 100% 100%);
   transform: translate(-50%, -50%) rotate(-43deg);
   filter: drop-shadow(0 0 20px rgba(255, 80, 109, 0.8));
-  transition: 
-    width 0.2s ease, 
-    height 0.2s ease, 
-    clip-path 0.2s ease, 
-    transform 0.2s ease,
-    filter 0.2s ease;
-}
-
-/* Text styling */
-.custom-cursor-text {
-  position: fixed;
-  font-size: 0.7vw;
-  font-family: sans-serif;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
-  transition: font-size 0.2s ease;
-}
-
-/* Text styling for accolades */
-.custom-cursor-text.accolades-hover {
-  font-size: 0.6vw;
-  transform: translate(-50%, -50%);
-}
-
-.custom-cursor-text.link-hover {
-  font-size: 0.55vw;
-  font-weight: 700;
-  color: #000 !important;
-}
-
-.custom-cursor-text.resume-hover {
-  font-size: 0.65vw;
-  font-weight: 700;
-  color: #000 !important;
-}
-
-.custom-cursor-text.knowmore-hover {
-  font-size: 0.55vw;
-  font-weight: 600;
-  color: #fff !important;
-}
-
-/* Text styling for normal state */
-.custom-cursor-text.normal {
-  font-size: 0.7vw;
-  transform: translate(-50%, -50%);
 }
 
 /* Emoji styling */
 .custom-cursor-emoji {
   position: fixed;
   pointer-events: none;
-  z-index: 10000;
+  z-index: 100000;
   transform: translate(-50%, -50%);
   font-size: 1.5vw;
 }
 
 @media screen and (max-width:1024px){ 
-  /* Revert to the default cursor for all elements */
-  /* Hide custom cursor elements */
+  /* Revert to default cursor on touch devices */
   .custom-cursor-bg,
-  .custom-cursor-text,
   .custom-cursor-emoji {
     display: none !important;
   }

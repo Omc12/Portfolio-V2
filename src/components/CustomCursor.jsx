@@ -14,10 +14,10 @@ const CustomCursor = () => {
   const [isHoveringResume, setIsHoveringResume] = useState(false);
   const [isHoveringKnowMore, setIsHoveringKnowMore] = useState(false);
   const [isHoveringLink, setIsHoveringLink] = useState(false);
+  const [isHoveringBackToTop, setIsHoveringBackToTop] = useState(false);
   const [isElastic, setIsElastic] = useState(false);
   const [hasMoved, setHasMoved] = useState(false);
   const [isFocused, setIsFocused] = useState(document.hasFocus());
-  const textRef = useRef(null);
 
   useEffect(() => {
     const handleFocus = () => setIsFocused(true);
@@ -37,7 +37,7 @@ const CustomCursor = () => {
     if (!cursorBg) return;
 
     if (isFocused) {
-      cursorBg.style.display = 'block';
+      cursorBg.style.display = 'flex';
       cursorBg.classList.add('entrance');
       cursorBg.classList.remove('exit');
     } else {
@@ -78,47 +78,16 @@ const CustomCursor = () => {
     const isDsPara = target.closest('#dsPara') !== null;
     const isResume = target.closest('.resumeDownloadBtn') !== null;
     const isKnowMore = target.closest('.clickableKnowMore') !== null;
-    const isLink = !isResume && !isKnowMore && !isWrapper && target.closest('a, button, .FlipLink') !== null;
+    const isBackToTop = target.closest('.back-to-top, #heroScroll, .AnimatedMenu, [href="#top"]') !== null;
+    const isLink = !isResume && !isKnowMore && !isWrapper && !isBackToTop && target.closest('a, button, .FlipLink, .menu__item-link') !== null;
 
     setIsHoveringMenu(isMenu);
     setIsHoveringWrapper(isWrapper);
     setIsHoveringDsPara(isDsPara);
     setIsHoveringResume(isResume);
     setIsHoveringKnowMore(isKnowMore);
+    setIsHoveringBackToTop(isBackToTop);
     setIsHoveringLink(isLink);
-  };
-
-  const getBrightness = (rgb) => {
-    const result = rgb.match(/\d+/g);
-    if (result && result.length >= 3) {
-      const [r, g, b] = result.map(Number);
-      return 0.299 * r + 0.587 * g + 0.114 * b;
-    }
-    return 255;
-  };
-
-  const getEffectiveBackground = (elem) => {
-    let bg = window.getComputedStyle(elem).backgroundColor;
-    while ((bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') && elem.parentElement) {
-      elem = elem.parentElement;
-      bg = window.getComputedStyle(elem).backgroundColor;
-    }
-    return bg;
-  };
-
-  const updateTextColor = () => {
-    if (!textRef.current) return;
-    const originalPointerEvents = textRef.current.style.pointerEvents;
-    textRef.current.style.pointerEvents = 'none';
-    const rect = textRef.current.getBoundingClientRect();
-    const sampleX = rect.left + rect.width / 2;
-    const sampleY = rect.top + rect.height / 2;
-    const elementBelow = document.elementFromPoint(sampleX, sampleY);
-    textRef.current.style.pointerEvents = originalPointerEvents;
-    if (!elementBelow) return;
-    const bgColor = getEffectiveBackground(elementBelow);
-    const brightness = getBrightness(bgColor);
-    textRef.current.style.color = brightness > 128 ? '#000' : '#fff';
   };
 
   useEffect(() => {
@@ -151,21 +120,49 @@ const CustomCursor = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if ((isHoveringWrapper || isHoveringAccolades || isHoveringResume || isHoveringKnowMore || isHoveringLink) && textRef.current) {
-      updateTextColor();
+  const renderCursorIcon = () => {
+    if (isHoveringBackToTop) {
+      return (
+        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+      );
     }
-  }, [position, isHoveringWrapper, isHoveringAccolades, isHoveringResume, isHoveringKnowMore, isHoveringLink]);
-
-  const isInteractive = isHoveringWrapper || isHoveringAccolades || isHoveringResume || isHoveringKnowMore || isHoveringLink;
-
-  const getCursorText = () => {
-    if (isHoveringResume) return 'CV 📄';
-    if (isHoveringKnowMore) return 'LINKEDIN ↗';
-    if (isHoveringLink) return 'OPEN ↗';
-    if (isHoveringAccolades) return 'HOVER';
-    if (isHoveringWrapper) return 'DRAG';
-    return '';
+    if (isHoveringResume) {
+      return (
+        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="18" x2="12" y2="12"/>
+          <polyline points="9 15 12 18 15 15"/>
+        </svg>
+      );
+    }
+    if (isHoveringKnowMore) {
+      return (
+        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FFF00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"/>
+          <polyline points="7 7 17 7 17 17"/>
+        </svg>
+      );
+    }
+    if (isHoveringLink) {
+      return (
+        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      );
+    }
+    if (isHoveringWrapper) {
+      return (
+        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 11V6a2 2 0 0 0-4 0v4M14 10V4a2 2 0 0 0-4 0v6M10 10.5V2a2 2 0 0 0-4 0v9M6 11.5V7a2 2 0 0 0-4 0v8.5a7 7 0 0 0 7 7h4a7 7 0 0 0 7-7v-4.5a2 2 0 0 0-4 0"/>
+        </svg>
+      );
+    }
+    return null;
   };
 
   return (
@@ -178,29 +175,15 @@ const CustomCursor = () => {
           ${!isHoveringMenu && isHoveringResume ? 'resume-hover' : ''}
           ${!isHoveringMenu && isHoveringKnowMore ? 'knowmore-hover' : ''}
           ${!isHoveringMenu && isHoveringLink ? 'link-hover' : ''}
+          ${!isHoveringMenu && isHoveringBackToTop ? 'top-hover' : ''}
           ${isHoveringDsPara ? 'vanish' : ''}`}
         style={{
           left: hasMoved ? `${position.x}px` : '50vw',
           top: hasMoved ? `${position.y}px` : '50vh',
         }}
-      ></div>
-      {isInteractive && !isHoveringMenu && isFocused && (
-        <div
-          ref={textRef}
-          className={`custom-cursor-text 
-            ${isHoveringWrapper ? 'active' : ''} 
-            ${isHoveringAccolades ? 'accolades-hover' : ''}
-            ${isHoveringResume ? 'resume-hover' : ''}
-            ${isHoveringKnowMore ? 'knowmore-hover' : ''}
-            ${isHoveringLink ? 'link-hover' : ''}`}
-          style={{ 
-            left: hasMoved ? `${position.x}px` : '50vw', 
-            top: hasMoved ? `${position.y}px` : '50vh' 
-          }}
-        >
-          {getCursorText()}
-        </div>
-      )}
+      >
+        {renderCursorIcon()}
+      </div>
       {isElastic && isFocused && (
         <div
           className="custom-cursor-emoji"
