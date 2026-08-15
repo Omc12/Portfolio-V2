@@ -82,7 +82,7 @@ const Main = () => {
     <>
   {!showContent && <Loader onLoaded={() => setShowContent(true)} />}
   {showContent && (
-        <div className="main">
+        <main className="main">
           <AnimatedMenuHeader />
           <CustomCursor />
           <ScrollProgress />
@@ -101,7 +101,7 @@ const Main = () => {
           <Suspense fallback={null}>
             <KnowMore />
           </Suspense>
-        </div>
+        </main>
       )}
     </>
   );

@@ -3,7 +3,8 @@ import ScrollVelocitySingle from "./utils/ScrollVelocity/ScrollVelocity";
 
 const HeroSection = () => {
   return (
-    <div className="Section1">
+    <header className="Section1">
+      <h1 className="visually-hidden">Om Chimurkar - AI Researcher & Machine Learning Systems Engineer</h1>
       <div className='VelocityLong'>
         <ScrollVelocitySingle 
           text="Om Chimurkar • ML & Systems • AI Research •" 
@@ -28,7 +29,7 @@ const HeroSection = () => {
           Architecting <span>ML Systems & LLM Inference</span> runtimes, compressing long contexts, and building high-performance deep learning kernels.
         </p>
       </div>
-    </div>
+    </header>
   );
 };
 
