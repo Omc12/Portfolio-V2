@@ -190,17 +190,18 @@ const StatsSection = () => {
             className="DescriptiveStatsSub" 
             ref={statsSubRef}
             onMouseMove={handleMouseMove}
+            style={{ position: 'relative' }}
           >
-            {/* Masked Paragraph */}
+            {/* Masked Paragraph (Extended by 200px in all 4 directions to prevent circle clipping at top/edges) */}
             <motion.div
               className="mask"
               animate={{
-                WebkitMaskPosition: `${maskX}px ${maskY}px`,
-                maskPosition: `${maskX}px ${maskY}px`,
+                WebkitMaskPosition: `${maskX + 200}px ${maskY + 200}px`,
+                maskPosition: `${maskX + 200}px ${maskY + 200}px`,
                 WebkitMaskSize: `${maskSizePx}px ${maskSizePx}px`,
                 maskSize: `${maskSizePx}px ${maskSizePx}px`,
               }}
-              transition={{ type: "tween", ease: "backOut", duration: 0.3 }}
+              transition={{ type: "tween", ease: "backOut", duration: 0.2 }}
               style={{
                 maskImage: "url('/mask.svg')",
                 WebkitMaskImage: "url('/mask.svg')",
@@ -208,27 +209,30 @@ const StatsSection = () => {
                 WebkitMaskRepeat: "no-repeat",
                 background: "#7FFF00",
                 position: "absolute",
-                color: "black",
-                width: "100%",
-                height: "100%",
+                top: "-200px",
+                left: "-200px",
+                width: "calc(100% + 400px)",
+                height: "calc(100% + 400px)",
                 zIndex: 10001,
                 pointerEvents: "none",
               }}
             >
-              <p
-                id="dsPara"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                style={{ pointerEvents: "auto" }}
-              >
-                Author of <span>
-                  <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
-                </span> published preprints & 1 paper under review in IEEE TETCI. Built <span>
-                  <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+ ML & LLM projects, solved <span>
-                  <CountUp from={0} to={400} separator="," direction="up" duration={1} className="count-up-text" />
-                </span>+ LeetCode problems (Rating 1750+), maintaining 8.1 GPA as a 3rd-year B.Tech AI student.
-              </p>
+              <div style={{ position: "absolute", top: "200px", left: "200px", width: "100%", height: "100%" }}>
+                <p
+                  id="dsPara"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  style={{ pointerEvents: "auto" }}
+                >
+                  Author of <span>
+                    <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
+                  </span> published preprints & 1 paper under review in IEEE TETCI. Built <span>
+                    <CountUp from={0} to={10} separator="," direction="up" duration={1} className="count-up-text" />
+                  </span>+ ML & LLM projects, solved <span>
+                    <CountUp from={0} to={400} separator="," direction="up" duration={1} className="count-up-text" />
+                  </span>+ LeetCode problems (Rating 1750+), maintaining 8.1 GPA as a 3rd-year B.Tech AI student.
+                </p>
+              </div>
             </motion.div>
             {/* Original Paragraph */}
             <p id="dsPara">
