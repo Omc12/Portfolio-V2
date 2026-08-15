@@ -19,11 +19,7 @@ const HeroSection = () => {
         />
       </div>
       <div className="heroTextMain">
-        <div className="heroTextSub">
-          <span className="heroLine top">ml systems</span>
-          <div className="heroDivider"></div>
-          <span className="heroLine bottom">llm inference</span>
-        </div>
+        <h3 id="heroText">systems.</h3>
       </div>
       <div className="heroNegative"></div>
       <div className="heroTextFiller">

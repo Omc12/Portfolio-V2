@@ -17,12 +17,14 @@ const demoItems = [
     text: 'tech stack', 
     images: [
       'PYTORCH', 
-      'CUDA',
-      'TRITON',
-      'MLX',
-      'GGML',
+      'LOW-RANK SVD',
+      'LLM INFERENCE',
+      'RAG SYSTEMS',
+      'QUANTIZATION',
+      'MODEL EVALUATION',
+      'BENCHMARK DESIGN',
       'PYTHON',
-      'C++',
+      'JAVASCRIPT',
       'FASTAPI',
       'GIT',
       'VECTOR DBS'
@@ -45,7 +47,7 @@ const demoItems = [
       'DKV FRAMEWORK',
       'SVD FACTORIZATION',
       'KV-CACHE COMPRESSION',
-      'CUSTOM ATTENTION KERNELS',
+      'CUDA / TRITON / MLX',
       'LLM INFERENCE',
       'RAG ARCHITECTURES',
       'QUANTIZATION',
@@ -226,7 +228,7 @@ const StatsSection = () => {
               </span>+ LeetCode problems.
             </p>
             <FallingText
-              text={`PyTorch CUDA Triton MLX IEEE-TETCI DKV 3-Preprints GGML SVD LLM-Inference Quantization RAG FastAPI Python C++ VectorDBs LeetCode1750+ 400+Solved NumPy Pandas`}
+              text={`PyTorch Low-Rank-SVD LLM-Inference Quantization RAG Model-Evaluation Benchmark-Design Python JavaScript FastAPI Git VectorDBs LeetCode1750+ 400+Solved DKV IEEE-TETCI 3-Preprints CUDA Triton MLX`}
               highlightWords={[]}
               highlightClass="highlighted"
               trigger="hover"

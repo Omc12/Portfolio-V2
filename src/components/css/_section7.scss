@@ -38,11 +38,6 @@
 
       &.clickableKnowMore {
         cursor: pointer;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-
-        &:hover {
-          transform: scale(1.03);
-        }
       }
   
       h2 {
@@ -88,7 +83,7 @@
     .resumeDownloadBtn {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
+      justify-content: center;
       padding: 0.8vw 2vw;
       background-color: #000;
       color: #7FFF00;
@@ -107,15 +102,6 @@
         transform: translateY(-3px) scale(1.03);
         box-shadow: 0 8px 25px rgba(127, 255, 0, 0.35);
       }
-
-      svg {
-        transition: transform 0.3s ease;
-        stroke: currentColor;
-      }
-
-      &:hover svg {
-        transform: translateY(2px);
-      }
     }
   
     .section7Tail {
@@ -127,18 +113,20 @@
   
       p {
         line-height: 1.2;
-        font-size: 1.2vw;
+        font-size: 0.9vw;
         margin-top: 2vw;
-        color: #353535;
+        color: #888888;
         font-family: "Poppins", sans-serif;
-        font-weight: 500;
+        font-weight: 400;
         font-style: normal;
-        letter-spacing: -0.05vw;
+        letter-spacing: -0.02vw;
       }
-    }
-  
-    #plus {
-      color: #000;
+
+      #plus {
+        color: #000;
+        font-size: 1.2vw;
+        font-weight: 500;
+      }
     }
   }
 
@@ -171,7 +159,7 @@
       
       .section7Tail {
           p {
-            font-size: 2vw;
+            font-size: 1.5vw;
           }
       }
       
@@ -232,7 +220,7 @@
       .section7Tail {
         height: 10%;
           p {
-            font-size: 3vw;
+            font-size: 2.4vw;
           }
       }
       

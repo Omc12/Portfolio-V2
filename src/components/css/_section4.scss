@@ -128,32 +128,34 @@
 
       .cardLegend {
         display: flex;
-        align-items: center;
-        gap: 1.2vw;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4vw;
         font-family: "Poppins", sans-serif;
-        font-size: 1vw;
+        font-size: 0.95vw;
         font-weight: 500;
 
         .legendItem {
           display: flex;
           align-items: center;
-          gap: 0.5vw;
+          gap: 0.6vw;
         }
 
         .legendBox {
-          width: 0.9vw;
-          height: 0.9vw;
-          border-radius: 2px;
+          width: 1.5vw;
+          height: 1.5vw;
+          border-radius: 3px;
           display: inline-block;
         }
 
         .clickableBox {
           background-color: #7FFF00;
-          border: 1px solid #5ec200;
+          border: none;
         }
 
         .unclickableBox {
           background-color: #1F51FF;
+          border: none;
         }
 
         .legendText {
@@ -210,11 +212,11 @@
       .projectsFooter {
         .cardLegend {
           font-size: 1.8vw;
-          gap: 2vw;
+          gap: 0.8vw;
 
           .legendBox {
-            width: 1.6vw;
-            height: 1.6vw;
+            width: 2.8vw;
+            height: 2.8vw;
           }
         }
       }
@@ -266,11 +268,11 @@
       .projectsFooter {
         .cardLegend {
           font-size: 2.8vw;
-          gap: 2.5vw;
+          gap: 1vw;
 
           .legendBox {
-            width: 2.5vw;
-            height: 2.5vw;
+            width: 4vw;
+            height: 4vw;
           }
         }
       }

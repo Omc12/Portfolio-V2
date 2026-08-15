@@ -39,6 +39,35 @@ const ProjectsSection = () => {
       <h2 id="projectsHead">Projects</h2>
       <div className="draggableContainer" ref={containerRef}>
         <h2 id="projectsPunchy">That's it?</h2>
+        {/* Signalist card */}
+        <motion.div
+          className="wrapper draggable"
+          drag
+          dragConstraints={containerRef}
+          dragElastic={0.65}
+          onMouseDown={updateZIndex}
+          onTap={() => window.open(LINKS.signalist, "_blank")}
+          initial={{ rotate: 14 }}
+          animate={{ rotate: 14 }}
+          whileDrag={{ rotate: 14 }}
+          style={{
+            position: "absolute",
+            top: "10%",
+            left: "20%",
+            zIndex,
+          }}
+        >
+          <div className="wrapperImg">
+            <OptimizedPicture
+              src={ABS3}
+              alt="Abstract image"
+              className="wrapperImgStyle"
+              loading="lazy"
+              sources={[{srcSet: ABS3, type: 'image/avif'}]}
+            />
+          </div>
+          <p className="wrapperText">Signalist</p>
+        </motion.div>
         {/* DKV Research card */}
         <motion.div
           className="wrapper draggable"
@@ -53,7 +82,7 @@ const ProjectsSection = () => {
           style={{
             position: "absolute",
             top: "15%",
-            left: "25%",
+            left: "36%",
             zIndex,
           }}
         >
@@ -76,13 +105,13 @@ const ProjectsSection = () => {
           dragElastic={0.65}
           onMouseDown={updateZIndex}
           onTap={() => window.open(LINKS.notML, "_blank")}
-          initial={{ rotate: -16 }}
-          animate={{ rotate: -16 }}
-          whileDrag={{ rotate: -16 }}
+          initial={{ rotate: -14 }}
+          animate={{ rotate: -14 }}
+          whileDrag={{ rotate: -14 }}
           style={{
             position: "absolute",
             top: "10%",
-            left: "45%",
+            left: "54%",
             zIndex,
           }}
         >
@@ -97,28 +126,6 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">NotML</p>
         </motion.div>
-        {/* KV-Cache Compression text card */}
-        <motion.div
-          className="text-wrapper draggable wrapper"
-          drag
-          dragConstraints={containerRef}
-          dragElastic={0.65}
-          onMouseDown={updateZIndex}
-          initial={{ rotate: -26 }}
-          animate={{ rotate: -26 }}
-          whileDrag={{ rotate: -26 }}
-          style={{
-            position: "absolute",
-            top: "35%",
-            left: "50%",
-            zIndex,
-          }}
-        >
-          <h2 className="text-wrapper-head">DKV</h2>
-          <p className="text-wrapper-p">
-            Differential KV-cache compression for scalable long-context inference (Submitted to IEEE TETCI).
-          </p>
-        </motion.div>
         {/* LLMs & Systems text card */}
         <motion.div
           className="text-wrapper draggable wrapper"
@@ -131,14 +138,36 @@ const ProjectsSection = () => {
           whileDrag={{ rotate: 6 }}
           style={{
             position: "absolute",
-            top: "20%",
-            left: "30%",
+            top: "32%",
+            left: "15%",
             zIndex,
           }}
         >
           <h2 className="text-wrapper-head">ML Systems</h2>
           <p className="text-wrapper-p">
             Custom CUDA, Triton & MLX kernels for fast, memory-efficient LLM inference.
+          </p>
+        </motion.div>
+        {/* KV-Cache Compression text card */}
+        <motion.div
+          className="text-wrapper draggable wrapper"
+          drag
+          dragConstraints={containerRef}
+          dragElastic={0.65}
+          onMouseDown={updateZIndex}
+          initial={{ rotate: -18 }}
+          animate={{ rotate: -18 }}
+          whileDrag={{ rotate: -18 }}
+          style={{
+            position: "absolute",
+            top: "34%",
+            left: "34%",
+            zIndex,
+          }}
+        >
+          <h2 className="text-wrapper-head">DKV</h2>
+          <p className="text-wrapper-p">
+            Differential KV-cache compression for scalable long-context inference (Submitted to IEEE TETCI).
           </p>
         </motion.div>
         {/* Audio based ML card */}
@@ -154,8 +183,8 @@ const ProjectsSection = () => {
           whileDrag={{ rotate: -6 }}
           style={{
             position: "absolute",
-            top: "25%",
-            left: "60%",
+            top: "30%",
+            left: "56%",
             zIndex,
           }}
         >
@@ -170,63 +199,27 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">AQI Predictor</p>
         </motion.div>
-        {/* Signalist card */}
+        {/* RAG text card */}
         <motion.div
-          className="wrapper draggable"
+          className="text-wrapper draggable wrapper"
           drag
           dragConstraints={containerRef}
           dragElastic={0.65}
           onMouseDown={updateZIndex}
-          onTap={() => window.open(LINKS.signalist, "_blank")}
-          initial={{ rotate: 34 }}
-          animate={{ rotate: 34 }}
-          whileDrag={{ rotate: 34 }}
+          initial={{ rotate: -10 }}
+          animate={{ rotate: -10 }}
+          whileDrag={{ rotate: -10 }}
           style={{
             position: "absolute",
-            top: "10%",
-            left: "20%",
+            top: "54%",
+            left: "22%",
             zIndex,
           }}
         >
-          <div className="wrapperImg">
-            <OptimizedPicture
-              src={ABS3}
-              alt="Abstract image"
-              className="wrapperImgStyle"
-              loading="lazy"
-              sources={[{srcSet: ABS3, type: 'image/avif'}]}
-            />
-          </div>
-          <p className="wrapperText">Signalist</p>
-        </motion.div>
-        {/* RAG Ablation card */}
-        <motion.div
-          className="wrapper draggable"
-          drag
-          dragConstraints={containerRef}
-          dragElastic={0.65}
-          onMouseDown={updateZIndex}
-          onTap={() => window.open(LINKS.ragAblation, "_blank")}
-          initial={{ rotate: -24 }}
-          animate={{ rotate: -24 }}
-          whileDrag={{ rotate: -24 }}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "60%",
-            zIndex,
-          }}
-        >
-          <div className="wrapperImg">
-            <OptimizedPicture
-              src={ABS1}
-              alt="Abstract image"
-              className="wrapperImgStyle"
-              loading="lazy"
-              sources={[{srcSet: ABS1, type: 'image/avif'}]}
-            />
-          </div>
-          <p className="wrapperText">RAG Ablation Study</p>
+          <h2 className="text-wrapper-head">RAG</h2>
+          <p className="text-wrapper-p">
+            using rag with ensembles to get better results
+          </p>
         </motion.div>
         {/* Stock News card */}
         <motion.div
@@ -236,13 +229,13 @@ const ProjectsSection = () => {
           dragElastic={0.65}
           onMouseDown={updateZIndex}
           onTap={() => window.open(LINKS.stockNews, "_blank")}
-          initial={{ rotate: 10 }}
-          animate={{ rotate: 10 }}
-          whileDrag={{ rotate: 10 }}
+          initial={{ rotate: 12 }}
+          animate={{ rotate: 12 }}
+          whileDrag={{ rotate: 12 }}
           style={{
             position: "absolute",
-            top: "65%",
-            left: "30%",
+            top: "52%",
+            left: "40%",
             zIndex,
           }}
         >
@@ -257,27 +250,34 @@ const ProjectsSection = () => {
           </div>
           <p className="wrapperText">Stock News(RAG)</p>
         </motion.div>
-        {/* RAG text card */}
+        {/* RAG Ablation card */}
         <motion.div
-          className="text-wrapper draggable wrapper"
+          className="wrapper draggable"
           drag
           dragConstraints={containerRef}
           dragElastic={0.65}
           onMouseDown={updateZIndex}
-          initial={{ rotate: -10 }}
-          animate={{ rotate: -10 }}
-          whileDrag={{ rotate: -10 }}
+          onTap={() => window.open(LINKS.ragAblation, "_blank")}
+          initial={{ rotate: -22 }}
+          animate={{ rotate: -22 }}
+          whileDrag={{ rotate: -22 }}
           style={{
             position: "absolute",
-            top: "55%",
-            left: "20%",
+            top: "50%",
+            left: "58%",
             zIndex,
           }}
         >
-          <h2 className="text-wrapper-head">RAG</h2>
-          <p className="text-wrapper-p">
-            using rag with ensembles to get better results
-          </p>
+          <div className="wrapperImg">
+            <OptimizedPicture
+              src={ABS1}
+              alt="Abstract image"
+              className="wrapperImgStyle"
+              loading="lazy"
+              sources={[{srcSet: ABS1, type: 'image/avif'}]}
+            />
+          </div>
+          <p className="wrapperText">RAG Ablation Study</p>
         </motion.div>
       </div>
       <div className="projectsFooter">
