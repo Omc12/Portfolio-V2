@@ -11,6 +11,7 @@ const BackToTop = () => {
 
   return (
     <p 
+      className="backToTopBtn"
       onClick={scrollToTop} 
       style={{ cursor: 'pointer', color: 'black' }}
     >

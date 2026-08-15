@@ -3,7 +3,7 @@
   cursor: none !important;
 }
 
-/* Default custom cursor (triangle) */
+/* Default custom cursor (triangle pointer) */
 .custom-cursor-bg {
   position: fixed;
   width: 1vw;
@@ -11,7 +11,7 @@
   background-color: #ff506d;
   pointer-events: none;
   z-index: 99999;
-  transform: translate(-50%, -50%) rotate(-43deg);
+  transform: translate(0%, 0%) rotate(-43deg);
   transition: 
     width 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
     height 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
@@ -45,11 +45,11 @@
 /* Entrance keyframes */
 @keyframes cursorEntrance {
   0% {
-    transform: translate(-50%, -50%) scale(0) rotate(-43deg);
+    transform: translate(0%, 0%) scale(0) rotate(-43deg);
     opacity: 0;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    transform: translate(0%, 0%) scale(1) rotate(-43deg);
     opacity: 1;
   }
 }
@@ -57,11 +57,11 @@
 /* Exit keyframes */
 @keyframes cursorExit {
   0% {
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    transform: translate(0%, 0%) scale(1) rotate(-43deg);
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, -50%) scale(0) rotate(-43deg);
+    transform: translate(0%, 0%) scale(0) rotate(-43deg);
     opacity: 0;
   }
 }
@@ -71,6 +71,8 @@
   width: 2.8vw;
   height: 2.8vw;
   background-color: #1F51FF;
+  border: none;
+  border-radius: 50%;
   clip-path: circle(50% at 50% 50%);
   transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 30px rgba(31, 81, 255, 0.9));
@@ -81,6 +83,8 @@
   width: 2.8vw;
   height: 2.8vw;
   background-color: #ff506d;
+  border: none;
+  border-radius: 50%;
   clip-path: circle(50% at 50% 50%);
   transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 35px rgba(255, 80, 109, 0.9));
@@ -91,6 +95,8 @@
   width: 2.6vw;
   height: 2.6vw;
   background-color: #7FFF00;
+  border: none;
+  border-radius: 50%;
   clip-path: circle(50% at 50% 50%);
   transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 25px rgba(127, 255, 0, 0.95));
@@ -98,33 +104,38 @@
 
 /* Back To Top Arrow Badge */
 .custom-cursor-bg.top-hover {
-  width: 2.6vw;
-  height: 2.6vw;
+  width: 2.8vw;
+  height: 2.8vw;
   background-color: #7FFF00;
+  border: none;
+  border-radius: 50%;
   clip-path: circle(50% at 50% 50%);
   transform: translate(-50%, -50%) rotate(0deg);
   filter: drop-shadow(0 0 25px rgba(127, 255, 0, 0.95));
 }
 
-/* Unique 3D Rhombus Badge Cursor for Download Resume Button */
+/* Download Resume Button Cursor (Black Rhombus Badge with Neon Green Border) */
 .custom-cursor-bg.resume-hover {
-  width: 2.8vw;
-  height: 2.8vw;
-  background-color: #7FFF00;
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  transform: translate(-50%, -50%) rotate(0deg);
-  filter: drop-shadow(0 0 30px rgba(127, 255, 0, 1));
-}
-
-/* Unique Glowing Ring Badge for Know More / LinkedIn */
-.custom-cursor-bg.knowmore-hover {
   width: 3.2vw;
-  height: 3.2vw;
+  height: 2.2vw;
   background-color: #000000;
   border: 2px solid #7FFF00;
-  clip-path: circle(50% at 50% 50%);
-  transform: translate(-50%, -50%);
-  filter: drop-shadow(0 0 30px rgba(127, 255, 0, 0.9));
+  border-radius: 0px;
+  clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+  transform: translate(-50%, -50%) rotate(0deg);
+  filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.95));
+}
+
+/* Big Rectangle Badge for "Want To Know More" LinkedIn Section */
+.custom-cursor-bg.knowmore-hover {
+  width: 4.8vw;
+  height: 2.8vw;
+  background-color: #000000;
+  border: 2px solid #7FFF00;
+  border-radius: 6px;
+  clip-path: none;
+  transform: translate(-50%, -50%) rotate(0deg);
+  filter: drop-shadow(0 0 30px rgba(127, 255, 0, 0.95));
 }
 
 /* Vanish state for dsPara */

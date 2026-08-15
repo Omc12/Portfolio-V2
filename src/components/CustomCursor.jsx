@@ -71,14 +71,14 @@ const CustomCursor = () => {
   };
 
   const handleElementHover = (e) => {
-    const target = e.target;
+    const target = e?.target;
     if (!target) return;
     const isMenu = target.closest('.menu-cursor') !== null;
     const isWrapper = target.closest('.wrapper') !== null;
     const isDsPara = target.closest('#dsPara') !== null;
     const isResume = target.closest('.resumeDownloadBtn') !== null;
-    const isKnowMore = target.closest('.clickableKnowMore') !== null;
-    const isBackToTop = target.closest('.back-to-top, #heroScroll, .AnimatedMenu, [href="#top"]') !== null;
+    const isKnowMore = target.closest('.clickableKnowMore, .section7Sub') !== null;
+    const isBackToTop = target.closest('.backToTopBtn, #heroScroll, [href="#top"]') !== null;
     const isLink = !isResume && !isKnowMore && !isWrapper && !isBackToTop && target.closest('a, button, .FlipLink, .menu__item-link') !== null;
 
     setIsHoveringMenu(isMenu);
@@ -89,6 +89,20 @@ const CustomCursor = () => {
     setIsHoveringBackToTop(isBackToTop);
     setIsHoveringLink(isLink);
   };
+
+  // Re-evaluate element under cursor when scrolling so hover effect turns off automatically when element scrolls off
+  useEffect(() => {
+    const handleScroll = () => {
+      if (hasMoved) {
+        const elem = document.elementFromPoint(position.x, position.y);
+        if (elem) {
+          handleElementHover({ target: elem });
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [position, hasMoved]);
 
   useEffect(() => {
     const cursorBg = document.querySelector('.custom-cursor-bg');
@@ -123,14 +137,14 @@ const CustomCursor = () => {
   const renderCursorIcon = () => {
     if (isHoveringBackToTop) {
       return (
-        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 19V5M5 12l7-7 7 7"/>
         </svg>
       );
     }
     if (isHoveringResume) {
       return (
-        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FFF00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
           <polyline points="14 2 14 8 20 8"/>
           <line x1="12" y1="18" x2="12" y2="12"/>
@@ -140,7 +154,7 @@ const CustomCursor = () => {
     }
     if (isHoveringKnowMore) {
       return (
-        <svg className="cursor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FFF00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="cursor-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7FFF00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <line x1="7" y1="17" x2="17" y2="7"/>
           <polyline points="7 7 17 7 17 17"/>
         </svg>
