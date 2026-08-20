@@ -15,9 +15,10 @@
 }
 
   
-  .falling-text-target {
-    display: inline-block;
-  }
+.falling-text-target {
+  display: inline-block;
+  visibility: hidden;
+}
   
   .word {
     display: inline-block;

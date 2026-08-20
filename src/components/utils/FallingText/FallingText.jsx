@@ -30,31 +30,51 @@ const FallingText = ({
 
   // Trigger falling effect when in viewport
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || effectStarted) return;
 
-    const checkAndStart = () => {
+    const checkInView = () => {
+      if (!containerRef.current) return false;
       const rect = containerRef.current.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        setTimeout(() => setEffectStarted(true), 500);
+      const inVertical = rect.top < window.innerHeight && rect.bottom > 0;
+      const inHorizontal = rect.left < window.innerWidth * 0.85 && rect.right > window.innerWidth * 0.15;
+
+      if (inVertical && inHorizontal) {
+        setEffectStarted(true);
         return true;
       }
       return false;
     };
 
-    if (checkAndStart()) return;
+    if (checkInView()) return;
+
+    const handleCheck = () => {
+      if (checkInView()) {
+        window.removeEventListener("scroll", handleCheck);
+        window.removeEventListener("resize", handleCheck);
+      }
+    };
+
+    window.addEventListener("scroll", handleCheck, { passive: true });
+    window.addEventListener("resize", handleCheck, { passive: true });
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setEffectStarted(true), 500);
+        if (entry.isIntersecting && checkInView()) {
           observer.disconnect();
+          window.removeEventListener("scroll", handleCheck);
+          window.removeEventListener("resize", handleCheck);
         }
       },
-      { threshold: 0.6 }
+      { threshold: 0.1 }
     );
     observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleCheck);
+      window.removeEventListener("resize", handleCheck);
+    };
+  }, [effectStarted]);
 
   // Preload matter-js in idle time to avoid jank when effect starts
   useEffect(() => {
@@ -131,6 +151,7 @@ const FallingText = ({
       elem.style.top = `${body.position.y}px`;
       elem.style.transform = "translate(-50%, -50%)";
       elem.style.zIndex = 2;
+      elem.style.visibility = "visible";
     });
 
     World.add(engine.world, [
