@@ -17,15 +17,19 @@ const demoItems = [
     text: 'tech stack', 
     images: [
       'PYTORCH', 
+      'CUDA / TRITON',
+      'HUGGING FACE',
+      'LLM INFERENCE OPTIMIZATION',
+      'KV-CACHE COMPRESSION',
       'LOW-RANK SVD',
-      'LLM INFERENCE',
       'RAG SYSTEMS',
-      'QUANTIZATION',
       'MODEL EVALUATION',
-      'BENCHMARK DESIGN',
+      'NSIGHT SYSTEMS',
+      'NSIGHT COMPUTE',
+      'QUANTIZATION',
       'PYTHON',
-      'JAVASCRIPT',
       'FASTAPI',
+      'LINUX',
       'GIT',
       'VECTOR DBS'
     ]
@@ -35,8 +39,9 @@ const demoItems = [
     images: [
       '400+ questions solved', 
       'leetcode rating: 1750+',
-      'gpa: 8.1 / 10.0',
-      '3rd year B.Tech AI'
+      'IIT Roorkee SnapSyntax 1st Place',
+      'gpa: 8.0 / 10.0',
+      'B.Tech in Artificial Intelligence'
     ]
   },
   { 
@@ -44,14 +49,15 @@ const demoItems = [
     images: [
       '3 PUBLISHED PREPRINTS',
       '1 PAPER UNDER REVIEW (IEEE TETCI)',
-      'DKV FRAMEWORK',
-      'SVD FACTORIZATION',
+      'DKV COMPRESSION FRAMEWORK',
+      'RANK-32 SVD FACTORIZATION',
       'KV-CACHE COMPRESSION',
       'CUDA / TRITON / MLX',
-      'LLM INFERENCE',
-      'RAG ARCHITECTURES',
-      'QUANTIZATION',
-      'BENCHMARK DESIGN'
+      'LLM INFERENCE OPTIMIZATION',
+      'DETERMINISTIC AGI BENCHMARKING',
+      'RAG RETRIEVAL ABLATION',
+      'MODEL EVALUATION',
+      'QUANTIZATION'
     ]
   },
 ];
@@ -228,21 +234,21 @@ const StatsSection = () => {
                     <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
                   </span> published preprints & 1 paper under review in IEEE TETCI. Architected DKV framework for scalable long-context inference, engineered <span>
                     <CountUp from={0} to={4} separator="," direction="up" duration={1} className="count-up-text" />
-                  </span> custom attention backends (CUDA, Triton, MLX), maintaining 8.1 GPA as a 3rd-year B.Tech AI student.
+                  </span> custom attention backends (CUDA, Triton, MLX), maintaining 8.0 GPA as a B.Tech AI student.
                 </p>
               </div>
             </motion.div>
             {/* Original Paragraph */}
             <p id="dsPara">
-              3rd-year B.Tech AI student focused on LLM Inference Optimization, KV-Cache Compression, and RAG Systems.
+              B.Tech AI student focused on LLM Inference Optimization, KV-Cache Compression, and RAG Systems.
               Published <span>
                 <CountUp from={0} to={3} separator="," direction="up" duration={1} className="count-up-text" />
               </span> preprints & 1 paper under review in IEEE TETCI, engineered <span>
                 <CountUp from={0} to={4} separator="," direction="up" duration={1} className="count-up-text" />
-              </span> custom attention kernel backends (CUDA, Triton, MLX, GGML), maintaining 8.1 GPA.
+              </span> custom attention kernel backends (CUDA, Triton, MLX), maintaining 8.0 GPA.
             </p>
             <FallingText
-              text={`PyTorch HuggingFace Transformers CUDA Triton MLX FastAPI Python Git VectorDBs Quantization Low-Rank-SVD RAG`}
+              text={`PyTorch HuggingFace Transformers CUDA Triton MLX Nsight-Systems Nsight-Compute FastAPI Python Linux Git VectorDBs Quantization Low-Rank-SVD KV-Cache RAG Model-Evaluation`}
               highlightWords={[]}
               highlightClass="highlighted"
               trigger="hover"

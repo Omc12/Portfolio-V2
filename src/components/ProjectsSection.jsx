@@ -216,9 +216,9 @@ const ProjectsSection = () => {
             zIndex,
           }}
         >
-          <h2 className="text-wrapper-head">RAG</h2>
+          <h2 className="text-wrapper-head">RAG Ablations</h2>
           <p className="text-wrapper-p">
-            using rag with ensembles to get better results
+            Controlled empirical ablations across semantic, hybrid (BM25 + vector), and MMR retrieval.
           </p>
         </motion.div>
         {/* Stock News card */}
