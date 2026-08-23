@@ -5,7 +5,7 @@ import "./RevealLinks.css";
 export const RevealLinks = () => {
   return (
     <section className="reveal-links-section">
-      <FlipLink href="/resume.pdf" download="resume.pdf">
+      <FlipLink href="/resume.pdf">
         Resume
       </FlipLink>
       <FlipLink href="mailto:omchimurkar45@gmail.com">
