@@ -54,7 +54,8 @@ const KnowMore = () => {
       </div>
       <div className="resumeDownloadContainer">
         <a 
-          href="/Resume-Om_Chimurkar.pdf" 
+          href="/resume.pdf" 
+          download="resume.pdf"
           target="_blank" 
           rel="noopener noreferrer"
           className="resumeDownloadBtn"
